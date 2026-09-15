@@ -33,8 +33,8 @@
 
 | جلسه | موضوع                  | لینک                                     |
 | :--: | ---------------------- | ---------------------------------------- |
-|  01  | آشنایی با Arduino      | [مشاهده](./01-Introduction/)             |
-|  02  | نصب Arduino IDE        | [مشاهده](./02-Arduino-IDE/)              |
+|  01  | Arduino آشنایی با     | [مشاهده](./01-Introduction/)             |
+|  02  |  Arduino IDE نصب       | [مشاهده](./02-Arduino-IDE/)              |
 |  03  | Digital Input / Output | [مشاهده](./03-Digital-IO/)               |
 |  04  | Analog Input / Output  | [مشاهده](./04-Analog-IO/)                |
 |  05  | PWM                    | [مشاهده](./05-PWM/)                      |
