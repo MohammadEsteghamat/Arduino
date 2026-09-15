@@ -621,21 +621,22 @@ Arduino Start
 </div>
 
 ---
+<h2 dir="rtl">⏭️ جلسه بعد</h2>
 
-# 🔗 جلسه بعد
+<p dir="rtl">
+در جلسه سوم، <strong>Arduino IDE</strong> را نصب و راه‌اندازی می‌کنیم و اولین برنامه خود را روی یک Arduino واقعی اجرا خواهیم کرد.
+</p>
 
-<div dir="rtl" align="right">
+<p dir="rtl">
+➡️ <a href="../02-Arduino-IDE/">جلسه 03 — نصب و راه‌اندازی Arduino IDE</a>
+</p>
 
-**➡️ جلسه 03 — <span dir="ltr">Digital Input / Output</span>**
+<hr>
 
-</div>
+<p align="center">
+<strong>Arduino From Zero to Projects</strong>
+</p>
 
-<br>
-
-<div align="center">
-
-### <span dir="ltr">Arduino From Zero to Projects 🚀</span>
-
-**<span dir="ltr">Learn → Build → Experiment → Create</span>**
-
-</div>
+<p align="center">
+<strong>Mohammad Esteghamat</strong>
+</p>
