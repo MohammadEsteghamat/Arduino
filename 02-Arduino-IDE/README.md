@@ -624,7 +624,7 @@ Arduino Start
 <h2 dir="rtl">⏭️ جلسه بعد</h2>
 
 <p dir="rtl">
-در جلسه سوم، <strong>Arduino IDE</strong>یعنی یاد می‌گیریم چگونه با پایه‌های دیجیتال Arduino کار کنیم و قطعاتی مانند LED و Push Button را کنترل کنیم.
+در جلسه سوم، <strong>Arduino IDE</strong> را نصب و راه‌اندازی می‌کنیم و اولین برنامه خود را روی یک Arduino واقعی اجرا خواهیم کرد.
 </p>
 
 <p dir="rtl">
