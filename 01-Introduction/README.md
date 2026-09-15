@@ -1,202 +1,565 @@
-# Arduino From Zero to Projects
+<h1 dir="rtl">جلسه 01 — آشنایی با Arduino</h1>
 
-<div dir="rtl">
+<hr>
 
-## 🚀 آموزش Arduino از صفر تا ساخت پروژه‌های عملی
+<h2 dir="rtl">🎯 هدف جلسه</h2>
 
-این دوره برای افرادی طراحی شده است که می‌خواهند **Arduino را از پایه یاد بگیرند** و قدم‌به‌قدم به مرحله‌ای برسند که بتوانند پروژه‌های واقعی با میکروکنترلر، سنسورها و قطعات الکترونیکی بسازند.
+<p dir="rtl">
+در این جلسه با <strong>Arduino</strong>، کاربرد آن، ساختار یک برد Arduino و تفاوت آن با یک میکروکنترلر آشنا می‌شویم.
+</p>
 
-هدف این دوره فقط یادگیری تئوری نیست؛ بلکه در طول مسیر با **برنامه‌نویسی، مدارهای الکترونیکی و ساخت پروژه‌های عملی** آشنا می‌شویم.
+<p dir="rtl">
+در پایان این جلسه باید بتوانیم به سؤالات زیر پاسخ دهیم:
+</p>
 
-</div>
+<ul dir="rtl">
+<li>Arduino چیست؟</li>
+<li>میکروکنترلر چیست؟</li>
+<li>Arduino Board چیست؟</li>
+<li>تفاوت Arduino و Microcontroller چیست؟</li>
+<li>اجزای اصلی یک برد Arduino چیست؟</li>
+<li>چرا از Arduino استفاده می‌کنیم؟</li>
+<li>چه پروژه‌هایی می‌توان با Arduino ساخت؟</li>
+</ul>
 
----
+<hr>
 
-## 🗺️ مسیر یادگیری
+<h2 dir="rtl">📚 1. Arduino چیست؟</h2>
 
+<p dir="rtl">
+<strong>Arduino</strong> یک پلتفرم الکترونیکی متن‌باز
+(<code>Open Source</code>)
+است که برای یادگیری، نمونه‌سازی و ساخت پروژه‌های الکترونیکی و کنترلی استفاده می‌شود.
+</p>
 
-Arduino چیست؟
-      ↓
-نصب و کار با Arduino IDE
-      ↓
-Digital Input / Output
-      ↓
-Analog Input / Output
-      ↓
-PWM
-      ↓
-Serial Communication
-      ↓
-Variables & Data Types
-      ↓
-Conditions
-      ↓
-Loops
-      ↓
-Functions
-      ↓
-Sensors & Motors
-      ↓
-Displays & Communication
-      ↓
-ساخت پروژه‌های عملی
-<div dir="rtl">
-🎯 هدف دوره
+<p dir="rtl">
+Arduino شامل مجموعه‌ای از بردهای سخت‌افزاری، نرم‌افزار، کتابخانه‌ها و ابزارهای مختلف است که کار طراحی و ساخت پروژه‌های الکترونیکی را ساده‌تر می‌کنند.
+</p>
 
-در پایان این دوره انتظار می‌رود بتوانید:
+<p dir="rtl">
+یکی از معروف‌ترین بردهای این خانواده،
+<strong>Arduino UNO</strong>
+است که در ادامه این دوره بیشتر با آن کار خواهیم کرد.
+</p>
 
-با Arduino و ساختار آن آشنا باشید.
-Arduino IDE را نصب و استفاده کنید.
-برنامه‌های ساده Arduino بنویسید.
-ورودی‌ها و خروجی‌های دیجیتال را کنترل کنید.
-با ورودی‌های آنالوگ کار کنید.
-مفهوم PWM را درک و استفاده کنید.
-اطلاعات را از طریق Serial Monitor دریافت و ارسال کنید.
-از Variables و Data Types استفاده کنید.
-با Conditions و Loops برنامه‌نویسی کنید.
-Functions ایجاد و استفاده کنید.
-با سنسورها و موتورها کار کنید.
-نمایشگرها را به Arduino متصل کنید.
-با برخی پروتکل‌های ارتباطی آشنا شوید.
-پروژه‌های عملی Arduino را طراحی و اجرا کنید.
-</div>
-📚 Sessions
-<div dir="rtl">
-جلسات دوره
-جلسه	موضوع	لینک
-01	آشنایی با Arduino	مشاهده جلسه
-02	نصب و آشنایی با Arduino IDE	مشاهده جلسه
-03	Digital Input / Output	مشاهده جلسه
-04	Analog Input / Output	مشاهده جلسه
-05	PWM	مشاهده جلسه
-06	Serial Monitor	مشاهده جلسه
-07	Variables & Data Types	مشاهده جلسه
-08	Conditions	مشاهده جلسه
-09	Loops	مشاهده جلسه
-10	Functions	مشاهده جلسه
-</div>
-🔧 Projects
-<div dir="rtl">
-پروژه‌های عملی
+<p align="center">
+<img src="./images/01-arduino-uno.jpg" alt="Arduino UNO" width="700">
+</p>
 
-در ادامه مسیر، مفاهیمی که در جلسات یاد می‌گیریم را در پروژه‌های واقعی استفاده خواهیم کرد.
+<p dir="rtl">
+به طور کلی Arduino را می‌توان نقطه شروع مناسبی برای یادگیری برنامه‌نویسی میکروکنترلرها، الکترونیک و سیستم‌های Embedded در نظر گرفت.
+</p>
 
-</div>
-پروژه	موضوع	لینک
-01	🚦 Traffic Light	مشاهده پروژه
-02	💡 Automatic Light	مشاهده پروژه
-03	📏 Ultrasonic Distance	مشاهده پروژه
-🧰 Requirements
-<div dir="rtl">
-پیش‌نیازها و تجهیزات
+<hr>
 
-برای شروع این دوره به تجهیزات زیر نیاز دارید:
+<h2 dir="rtl">🧠 2. میکروکنترلر چیست؟</h2>
 
-Arduino Board
-USB Cable
-Arduino IDE
-Breadboard
-Jumper Wires
-LED
-Resistors
+<p dir="rtl">
+میکروکنترلر یک مدار مجتمع
+(<code>IC</code>)
+است که می‌تواند یک برنامه را اجرا کند و تجهیزات الکترونیکی مختلف را کنترل کند.
+</p>
+
+<p dir="rtl">
+یک میکروکنترلر معمولاً شامل بخش‌هایی مانند موارد زیر است:
+</p>
+
+<ul dir="rtl">
+<li>CPU</li>
+<li>Flash Memory</li>
+<li>RAM</li>
+<li>Input / Output</li>
+<li>Timers</li>
+<li>Communication Interfaces</li>
+<li>ADC</li>
+</ul>
+
+<p dir="rtl">
+در واقع می‌توان میکروکنترلر را یک سیستم کامپیوتری کوچک در نظر گرفت که بسیاری از اجزای موردنیاز برای اجرای یک برنامه را درون یک تراشه در اختیار ما قرار می‌دهد.
+</p>
+
+<p align="center">
+<img src="./images/02-microcontroller.jpg" alt="Microcontroller Structure" width="700">
+</p>
+
+<h3 dir="rtl">🔹 اجزای اصلی یک میکروکنترلر</h3>
+
+<ul dir="rtl">
+<li><strong>CPU:</strong> اجرای دستورات برنامه</li>
+<li><strong>Flash:</strong> ذخیره برنامه</li>
+<li><strong>RAM:</strong> ذخیره موقت داده‌ها</li>
+<li><strong>GPIO:</strong> ارتباط با ورودی‌ها و خروجی‌ها</li>
+<li><strong>Timer:</strong> ایجاد و اندازه‌گیری زمان</li>
+<li><strong>ADC:</strong> تبدیل سیگنال آنالوگ به دیجیتال</li>
+<li><strong>Communication:</strong> ارتباط با تجهیزات دیگر</li>
+</ul>
+
+<p dir="rtl">
+برای مثال، در
+<strong>Arduino UNO R3</strong>
+از میکروکنترلر
+<strong>ATmega328P</strong>
+استفاده شده است.
+</p>
+
+<hr>
+
+<h2 dir="rtl">🔌 3. Arduino Board چیست؟</h2>
+
+<p dir="rtl">
+یک <strong>Arduino Board</strong> بردی آماده است که یک میکروکنترلر را به همراه مدارها و امکانات جانبی موردنیاز در اختیار ما قرار می‌دهد.
+</p>
+
+<p dir="rtl">
+به عنوان مثال، Arduino UNO فقط شامل میکروکنترلر نیست و قسمت‌های مختلفی برای ارتباط با کامپیوتر، تأمین توان و اتصال تجهیزات خارجی روی آن قرار گرفته است.
+</p>
+
+<p align="center">
+<img src="./images/03-arduino-board.jpg" alt="Arduino UNO Board Components" width="800">
+</p>
+
+<h3 dir="rtl">🔹 بخش‌های مهم Arduino Board</h3>
+
+<ul dir="rtl">
+<li><strong>Microcontroller:</strong> اجرای برنامه</li>
+<li><strong>USB:</strong> ارتباط با کامپیوتر و انتقال برنامه</li>
+<li><strong>Digital Pins:</strong> ورودی و خروجی دیجیتال</li>
+<li><strong>Analog Pins:</strong> خواندن سیگنال‌های آنالوگ</li>
+<li><strong>Power:</strong> تأمین انرژی برد</li>
+<li><strong>Reset:</strong> شروع مجدد برنامه</li>
+<li><strong>Clock:</strong> ایجاد کلاک موردنیاز برای اجرای میکروکنترلر</li>
+</ul>
+
+<p dir="rtl">
+به همین دلیل کار با Arduino نسبت به استفاده مستقیم از یک میکروکنترلر خام ساده‌تر است.
+</p>
+
+<hr>
+
+<h2 dir="rtl">⚙️ 4. اجزای اصلی Arduino UNO</h2>
+
+<p dir="rtl">
+یکی از محبوب‌ترین بردهای Arduino،
+<strong>Arduino UNO</strong>
+است.
+</p>
+
+<p dir="rtl">
+برای کار با Arduino لازم است با پایه‌ها و قسمت‌های اصلی برد آشنا باشیم.
+</p>
+
+<p align="center">
+<img src="./images/04-arduino-uno-pins.jpg" alt="Arduino UNO Pinout" width="850">
+</p>
+
+<h3 dir="rtl">🔹 Digital Pins</h3>
+
+<p dir="rtl">
+پایه‌های دیجیتال برای دریافت یا ارسال سیگنال‌های دیجیتال استفاده می‌شوند.
+</p>
+
+<p dir="rtl">
+یک سیگنال دیجیتال معمولاً دارای دو وضعیت اصلی است:
+</p>
+
+```text
+HIGH
+LOW
+```
+
+<p dir="rtl">
+برای مثال می‌توانیم با استفاده از یک پایه دیجیتال، یک LED را روشن یا خاموش کنیم.
+</p>
+
+<h3 dir="rtl">🔹 Analog Pins</h3>
+
+<p dir="rtl">
+پایه‌های آنالوگ برای خواندن سیگنال‌های آنالوگ استفاده می‌شوند.
+</p>
+
+<p dir="rtl">
+برای مثال می‌توانیم ولتاژ خروجی یک پتانسیومتر یا سنسور را اندازه‌گیری کنیم.
+</p>
+
+<h3 dir="rtl">🔹 USB Port</h3>
+
+<p dir="rtl">
+پورت USB برای موارد زیر استفاده می‌شود:
+</p>
+
+<ul dir="rtl">
+<li>اتصال Arduino به کامپیوتر</li>
+<li>انتقال برنامه به برد</li>
+<li>ارتباط Serial با کامپیوتر</li>
+<li>تأمین توان برد در شرایط مناسب</li>
+</ul>
+
+<h3 dir="rtl">🔹 Power Input</h3>
+
+<p dir="rtl">
+برای تأمین انرژی Arduino می‌توان از روش‌های مختلف تغذیه استفاده کرد.
+</p>
+
+<h3 dir="rtl">🔹 Reset Button</h3>
+
+<p dir="rtl">
+با فشار دادن کلید Reset، اجرای برنامه از ابتدا شروع می‌شود.
+</p>
+
+<hr>
+
+<h2 dir="rtl">💡 5. Arduino چه کاری انجام می‌دهد؟</h2>
+
+<p dir="rtl">
+Arduino می‌تواند اطلاعات را از محیط دریافت کند، آن‌ها را پردازش کند و بر اساس نتیجه، خروجی ایجاد کند.
+</p>
+
+<p dir="rtl">
+به صورت ساده می‌توان عملکرد Arduino را این‌گونه نمایش داد:
+</p>
+
+<p align="center">
+<img src="./images/05-input-output.jpg" alt="Arduino Input Processing Output" width="800">
+</p>
+
+<p dir="rtl">
+در یک سیستم ساده، اطلاعات از طریق یک ورودی وارد Arduino می‌شوند، میکروکنترلر برنامه را اجرا می‌کند و سپس بر اساس منطق برنامه، خروجی مناسب ایجاد می‌شود.
+</p>
+
+<h3 dir="rtl">🔹 مثال اول</h3>
+
+```text
 Push Button
-و سایر قطعات موردنیاز هر پروژه
+     ↓
+  Arduino
+     ↓
+    LED
+```
 
-نیازی نیست تمام قطعات را از ابتدا تهیه کنید.
-قطعات موردنیاز هر پروژه در صفحه همان پروژه مشخص خواهد شد.
+<p dir="rtl">
+در این مثال، Push Button ورودی و LED خروجی سیستم است.
+</p>
 
-</div>
-📖 Recommended Learning Path
-<div dir="rtl">
-مسیر پیشنهادی یادگیری
+<h3 dir="rtl">🔹 مثال دوم</h3>
 
-پیشنهاد می‌شود جلسات را به ترتیب دنبال کنید؛ زیرا مفاهیم جلسات بعدی بر پایه مباحث قبلی ساخته می‌شوند.
+```text
+Temperature Sensor
+        ↓
+      Arduino
+        ↓
+        Fan
+```
 
-🟢 Beginner
+<p dir="rtl">
+در این مثال، Arduino اطلاعات سنسور دما را دریافت کرده و بر اساس برنامه، موتور یا فن را کنترل می‌کند.
+</p>
 
-جلسات 01 تا 04
+<hr>
 
-آشنایی با Arduino، محیط برنامه‌نویسی و ورودی/خروجی‌ها.
+<h2 dir="rtl">🔄 6. ورودی و خروجی</h2>
 
-🟡 Intermediate
+<h3 dir="rtl">📥 ورودی‌ها (Input)</h3>
 
-جلسات 05 تا 07
+<p dir="rtl">
+Arduino می‌تواند اطلاعات را از تجهیزات مختلف دریافت کند.
+</p>
 
-PWM، ارتباط سریال، متغیرها و انواع داده.
+<ul dir="rtl">
+<li>Push Button</li>
+<li>Potentiometer</li>
+<li>Temperature Sensor</li>
+<li>LDR</li>
+<li>Ultrasonic Sensor</li>
+</ul>
 
-🟠 Programming
+<h3 dir="rtl">📤 خروجی‌ها (Output)</h3>
 
-جلسات 08 تا 10
+<p dir="rtl">
+Arduino می‌تواند تجهیزات مختلف را کنترل کند.
+</p>
 
-Conditions، Loops و Functions.
+<ul dir="rtl">
+<li>LED</li>
+<li>Buzzer</li>
+<li>Relay</li>
+<li>Servo Motor</li>
+<li>DC Motor</li>
+<li>Display</li>
+</ul>
 
-🔴 Projects
+<p dir="rtl">
+بنابراین Arduino می‌تواند بین سنسورها و تجهیزات خروجی قرار گرفته و نقش یک کنترل‌کننده را ایفا کند.
+</p>
 
-پس از یادگیری مباحث پایه، می‌توانید وارد بخش پروژه‌ها شوید و مفاهیم را به‌صورت عملی استفاده کنید.
+<hr>
 
-</div>
-📂 Repository Structure
+<h2 dir="rtl">🆚 7. تفاوت Arduino و Microcontroller</h2>
 
-ساختار کلی این Repository:
+<p dir="rtl">
+<strong>Arduino</strong> و <strong>Microcontroller</strong> یکسان نیستند.
+</p>
 
-Arduino/
-│
-├── README.md
-│
-├── 01-Introduction/
-│   ├── README.md
-│   └── images/
-│
-├── 02-Arduino-IDE/
-│   └── README.md
-│
-├── 03-Digital-IO/
-│   └── README.md
-│
-├── 04-Analog-IO/
-│   └── README.md
-│
-├── 05-PWM/
-│   └── README.md
-│
-├── 06-Serial-Monitor/
-│   └── README.md
-│
-├── 07-Variables-and-Data-Types/
-│   └── README.md
-│
-├── 08-Conditions/
-│   └── README.md
-│
-├── 09-Loops/
-│   └── README.md
-│
-├── 10-Functions/
-│   └── README.md
-│
-└── Projects/
-    │
-    ├── Project-01-Traffic-Light/
-    ├── Project-02-Automatic-Light/
-    └── Project-03-Ultrasonic-Distance/
-<div dir="rtl">
-🧠 نکته مهم
+<p dir="rtl">
+میکروکنترلر یک تراشه است، در حالی که Arduino معمولاً یک برد و اکوسیستم آماده مبتنی بر یک میکروکنترلر است.
+</p>
 
-این دوره به‌صورت Step by Step طراحی شده است.
+<h3 dir="rtl">میکروکنترلر:</h3>
 
-در هر جلسه ابتدا مفهوم را یاد می‌گیریم، سپس مثال عملی می‌بینیم و در نهایت با تمرین و پروژه، مطالب را تثبیت می‌کنیم.
+```text
+ATmega328P
+     ↓
+Microcontroller
+```
 
-</div>
-<div dir="rtl">
-👨‍💻 Author
+<h3 dir="rtl">Arduino UNO:</h3>
 
-Mohammad Esteghamat
+```text
+Arduino UNO
+     ↓
+Board
+     ↓
+ATmega328P
+     +
+USB
+     +
+Power
+     +
+Pins
+     +
+Supporting Circuits
+```
 
-</div>
+<p dir="rtl">
+به عبارت ساده، میکروکنترلر قلب سیستم است و Arduino یک برد آماده است که کار استفاده از آن میکروکنترلر را ساده‌تر می‌کند.
+</p>
 
-<div align="center">
-⭐ اگر این دوره برایتان مفید بود، Repository را Star کنید.
+<hr>
 
-Arduino From Zero to Projects
+<h2 dir="rtl">🚀 8. چرا از Arduino استفاده می‌کنیم؟</h2>
 
-Learn → Build → Experiment → Create 🚀
+<p dir="rtl">
+Arduino به دلیل سادگی و دسترسی بالا، یکی از پلتفرم‌های محبوب برای یادگیری الکترونیک، برنامه‌نویسی و ساخت نمونه‌های اولیه است.
+</p>
+
+<h3 dir="rtl">برخی از ویژگی‌های Arduino:</h3>
+
+<ul dir="rtl">
+<li>سادگی در یادگیری</li>
+<li>مناسب برای نمونه‌سازی سریع</li>
+<li>دارای کتابخانه‌های متعدد</li>
+<li>جامعه کاربری بزرگ</li>
+<li>مثال‌ها و پروژه‌های فراوان</li>
+<li>هزینه نسبتاً پایین</li>
+<li>مناسب برای آموزش</li>
+</ul>
+
+<hr>
+
+<h2 dir="rtl">🛠️ 9. با Arduino چه پروژه‌هایی می‌توان ساخت؟</h2>
+
+<p dir="rtl">
+Arduino فقط برای روشن و خاموش کردن یک LED استفاده نمی‌شود. با یادگیری صحیح می‌توان پروژه‌های بسیار متنوعی با آن ساخت.
+</p>
+
+<p align="center">
+<img src="./images/07-arduino-projects.jpg" alt="Arduino Projects" width="850">
+</p>
+
+<h3 dir="rtl">🟢 پروژه‌های ساده</h3>
+
+<ul dir="rtl">
+<li>چشمک‌زدن LED</li>
+<li>کنترل LED با Push Button</li>
+<li>کنترل روشنایی LED</li>
+<li>تولید صدا با Buzzer</li>
+</ul>
+
+<h3 dir="rtl">🟡 پروژه‌های متوسط</h3>
+
+<ul dir="rtl">
+<li>اندازه‌گیری دما</li>
+<li>فاصله‌سنج اولتراسونیک</li>
+<li>کنترل Servo Motor</li>
+<li>کنترل DC Motor</li>
+<li>نمایش اطلاعات روی LCD</li>
+</ul>
+
+<h3 dir="rtl">🔴 پروژه‌های پیشرفته‌تر</h3>
+
+<ul dir="rtl">
+<li>سیستم‌های اتوماسیون</li>
+<li>ربات</li>
+<li>خانه هوشمند</li>
+<li>سیستم‌های کنترل موتور</li>
+<li>سیستم‌های مانیتورینگ</li>
+<li>ارتباط بی‌سیم</li>
+<li>پروژه‌های IoT</li>
+</ul>
+
+<hr>
+
+<h2 dir="rtl">🧩 10. انواع بردهای Arduino</h2>
+
+<p dir="rtl">
+Arduino فقط به مدل UNO محدود نمی‌شود و بردهای مختلفی برای کاربردهای متفاوت وجود دارد.
+</p>
+
+<p align="center">
+<img src="./images/06-arduino-family.jpg" alt="Arduino Boards Family" width="850">
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Board</th>
+<th>ویژگی</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arduino UNO</td>
+<td>مناسب برای شروع یادگیری</td>
+</tr>
+<tr>
+<td>Arduino Nano</td>
+<td>کوچک و مناسب پروژه‌های فشرده</td>
+</tr>
+<tr>
+<td>Arduino Mega</td>
+<td>تعداد پایه‌های بیشتر</td>
+</tr>
+<tr>
+<td>Arduino Leonardo</td>
+<td>دارای امکانات USB متفاوت</td>
+</tr>
+<tr>
+<td>Arduino Due</td>
+<td>پردازنده قدرتمندتر</td>
+</tr>
+</tbody>
+</table>
+
+<p dir="rtl">
+در این دوره برای شروع، از
+<strong>Arduino UNO</strong>
+استفاده خواهیم کرد.
+</p>
+
+<hr>
+
+<h2 dir="rtl">💻 11. Arduino IDE چیست؟</h2>
+
+<p dir="rtl">
+برای نوشتن برنامه و انتقال آن به Arduino معمولاً از
+<strong>Arduino IDE</strong>
+استفاده می‌کنیم.
+</p>
+
+<p dir="rtl">
+Arduino IDE محیطی است که در آن می‌توانیم کد برنامه را بنویسیم، آن را بررسی و کامپایل کنیم و در نهایت برنامه را روی برد Arduino منتقل کنیم.
+</p>
+
+<p dir="rtl">
+در جلسه بعد یاد می‌گیریم:
+</p>
+
+<ul dir="rtl">
+<li>Arduino IDE را نصب کنیم.</li>
+<li>Arduino را به کامپیوتر متصل کنیم.</li>
+<li>برد مناسب را انتخاب کنیم.</li>
+<li>Port مناسب را انتخاب کنیم.</li>
+<li>برنامه را Compile کنیم.</li>
+<li>برنامه را روی Arduino Upload کنیم.</li>
+</ul>
+
+<hr>
+
+<h2 dir="rtl">🧠 12. Arduino چگونه با دنیای واقعی ارتباط برقرار می‌کند؟</h2>
+
+<p dir="rtl">
+یکی از مهم‌ترین مفاهیمی که در ادامه دوره یاد می‌گیریم، ارتباط بین نرم‌افزار و سخت‌افزار است.
+</p>
+
+<p dir="rtl">
+Arduino می‌تواند اطلاعات را از سنسورها دریافت کند، آن‌ها را پردازش کند و بر اساس برنامه، تجهیزات مختلف را کنترل کند.
+</p>
+
+```text
+        Hardware
+            ↓
+     Microcontroller
+            ↓
+       Programming
+            ↓
+         Sensors
+            ↓
+        Processing
+            ↓
+        Actuators
+            ↓
+        Real Project
+```
+
+<p dir="rtl">
+هدف این دوره این است که قدم‌به‌قدم از مفاهیم پایه به سمت ساخت چنین سیستم‌هایی حرکت کنیم.
+</p>
+
+<hr>
+
+<h2 dir="rtl">📝 تمرین جلسه</h2>
+
+<p dir="rtl">
+قبل از رفتن به جلسه بعد، به سؤالات زیر پاسخ دهید:
+</p>
+
+<ol dir="rtl">
+<li>Arduino چیست؟</li>
+<li>میکروکنترلر چیست؟</li>
+<li>تفاوت Arduino Board و Microcontroller چیست؟</li>
+<li>میکروکنترلر Arduino UNO R3 چه نام دارد؟</li>
+<li>سه نمونه ورودی برای Arduino نام ببرید.</li>
+<li>سه نمونه خروجی برای Arduino نام ببرید.</li>
+<li>Arduino IDE چه کاربردی دارد؟</li>
+<li>چند مدل مختلف از بردهای Arduino را نام ببرید.</li>
+</ol>
+
+<hr>
+
+<h2 dir="rtl">✅ خلاصه جلسه</h2>
+
+<p dir="rtl">
+در این جلسه با مفاهیم پایه Arduino آشنا شدیم:
+</p>
+
+<ul dir="rtl">
+<li>Arduino چیست.</li>
+<li>میکروکنترلر چیست.</li>
+<li>Arduino Board چه تفاوتی با Microcontroller دارد.</li>
+<li>Arduino UNO چیست.</li>
+<li>ورودی و خروجی چیست.</li>
+<li>اجزای اصلی Arduino UNO چیست.</li>
+<li>Arduino IDE چه کاربردی دارد.</li>
+<li>چه پروژه‌هایی می‌توان با Arduino ساخت.</li>
+</ul>
+
+<hr>
+
+<h2 dir="rtl">⏭️ جلسه بعد</h2>
+
+<p dir="rtl">
+در جلسه دوم، <strong>Arduino IDE</strong> را نصب و راه‌اندازی می‌کنیم و اولین برنامه خود را روی یک Arduino واقعی اجرا خواهیم کرد.
+</p>
+
+<p dir="rtl">
+➡️ <a href="../02-Arduino-IDE/">جلسه 02 — نصب و راه‌اندازی Arduino IDE</a>
+</p>
+
+<hr>
+
+<p align="center">
+<strong>Arduino From Zero to Projects</strong>
+</p>
+
+<p align="center">
+<strong>Mohammad Esteghamat</strong>
+</p>
