@@ -143,7 +143,7 @@
 
 </div>
 
-<table dir="rtl" align="right">
+<table dir="rtl" style="margin-left: auto; margin-right: 0;">
 <thead>
 <tr>
 <th>بخش</th>
@@ -378,35 +378,66 @@ Program Execution
 
 </div>
 
-<table dir="rtl" align="right">
+<table dir="rtl" style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+
 <thead>
+
 <tr>
-<th>گزینه</th>
-<th>کاربرد</th>
+
+<th style="text-align: right; padding: 12px; border-bottom: 1px solid #888;">
+گزینه
+</th>
+
+<th style="text-align: right; padding: 12px; border-bottom: 1px solid #888;">
+کاربرد
+</th>
+
 </tr>
+
 </thead>
+
 <tbody>
+
 <tr>
-<td><code dir="ltr">Verify</code></td>
-<td>بررسی و <span dir="ltr">Compile</span> برنامه</td>
+
+<td style="padding: 12px; border-bottom: 1px solid #555;">
+<code dir="ltr">Verify</code>
+</td>
+
+<td style="padding: 12px; border-bottom: 1px solid #555;">
+بررسی و <span dir="ltr">Compile</span> برنامه
+</td>
+
 </tr>
+
 <tr>
-<td><code dir="ltr">Upload</code></td>
-<td><span dir="ltr">Compile</span> و ارسال برنامه به <span dir="ltr">Arduino</span></td>
+
+<td style="padding: 12px; border-bottom: 1px solid #555;">
+<code dir="ltr">Upload</code>
+</td>
+
+<td style="padding: 12px; border-bottom: 1px solid #555;">
+<span dir="ltr">Compile</span> و ارسال برنامه به <span dir="ltr">Arduino</span>
+</td>
+
 </tr>
+
 </tbody>
+
 </table>
+
+<div style="clear: both;"></div>
 
 <div dir="rtl" align="right">
 <br><br>
 
 به‌صورت ساده:
 
-<strong><span dir="ltr">Verify →</span> فقط بررسی و <span dir="ltr">Compile</span> برنامه</strong>
+<strong><span dir="ltr">← Verify </span> فقط بررسی و <span dir="ltr">Compile</span> برنامه</strong>
 
 <br>
 
-<strong><span dir="ltr">Upload →</span> بررسی، <span dir="ltr">Compile</span> و ارسال برنامه به برد</strong>
+<strong><span dir="ltr">← Upload </span> بررسی، <span dir="ltr">Compile</span> و ارسال برنامه به برد</strong>
 
 </div>
 
