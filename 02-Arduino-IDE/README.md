@@ -134,7 +134,7 @@
 </div>
 
 <p align="center">
-<img src="./images/03-arduino-ide-interface.png" alt="Arduino IDE Interface" width="800">
+<img src="./images/03-arduino-ide-interface.gif" alt="Arduino IDE Interface" width="800">
 </p>
 
 <div dir="rtl" align="right">
@@ -365,7 +365,7 @@ Program Execution
 </div>
 
 <p align="center">
-<img src="./images/06-upload-success.png" alt="Arduino Upload Success" width="800">
+<img src="./images/06-upload-success.gif" alt="Arduino Upload Success" width="800">
 </p>
 
 ---
@@ -624,11 +624,11 @@ Arduino Start
 <h2 dir="rtl">⏭️ جلسه بعد</h2>
 
 <p dir="rtl">
-در جلسه سوم، <strong></strong> یاد می‌گیریم چگونه با پایه‌های دیجیتال Arduino کار کنیم و قطعاتی مانند LED و Push Button را کنترل کنیم.
+در جلسه سوم، <strong>Arduino IDE</strong> را نصب و راه‌اندازی می‌کنیم و اولین برنامه خود را روی یک Arduino واقعی اجرا خواهیم کرد.
 </p>
 
 <p dir="rtl">
-➡️ <a href="../02-Arduino-IDE/">جلسه 03 — Digital Input / Output Arduino IDE</a>
+➡️ <a href="../02-Arduino-IDE/">جلسه 03 — نصب و راه‌اندازی Arduino IDE</a>
 </p>
 
 <hr>
