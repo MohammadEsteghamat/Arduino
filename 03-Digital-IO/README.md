@@ -720,7 +720,7 @@ LED 2 → ON
 
 
 <p dir="rtl">
-➡️ <a href="../04-Analog-IO/">جلسه 04 — Analog-IO  Arduino IDE</a>
+⬅️ <a href="../04-Analog-IO/">جلسه 04 — Analog-IO </a>
 </p>
 
 
