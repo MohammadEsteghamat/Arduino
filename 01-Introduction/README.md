@@ -551,7 +551,7 @@ Arduino می‌تواند اطلاعات را از سنسورها دریافت �
 </p>
 
 <p dir="rtl">
-➡️ <a href="../02-Arduino-IDE/">جلسه 02 — نصب و راه‌اندازی Arduino IDE</a>
+⬅️ <a href="../02-Arduino-IDE/">جلسه 02 — نصب و راه‌اندازی Arduino IDE</a>
 </p>
 
 <hr>
