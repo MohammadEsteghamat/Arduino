@@ -628,7 +628,7 @@ Arduino Start
 </p>
 
 <p dir="rtl">
-➡️ <a href="../03-Digital-IO/">جلسه 03 -- Digital-IO</a>
+➡️ <a href="../03-Digital-IO/">جلسه 03 — Digital-IO</a>
 </p>
 
 <hr>
