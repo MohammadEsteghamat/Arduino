@@ -716,13 +716,13 @@ LED 2 → ON
 # 🔗 جلسه بعد
 
 
-</p>
+
 
 <p dir="rtl">
 ➡️ <a href="../04-Analog-IO/">جلسه 04-Analog-IO  Arduino IDE</a>
 </p>
 
-<hr>
+
 
 
 
