@@ -725,9 +725,10 @@ LED 2 → ON
 
 
 
+<p align="center">
+<strong>Arduino From Zero to Projects</strong>
+</p>
 
-
-### <span dir="ltr">Arduino From Zero to Projects 🚀</span>
-
-**<span dir="ltr">Learn → Build → Experiment → Create</span>**
-
+<p align="center">
+<strong>Mohammad Esteghamat</strong>
+</p>
