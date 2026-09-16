@@ -351,7 +351,7 @@ ADC مورد استفاده در
 ```
 
 <p align="center">
-  <img src="./images/04-potentiometer.png"
+  <img src="./images/04-potentiometer.gif"
        alt="Potentiometer"
        width="650">
 </p>
@@ -490,10 +490,11 @@ void loop() {
 به‌صورت ساده، اگر مرجع ADC برابر `5V` باشد، می‌توانیم رابطه تقریبی زیر را در نظر بگیریم:
 
 </div>
+<div dir="rtl" align="left">
 
 ```text
 ADC Value
-    │
+     │
 1023 ┤                    ●
      │
  768 ┤
