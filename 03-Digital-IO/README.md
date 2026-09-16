@@ -29,7 +29,7 @@
 # 🔌 <span dir="ltr">Digital</span> چیست؟
 
 
-![Digital Input / Output](./01-digital-input-output.png)
+![Digital Input / Output](./images/01-digital-input-output.png)
 
 
 در سیستم‌های دیجیتال، اطلاعات معمولاً با دو وضعیت اصلی نمایش داده می‌شوند:
@@ -101,7 +101,7 @@ HIGH →  1
 # 📍 پایه‌های دیجیتال <span dir="ltr">Arduino UNO</span>
 
 
-![Arduino digital pins](./02-arduino-digital-pins.png)
+![Arduino digital pins](./images/02-arduino-digital-pins.png)
 
 
 در <span dir="ltr">Arduino UNO</span> تعدادی پایه دیجیتال وجود دارد که می‌توانیم از آن‌ها برای ورودی و خروجی استفاده کنیم.
@@ -177,7 +177,7 @@ pinMode(2, INPUT);
 # 💡 اولین پروژه — کنترل <span dir="ltr">LED</span>
 
 
-![LED circuit](./03-led-circuit.png)
+![LED circuit](./images/03-led-circuit.png)
 
 
 در اولین پروژه می‌خواهیم یک <span dir="ltr">LED</span> را با <span dir="ltr">Arduino</span> کنترل کنیم.
@@ -326,7 +326,7 @@ digitalRead(2);
 # 🔘 اتصال <span dir="ltr">Push Button</span>
 
 
-![Push Button](./04-push-button.png)
+![Push Button](./images/04-push-button.png)
 
 
 برای اتصال <span dir="ltr">Push Button</span> روش‌های مختلفی وجود دارد.
@@ -403,7 +403,7 @@ Push Button
  │
 GND
 ```
-
+![pull up](./images/06-pull-up.png)
 بنابراین:
 
 | وضعیت <span dir="ltr">Push Button</span> | مقدار ورودی |
@@ -428,7 +428,7 @@ Push Button
  │
 GND
 ```
-
+![pull down](./images/07-pull-down.png)
 بنابراین:
 
 | وضعیت <span dir="ltr">Push Button</span> | مقدار ورودی |
@@ -452,7 +452,7 @@ GND
 # 💡 کنترل <span dir="ltr">LED</span> با <span dir="ltr">Push Button</span>
 
 
-![Button and LED project](./05-button-led-project.png)
+![Button and LED project](./images/05-button-led-project.png)
 
 
 حالا می‌خواهیم برنامه‌ای بنویسیم که:
@@ -716,7 +716,13 @@ LED 2 → ON
 # 🔗 جلسه بعد
 
 
-**➡️ جلسه 04 — <span dir="ltr">Analog Input / Output</span>**
+</p>
+
+<p dir="rtl">
+➡️ <a href="../04-Analog-IO/"> 04-Analog-IO  Arduino IDE</a>
+</p>
+
+<hr>
 
 
 
