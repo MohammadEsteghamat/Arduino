@@ -29,7 +29,7 @@
 # 🔌 <span dir="ltr">Digital</span> چیست؟
 
 
-![Digital Input / Output](./images/01-digital-input-output.png)
+
 
 
 در سیستم‌های دیجیتال، اطلاعات معمولاً با دو وضعیت اصلی نمایش داده می‌شوند:
@@ -44,6 +44,7 @@ HIGH →  1
 بنابراین یک ورودی یا خروجی دیجیتال معمولاً دو حالت دارد:
 - <code dir="ltr">LOW</code>
 - <code dir="ltr">HIGH</code>
+
 برای مثال:
 
 
@@ -51,6 +52,7 @@ HIGH →  1
 - LED روشن ← <code dir="ltr">HIGH</code>
 
 البته معنی دقیق <code dir="ltr">HIGH</code> و <code dir="ltr">LOW</code> به مدار و نحوه اتصال قطعه بستگی دارد.
+
 
 
 ---
@@ -72,8 +74,10 @@ HIGH →  1
       Sensor            Buzzer
                          Relay
 ```
+![Digital Input / Output](./images/01-digital-input-output.png)
 
 
+---
 ### <span dir="ltr">Digital Input</span>
 
 وقتی <span dir="ltr">Arduino</span> اطلاعات را از یک قطعه دریافت می‌کند.
@@ -93,7 +97,7 @@ HIGH →  1
 - <span dir="ltr">LED</span>
 - <span dir="ltr">Buzzer</span>
 - <span dir="ltr">Relay</span>
-- بعضی ماژول‌ها
+
 
 
 ---
@@ -181,23 +185,21 @@ pinMode(2, INPUT);
 
 
 در اولین پروژه می‌خواهیم یک <span dir="ltr">LED</span> را با <span dir="ltr">Arduino</span> کنترل کنیم.
+مدار را مطابق عکس بالا  میبندیم و کد زیر  را روی بورد اپلود میکنیم.
 
-برای ساده‌تر شدن کار از <span dir="ltr">LED</span> داخلی <span dir="ltr">Arduino UNO</span> استفاده می‌کنیم.
-
-این <span dir="ltr">LED</span> معمولاً با <code dir="ltr">LED_BUILTIN</code> قابل دسترسی است.
 
 ### کد
 
 
 ```cpp
 void setup() {
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(3, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(3, HIGH);
   delay(1000);
-  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(3, LOW);
   delay(1000);
 }
 ```
@@ -341,7 +343,7 @@ digitalRead(2);
 ```text
 Arduino
 
-Pin 2 ───── Push Button ───── GND
+Pin 11 ───── Push Button ───── GND
 ```
 
 
@@ -464,8 +466,8 @@ GND
 
 
 ```cpp
-const int buttonPin = 2;
-const int ledPin = LED_BUILTIN;
+const int buttonPin = 11;
+const int ledPin = 5;
 
 void setup() {
   pinMode(buttonPin, INPUT_PULLUP);
@@ -549,7 +551,6 @@ if (buttonState == LOW) {
 # 🔌 اتصال <span dir="ltr">LED</span> خارجی
 
 
-حالا می‌توانیم به‌جای <span dir="ltr">LED</span> داخلی، یک <span dir="ltr">LED</span> خارجی به <span dir="ltr">Arduino</span> متصل کنیم.
 
 یک مدار ساده شامل موارد زیر است:
 
