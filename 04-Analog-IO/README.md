@@ -493,6 +493,7 @@ void loop() {
 <div dir="rtl" align="left">
 
 ```text
+
 ADC Value
      │
 1023 ┤                    ●
@@ -507,7 +508,8 @@ ADC Value
      └────────────────────────
        0V     2.5V       5V
 ```
-
+<div dir="rtl" align="left">
+  
 <div dir="rtl" align="right">
 
 به‌صورت تقریبی:
