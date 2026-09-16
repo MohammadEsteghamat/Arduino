@@ -490,25 +490,13 @@ void loop() {
 به‌صورت ساده، اگر مرجع ADC برابر `5V` باشد، می‌توانیم رابطه تقریبی زیر را در نظر بگیریم:
 
 </div>
-<div dir="rtl" align="left">
-
-```text
-
-ADC Value
-     │
-1023 ┤                    ●
-     │
- 768 ┤
-     │
- 512 ┤          ●
-     │
- 256 ┤
-     │
-   0 ┤ ●
-     └────────────────────────
-       0V     2.5V       5V
-```
-<div dir="rtl" align="left">
+<p align="center">
+  <img
+    src="./images/07-adc-concept.png"
+    alt="ADC Value vs Voltage"
+    width="800"
+  >
+</p>
   
 <div dir="rtl" align="right">
 
