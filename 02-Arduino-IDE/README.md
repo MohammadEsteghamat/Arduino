@@ -624,7 +624,7 @@ Arduino Start
 <h2 dir="rtl">⏭️ جلسه بعد</h2>
 
 <p dir="rtl">
-در جلسه سوم، <strong>Arduino IDE</strong> را نصب و راه‌اندازی می‌کنیم و اولین برنامه خود را روی یک Arduino واقعی اجرا خواهیم کرد.
+در جلسه سوم، با <strong>ورودی و خروجی دیجیتال (Digital Input / Output)</strong> در Arduino آشنا می‌شویم و یاد می‌گیریم چگونه با استفاده از پایه‌های دیجیتال، قطعاتی مانند <strong>LED</strong> و <strong>Push Button</strong> را کنترل و مدیریت کنیم.
 </p>
 
 <p dir="rtl">
