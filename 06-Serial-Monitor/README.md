@@ -23,12 +23,12 @@
 </ul>
 <hr>
 <h2 dir="rtl" align="right">1️⃣ ارتباط سریال چیست؟</h2>
-
-
-<bdi><bdi><strong>Serial</strong></bdi> Communication</strong></bdi> روشی برای تبادل داده بین دو دستگاه است که داده‌ها را به‌صورت سری (بیت به بیت) ارسال می‌کند.
-
-<p dir="rtl" align="right">در <bdi><strong>Arduino</strong></bdi> معمولاً از پروتکل <bdi><strong>UART</strong></bdi> استفاده می‌شود که از طریق پایه‌های زیر کار می‌کند:</p>
-
+<p dir="rtl" align="right">
+  <bdi dir="ltr"><strong>Serial Communication</strong></bdi> روشی برای تبادل داده بین دو دستگاه است که داده‌ها را به‌صورت سری (بیت به بیت) ارسال می‌کند.
+</p>
+<p dir="rtl" align="right">
+  در <bdi dir="ltr"><strong>Arduino</strong></bdi> معمولاً از پروتکل <bdi dir="ltr"><strong>UART</strong></bdi> استفاده می‌شود که از طریق پایه‌های زیر کار می‌کند:
+</p>
 
 ```text
 TX  →  Transmit (ارسال)
@@ -53,10 +53,10 @@ RX  →  Receive (دریافت)
 <strong>نکته مهم:</strong> وقتی از <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> استفاده می‌کنید، این دو پایه برای ارتباط با کامپیوتر رزرو می‌شوند. بنابراین معمولاً نباید سنسور یا ماژول دیگری را مستقیماً به پایه‌های <code dir="ltr">0</code> و <code dir="ltr">1</code> وصل کنید.
 </blockquote>
 <hr>
-<h2 dir="rtl" align="right">2️⃣ <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> چیست؟</h2>
-
-
-<p><bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> پنجره‌ای در نرم‌افزار <bdi><bdi><strong>Arduino</strong></bdi> IDE</strong></bdi> است که به شما امکان می‌دهد:</p>
+<h2 dir="rtl" align="right">2️⃣ <bdi dir="ltr"><strong>Serial Monitor</strong></bdi> چیست؟</h2>
+<p dir="rtl" align="right">
+  <bdi dir="ltr"><strong>Serial Monitor</strong></bdi> پنجره‌ای در نرم‌افزار <bdi dir="ltr"><strong>Arduino IDE</strong></bdi> است که به شما امکان می‌دهد:
+</p>
 
 <ul>
   <li>داده‌هایی که <bdi><strong>Arduino</strong></bdi> ارسال می‌کند را ببینید.</li>
@@ -85,13 +85,13 @@ RX  →  Receive (دریافت)
   <li>نوع <bdi><strong>Line Ending</strong></bdi> را انتخاب کنید.</li>
 </ul>
 <hr>
-<h2 dir="rtl" align="right">3️⃣ <bdi><strong>Baud Rate</strong></bdi> چیست؟</h2>
-
-
-<p><bdi><strong>Baud Rate</strong></bdi> سرعت انتقال داده را مشخص می‌کند و واحد آن <bdi>بیت بر ثانیه (bps)</bdi> است.</p>
-
-<p>رایج‌ترین مقدار در پروژه‌های <bdi><strong>Arduino</strong></bdi>:</p>
-
+<h2 dir="rtl" align="right">3️⃣ <bdi dir="ltr"><strong>Baud Rate</strong></bdi> چیست؟</h2>
+<p dir="rtl" align="right">
+  <bdi dir="ltr"><strong>Baud Rate</strong></bdi> سرعت انتقال داده را مشخص می‌کند و واحد آن <bdi dir="ltr">بیت بر ثانیه (bps)</bdi> است.
+</p>
+<p dir="rtl" align="right">
+  رایج‌ترین مقدار در پروژه‌های <bdi dir="ltr"><strong>Arduino</strong></bdi>:
+</p>
 
 ```text
 9600
@@ -145,12 +145,13 @@ RX  →  Receive (دریافت)
 
 <br clear="all">
 <hr>
-<h2 dir="rtl" align="right">4️⃣ شروع ارتباط سریال — <code dir="ltr"><bdi><strong>Serial</strong></bdi>.begin()</code></h2>
-
-
-<p>قبل از استفاده از هر تابع <bdi><strong>Serial</strong></bdi>، باید ارتباط را راه‌اندازی کنید.</p>
-
-<p>ساختار کلی تابع:</p>
+<h2 dir="rtl" align="right">4️⃣ شروع ارتباط سریال — <code dir="ltr"><bdi><strong>Serial.begin()</strong></bdi></code></h2>
+<p dir="rtl" align="right">
+  قبل از استفاده از هر تابع <bdi dir="ltr"><strong>Serial</strong></bdi>، باید ارتباط را راه‌اندازی کنید.
+</p>
+<p dir="rtl" align="right">
+  ساختار کلی تابع:
+</p>
 
 
 ```cpp
@@ -173,11 +174,12 @@ void setup() {
 <p>تا وقتی <code dir="ltr"><bdi><strong>Serial</strong></bdi>.begin()</code> فراخوانی نشده باشد، توابع <code dir="ltr">print</code> و <code dir="ltr">read</code> کار نمی‌کنند.</p>
 <hr>
 <h2 dir="rtl" align="right">5️⃣ ارسال داده به کامپیوتر</h2>
-
-<h3 dir="rtl" align="right"><code dir="ltr"><bdi><strong>Serial</strong></bdi>.print()</code></h3>
-
-
-<p dir="rtl" align="right">داده را بدون رفتن به خط بعد چاپ می‌کند.</p>
+<h3 dir="rtl" align="right">
+  <code dir="ltr"><bdi><strong>Serial.print()</strong></bdi></code>
+</h3>
+<p dir="rtl" align="right">
+  داده را بدون رفتن به خط بعد چاپ می‌کند.
+</p>
 
 
 ```cpp
@@ -237,12 +239,10 @@ World
 <br clear="all">
 <hr>
 <h2 dir="rtl" align="right">6️⃣ اولین پروژه — چاپ پیام ساده</h2>
-
 <h3 dir="rtl" align="right">قطعات مورد نیاز</h3>
-
 <ul dir="rtl" align="right">
-  <li><bdi><bdi><strong>Arduino</strong></bdi> UNO</strong></bdi></li>
-  <li>کابل <bdi>USB</bdi></li>
+  <li><bdi dir="ltr"><strong>Arduino UNO</strong></bdi></li>
+  <li>کابل <bdi dir="ltr">USB</bdi></li>
 </ul>
 
 
@@ -269,12 +269,12 @@ void loop() {
 <p>هر ثانیه یک پیام جدید خواهید دید.</p>
 <hr>
 <h2 dir="rtl" align="right">7️⃣ ارسال مقدار سنسور به کامپیوتر</h2>
-
-
-<p>فرض کنید یک <bdi><strong>Potentiometer</strong></bdi> به پایه <code dir="ltr">A0</code> وصل کرده‌اید.</p>
-
-
-<h3 dir="rtl" align="right">اتصال <bdi><strong>Potentiometer</strong></bdi></h3>
+<p dir="rtl" align="right">
+  فرض کنید یک <bdi dir="ltr"><strong>Potentiometer</strong></bdi> به پایه <code dir="ltr">A0</code> وصل کرده‌اید.
+</p>
+<h3 dir="rtl" align="right">
+  اتصال <bdi dir="ltr"><strong>Potentiometer</strong></bdi>
+</h3>
 
 ```text
 5V ─────────────┐
@@ -352,14 +352,16 @@ analogRead()
 <bdi><strong>Serial</strong></bdi> Monitor</strong></bdi>
 ```
 <hr>
-<h2 dir="rtl" align="right">8️⃣ خواندن داده از <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi></h2>
-
-
-<p>گاهی می‌خواهیم از طریق کیبورد به <bdi><strong>Arduino</strong></bdi> دستور بدهیم.</p>
-
-<p>برای این کار از دو تابع مهم استفاده می‌کنیم:</p>
-
-<h3><code dir="ltr"><bdi><strong>Serial</strong></bdi>.available()</code></h3>
+<h2 dir="rtl" align="right">8️⃣ خواندن داده از <bdi dir="ltr"><strong>Serial Monitor</strong></bdi></h2>
+<p dir="rtl" align="right">
+  گاهی می‌خواهیم از طریق کیبورد به <bdi dir="ltr"><strong>Arduino</strong></bdi> دستور بدهیم.
+</p>
+<p dir="rtl" align="right">
+  برای این کار از دو تابع مهم استفاده می‌کنیم:
+</p>
+<h3 dir="rtl" align="right">
+  <code dir="ltr"><bdi><strong>Serial.available()</strong></bdi></code>
+</h3>
 
 <p>تعداد کاراکترهای در صف انتظار را برمی‌گرداند.</p>
 
@@ -387,12 +389,11 @@ char command = <bdi><strong>Serial</strong></bdi>.read();
 <strong>توجه:</strong> <code dir="ltr"><bdi><strong>Serial</strong></bdi>.read()</code> فقط <strong>یک کاراکتر</strong> را می‌خواند، نه کل متن.
 </blockquote>
 <hr>
-<h2 dir="rtl" align="right">9️⃣ کنترل <bdi><strong>LED</strong></bdi> از طریق <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi></h2>
-
-
-<p>در این پروژه با تایپ کردن حروف در <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi>، <bdi><strong>LED</strong></bdi> را روشن و خاموش می‌کنیم.</p>
-
-<h3>قطعات مورد نیاز</h3>
+<h2 dir="rtl" align="right">9️⃣ کنترل <bdi dir="ltr"><strong>LED</strong></bdi> از طریق <bdi dir="ltr"><strong>Serial Monitor</strong></bdi></h2>
+<p dir="rtl" align="right">
+  در این پروژه با تایپ کردن حروف در <bdi dir="ltr"><strong>Serial Monitor</strong></bdi>، <bdi dir="ltr"><strong>LED</strong></bdi> را روشن و خاموش می‌کنیم.
+</p>
+<h3 dir="rtl" align="right">قطعات مورد نیاز</h3>
 
 <ul>
   <li><bdi><bdi><strong>Arduino</strong></bdi> UNO</strong></bdi></li>
@@ -459,12 +460,13 @@ void loop() {
   <li>گزینه <bdi>Line ending</bdi> را روی <bdi>No line ending</bdi> بگذارید تا کاراکتر اضافه خوانده نشود.</li>
 </ol>
 <hr>
-<h2 dir="rtl" align="right">🔟 خواندن عدد کامل با <code dir="ltr"><bdi><strong>Serial</strong></bdi>.parseInt()</code></h2>
-
-
-<p>گاهی می‌خواهیم یک عدد کامل (مثلاً <code dir="ltr">150</code>) را دریافت کنیم، نه فقط یک کاراکتر.</p>
-
-<p>ساختار کلی:</p>
+<h2 dir="rtl" align="right">🔟 خواندن عدد کامل با <code dir="ltr"><bdi><strong>Serial.parseInt()</strong></bdi></code></h2>
+<p dir="rtl" align="right">
+  گاهی می‌خواهیم یک عدد کامل (مثلاً <code dir="ltr">150</code>) را دریافت کنیم، نه فقط یک کاراکتر.
+</p>
+<p dir="rtl" align="right">
+  ساختار کلی:
+</p>
 
 
 ```cpp
@@ -490,12 +492,13 @@ void loop() {
 
 <p>اگر در <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> عدد <code dir="ltr">250</code> را بفرستید، <bdi><strong>Arduino</strong></bdi> همان عدد را برمی‌گرداند.</p>
 <hr>
-<h2 dir="rtl" align="right">1️⃣1️⃣ ترکیب <bdi><strong>Analog Input</strong></bdi> + <bdi><strong>Serial</strong></bdi> + <bdi><strong>PWM</strong></bdi></h2>
-
-
-<p>می‌توانیم مقدار <bdi><strong>Potentiometer</strong></bdi> را بخوانیم، آن را در <bdi><strong>Serial</strong></bdi> نمایش دهیم و همزمان روشنایی <bdi><strong>LED</strong></bdi> را کنترل کنیم.</p>
-
-<h3>اتصال</h3>
+<h2 dir="rtl" align="right">
+  1️⃣1️⃣ ترکیب <bdi dir="ltr"><strong>Analog Input</strong></bdi> + <bdi dir="ltr"><strong>Serial</strong></bdi> + <bdi dir="ltr"><strong>PWM</strong></bdi>
+</h2>
+<p dir="rtl" align="right">
+  می‌توانیم مقدار <bdi dir="ltr"><strong>Potentiometer</strong></bdi> را بخوانیم، آن را در <bdi dir="ltr"><strong>Serial</strong></bdi> نمایش دهیم و همزمان روشنایی <bdi dir="ltr"><strong>LED</strong></bdi> را کنترل کنیم.
+</p>
+<h3 dir="rtl" align="right">اتصال</h3>
 
 
 ```text
@@ -558,7 +561,7 @@ map()            →  0 تا 255
       └── <bdi><strong>Serial</strong></bdi>.println()   →  <bdi><strong>Serial</strong></bdi> Monitor</strong></bdi>
 ```
 <hr>
-<h2 dir="rtl" align="right">1️⃣2️⃣ تفاوت توابع مهم <bdi><strong>Serial</strong></bdi></h2>
+<h2 dir="rtl" align="right">1️⃣2️⃣ تفاوت توابع مهم <bdi dir="ltr"><strong>Serial</strong></bdi></h2>
 
 <table dir="rtl" align="right">
   <thead>
@@ -570,32 +573,32 @@ map()            →  0 تا 255
   </thead>
   <tbody>
     <tr>
-      <td><code dir="ltr"><bdi><strong>Serial</strong></bdi>.begin()</code></td>
+      <td><code dir="ltr"><bdi><strong>Serial.begin()</strong></bdi></code></td>
       <td>شروع ارتباط</td>
       <td>باید در <code dir="ltr">setup()</code> باشد</td>
     </tr>
     <tr>
-      <td><code dir="ltr"><bdi><strong>Serial</strong></bdi>.print()</code></td>
+      <td><code dir="ltr"><bdi><strong>Serial.print()</strong></bdi></code></td>
       <td>ارسال متن</td>
       <td>بدون خط جدید</td>
     </tr>
     <tr>
-      <td><code dir="ltr"><bdi><strong>Serial</strong></bdi>.println()</code></td>
+      <td><code dir="ltr"><bdi><strong>Serial.println()</strong></bdi></code></td>
       <td>ارسال متن</td>
       <td>با خط جدید</td>
     </tr>
     <tr>
-      <td><code dir="ltr"><bdi><strong>Serial</strong></bdi>.available()</code></td>
+      <td><code dir="ltr"><bdi><strong>Serial.available()</strong></bdi></code></td>
       <td>بررسی داده جدید</td>
       <td>تعداد کاراکتر در بافر</td>
     </tr>
     <tr>
-      <td><code dir="ltr"><bdi><strong>Serial</strong></bdi>.read()</code></td>
+      <td><code dir="ltr"><bdi><strong>Serial.read()</strong></bdi></code></td>
       <td>خواندن ورودی</td>
       <td>یک کاراکتر</td>
     </tr>
     <tr>
-      <td><code dir="ltr"><bdi><strong>Serial</strong></bdi>.parseInt()</code></td>
+      <td><code dir="ltr"><bdi><strong>Serial.parseInt()</strong></bdi></code></td>
       <td>خواندن عدد</td>
       <td>عدد صحیح</td>
     </tr>
@@ -604,14 +607,13 @@ map()            →  0 تا 255
 
 <br clear="all">
 
+<p dir="rtl" align="right"><strong>نکته مهم:</strong></p>
 
-<p><strong>نکته مهم:</strong></p>
+<pre dir="ltr" style="text-align: left;">
+<strong>Serial.print</strong>  → Output
+<strong>Serial.read</strong>   → Input
+</pre>
 
-
-```text
-<bdi><strong>Serial</strong></bdi>.print  → Output
-<bdi><strong>Serial</strong></bdi>.read   → Input
-```
 <hr>
 <h2 dir="rtl" align="right">1️⃣3️⃣ نکات مهم <bdi><strong>Serial</strong></bdi></h2>
 
