@@ -1,4 +1,4 @@
-<h1 dir="rtl" align="center">📘 جلسه ۱۱: راه‌اندازی LCD کاراکتری و اتصال Keypad 4×4</h1>
+<h1 dir="rtl" align="center">📘 جلسه 11: راه‌اندازی LCD کاراکتری و اتصال Keypad 4×4</h1>
 
 <p dir="rtl" align="right">
 در جلسه قبل با <bdi><strong>Keypad ماتریسی</strong></bdi> آشنا شدیم و یاد گرفتیم کلیدهای فشرده‌شده را در <bdi><strong>Serial Monitor</strong></bdi> مشاهده کنیم.
