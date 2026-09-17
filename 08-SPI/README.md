@@ -631,7 +631,7 @@ Serial Monitor نمایش نتیجه در
 ⬅️ <a href="../09-Interrupt/">جلسه 09 — آشنایی با <bdi><strong>Interrupt</strong></bdi> و وقفه‌ها</a>
 </p>
 
-<hr>
+
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
