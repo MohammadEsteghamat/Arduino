@@ -829,7 +829,6 @@ Special Key
 ⬅️ <a href="../11-LCD/">جلسه 11 — راه‌اندازی <bdi><strong>LCD کاراکتری</strong></bdi> و اتصال آن به <bdi><strong>Keypad</strong></bdi></a>
 </p>
 
-<hr>
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
