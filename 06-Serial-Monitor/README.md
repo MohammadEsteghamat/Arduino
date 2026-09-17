@@ -55,7 +55,16 @@ RX  →  Receive (دریافت)
 
 <div dir="rtl" align="right">
 
-<bdi>**Serial Monitor**</bdi> پنجره‌ای در نرم‌افزار <bdi>Arduino IDE</bdi> است که به شما امکان می‌دهد:
+<p>
+<b>Serial Monitor</b> پنجره‌ای در نرم‌افزار <b>Arduino IDE</b> است که به شما امکان می‌دهد:
+</p>
+
+<ul>
+  <li>داده‌هایی که <b>Arduino</b> ارسال می‌کند را ببینید.</li>
+  <li>از طریق کیبورد به <b>Arduino</b> دستور بفرستید.</li>
+</ul>
+
+</div>
 
 <ul>
   <li>داده‌هایی که <bdi>Arduino</bdi> ارسال می‌کند را ببینید.</li>
