@@ -1,6 +1,4 @@
-# جلسه 03 — <span dir="ltr">Digital Input / Output</span>
-
-
+<h1 dir="rtl" align="center">📘 جلسه 03 — <span dir="ltr">Digital Input / Output</span></h1>
 ## 🎯 هدف جلسه
 
 در این جلسه با **ورودی و خروجی دیجیتال** در <span dir="ltr">Arduino</span> آشنا می‌شویم.
@@ -714,7 +712,7 @@ LED 2 → ON
 
 ---
 
-# 🔗 جلسه بعد
+# ⏭️جلسه بعد
 
 
 
