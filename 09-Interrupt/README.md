@@ -1,222 +1,199 @@
-<h1 dir="rtl" align="center">جلسه 08 — <bdi><strong>SPI</strong></bdi> و ارتباط <bdi><strong>Arduino</strong></bdi> با قطعات</h1>
+<h1 dir="rtl" align="center">جلسه 09 — <bdi><strong>Interrupt</strong></bdi> و وقفه‌ها در <bdi><strong>Arduino</strong></bdi></h1>
 
 ---
 
 <h2 dir="rtl" align="right">🎯 هدف جلسه</h2>
 
 <p dir="rtl" align="right">
-در این جلسه با پروتکل ارتباطی <bdi><strong>SPI</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه از این پروتکل برای ارتباط <bdi><strong>Arduino UNO</strong></bdi> با قطعات مختلف استفاده کنیم.
+در این جلسه با یکی از مهم‌ترین قابلیت‌های میکروکنترلرها یعنی <bdi><strong>Interrupt</strong></bdi> یا <bdi><strong>وقفه</strong></bdi> آشنا می‌شویم.
 </p>
+
+<p dir="rtl" align="right">
+در برنامه‌های معمولی، <bdi><strong>Arduino</strong></bdi> دستورات را به ترتیب اجرا می‌کند و برای بررسی یک ورودی معمولاً باید دائماً آن را چک کنیم. اما با استفاده از <bdi><strong>Interrupt</strong></bdi> می‌توانیم به <bdi><strong>Arduino</strong></bdi> بگوییم:
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:center;">
+"هر وقت این اتفاق افتاد،
+فوراً این کار را انجام بده."
+</pre>
 
 <p dir="rtl" align="right">
 در این جلسه یاد می‌گیریم:
 </p>
 
 <ol dir="rtl" align="right">
-  <li><bdi><strong>SPI</strong></bdi> چیست و چگونه کار می‌کند؟</li>
-  <li>خطوط <bdi><strong>MOSI</strong></bdi>، <bdi><strong>MISO</strong></bdi>، <bdi><strong>SCK</strong></bdi> و <bdi><strong>SS</strong></bdi> چه کاری انجام می‌دهند؟</li>
-  <li>پایه‌های <bdi><strong>SPI</strong></bdi> در <bdi><strong>Arduino UNO</strong></bdi> کدام‌اند؟</li>
-  <li>تفاوت <bdi><strong>SPI</strong></bdi> و <bdi><strong>I2C</strong></bdi> چیست؟</li>
-  <li>چگونه کتابخانه <bdi><strong>SPI</strong></bdi> را در برنامه استفاده کنیم؟</li>
-  <li>چگونه یک داده را از طریق <bdi><strong>SPI</strong></bdi> ارسال و دریافت کنیم؟</li>
-  <li>چگونه یک تست ساده برای بررسی عملکرد <bdi><strong>SPI</strong></bdi> انجام دهیم؟</li>
+  <li><bdi><strong>Interrupt</strong></bdi> چیست و چرا به آن نیاز داریم؟</li>
+  <li>تفاوت روش معمولی بررسی ورودی با <bdi><strong>Interrupt</strong></bdi> چیست؟</li>
+  <li><bdi><strong>ISR</strong></bdi> چیست؟</li>
+  <li>چگونه از <bdi><strong>attachInterrupt()</strong></bdi> استفاده کنیم؟</li>
+  <li>پایه‌های مناسب <bdi><strong>External Interrupt</strong></bdi> در <bdi><strong>Arduino UNO</strong></bdi> کدام‌اند؟</li>
+  <li>مفهوم <bdi><strong>RISING</strong></bdi>، <bdi><strong>FALLING</strong></bdi>، <bdi><strong>CHANGE</strong></bdi> و <bdi><strong>LOW</strong></bdi> چیست؟</li>
+  <li>چگونه یک دکمه را با <bdi><strong>Interrupt</strong></bdi> کنترل کنیم؟</li>
+  <li>چه نکاتی را هنگام نوشتن تابع وقفه باید رعایت کنیم؟</li>
 </ol>
 
 <p dir="rtl" align="right">
-در پایان این جلسه می‌توانیم مفهوم <bdi><strong>SPI</strong></bdi> را درک کنیم، پایه‌های آن را روی <bdi><strong>Arduino UNO</strong></bdi> پیدا کنیم و یک ارتباط ساده <bdi><strong>SPI</strong></bdi> را آزمایش کنیم.
+در پایان این جلسه می‌توانیم یک رویداد خارجی را با استفاده از <bdi><strong>Interrupt</strong></bdi> تشخیص داده و بدون بررسی دائمی ورودی، به آن واکنش نشان دهیم.
 </p>
 
 ---
 
-<h2 dir="rtl" align="right">🔗 <bdi><strong>SPI</strong></bdi> چیست و چگونه کار می‌کند؟</h2>
+<h2 dir="rtl" align="right">⚡ <bdi><strong>Interrupt</strong></bdi> چیست؟</h2>
 
 <p dir="rtl" align="right">
-<bdi><strong>SPI</strong></bdi> مخفف <bdi><strong>Serial Peripheral Interface</strong></bdi> است و یک پروتکل ارتباطی سریال برای ارتباط بین میکروکنترلر و قطعات جانبی مختلف استفاده می‌شود.
+<bdi><strong>Interrupt</strong></bdi> به معنی «وقفه» است. یعنی در هنگام رخ دادن یک رویداد مشخص، اجرای عادی برنامه برای مدت کوتاهی متوقف می‌شود و <bdi><strong>Arduino</strong></bdi> یک تابع مخصوص را اجرا می‌کند.
 </p>
 
 <p dir="rtl" align="right">
-از <bdi><strong>SPI</strong></bdi> می‌توان برای ارتباط با قطعاتی مانند حافظه‌ها، نمایشگرها، ماژول‌های ارتباطی، مبدل‌ها و بسیاری از تجهیزات جانبی استفاده کرد.
-</p>
-
-<h3 dir="rtl" align="right">ویژگی‌های مهم <bdi><strong>SPI</strong></bdi>:</h3>
-
-<ul dir="rtl" align="right">
-  <li>سرعت بالایی دارد.</li>
-  <li>ساختار آن نسبتاً ساده است.</li>
-  <li>از چند خط ارتباطی استفاده می‌کند.</li>
-  <li>امکان اتصال چند دستگاه جانبی وجود دارد.</li>
-  <li>ارتباط می‌تواند به صورت ارسال و دریافت همزمان انجام شود.</li>
-</ul>
-
-<h3 dir="rtl" align="right">نحوه کار <bdi><strong>SPI</strong></bdi> به زبان ساده:</h3>
-
-<p dir="rtl" align="right">
-در یک ارتباط ساده <bdi><strong>SPI</strong></bi> معمولاً یک دستگاه به عنوان <bdi><strong>Master</strong></bdi> و یک یا چند دستگاه به عنوان <bdi><strong>Slave</strong></bdi> در نظر گرفته می‌شوند.
-</p>
-
-<p dir="rtl" align="right">
-در این حالت، <bdi><strong>Master</strong></bdi> زمان‌بندی ارتباط را کنترل می‌کند و مشخص می‌کند چه زمانی انتقال داده انجام شود.
-</p>
-
----
-
-<h2 dir="rtl" align="right">📡 خطوط اصلی <bdi><strong>SPI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-در <bdi><strong>SPI</strong></bdi> چهار خط اصلی وجود دارد:
-</p>
-
-<div style="overflow-x: auto; margin: 15px 0;">
-  <table dir="rtl" border="1" cellpadding="10" cellspacing="0"
-         style="border-collapse: collapse; width: 100%; max-width: 700px; margin-right: auto; margin-left: 0;">
-    <thead>
-      <tr style="background-color: #2d2d2d; color: #fff;">
-        <th style="padding: 10px;">خط</th>
-        <th style="padding: 10px;">نام کامل</th>
-        <th style="padding: 10px;">وظیفه</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="padding: 10px; text-align: center;"><bdi><strong>MOSI</strong></bdi></td>
-        <td style="padding: 10px;"><bdi>Master Out Slave In</bdi></td>
-        <td style="padding: 10px;">ارسال داده از Master به Slave</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; text-align: center;"><bdi><strong>MISO</strong></bdi></td>
-        <td style="padding: 10px;"><bdi>Master In Slave Out</bdi></td>
-        <td style="padding: 10px;">ارسال داده از Slave به Master</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; text-align: center;"><bdi><strong>SCK</strong></bdi></td>
-        <td style="padding: 10px;"><bdi>Serial Clock</bdi></td>
-        <td style="padding: 10px;">سیگنال کلاک</td>
-      </tr>
-      <tr>
-        <td style="padding: 10px; text-align: center;"><bdi><strong>SS</strong></bdi></td>
-        <td style="padding: 10px;"><bdi>Slave Select</bdi></td>
-        <td style="padding: 10px;">انتخاب دستگاه Slave</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
----
-
-<h2 dir="rtl" align="right">📤 <bdi><strong>MOSI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-<bdi><strong>MOSI</strong></bdi> مخفف <bdi><strong>Master Out Slave In</strong></bdi> است.
-</p>
-
-<p dir="rtl" align="right">
-از این خط برای ارسال داده از <bdi><strong>Master</strong></bdi> به <bdi><strong>Slave</strong></bdi> استفاده می‌شود.
+پس از پایان آن تابع، اجرای برنامه دوباره از همان جایی که متوقف شده بود ادامه پیدا می‌کند.
 </p>
 
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-Master  ───────────→  Slave
-          MOSI
+برنامه اصلی
+    ↓
+    ↓
+    ↓
+رویداد Interrupt
+    ↓
+اجرای ISR
+    ↓
+بازگشت به برنامه اصلی
+    ↓
+ادامه اجرای برنامه
 </pre>
 
----
-
-<h2 dir="rtl" align="right">📥 <bdi><strong>MISO</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-<bdi><strong>MISO</strong></bdi> مخفف <bdi><strong>Master In Slave Out</strong></bdi> است.
-</p>
-
-<p dir="rtl" align="right">
-از این خط برای ارسال داده از <bdi><strong>Slave</strong></bdi> به <bdi><strong>Master</strong></bdi> استفاده می‌شود.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-Master  ←───────────  Slave
-          MISO
-</pre>
-
----
-
-<h2 dir="rtl" align="right">⏱️ <bdi><strong>SCK</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-<bdi><strong>SCK</strong></bdi> مخفف <bdi><strong>Serial Clock</strong></bdi> است.
-</p>
-
-<p dir="rtl" align="right">
-این خط توسط <bdi><strong>Master</strong></bdi> تولید می‌شود و زمان‌بندی ارسال و دریافت داده را مشخص می‌کند.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-Master
-   │
-   └──────────── SCK ────────────→ Slave
-</pre>
-
----
-
-<h2 dir="rtl" align="right">🎯 <bdi><strong>SS</strong></bdi> یا <bdi><strong>CS</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-خط <bdi><strong>SS</strong></bdi> یا <bdi><strong>CS</strong></bdi> برای انتخاب دستگاه مورد نظر استفاده می‌شود.
-</p>
-
-<p dir="rtl" align="right">
-اگر چند دستگاه <bdi><strong>SPI</strong></bdi> به یک <bdi><strong>Arduino</strong></bdi> متصل باشند، برای هر دستگاه معمولاً یک خط انتخاب جداگانه در نظر گرفته می‌شود.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-             ┌── Device 1
-Arduino ─ CS1
-             ├── Device 2
-        ─ CS2
-             └── Device 3
-        ─ CS3
-</pre>
-
-<p dir="rtl" align="right">
-در بسیاری از مدارها این خط با نام <bdi><strong>CS</strong></bdi> یعنی <bdi><strong>Chip Select</strong></bdi> نیز دیده می‌شود.
-</p>
-
----
-
-<h2 dir="rtl" align="right">📍 پایه‌های <bdi><strong>SPI</strong></bdi> در <bdi><strong>Arduino UNO</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-در <bdi><strong>Arduino UNO</strong></bdi> پایه‌های سخت‌افزاری <bdi><strong>SPI</strong></bdi> به صورت زیر هستند:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-D10 → SS
-D11 → MOSI
-D12 → MISO
-D13 → SCK
-</pre>
-
-<p dir="rtl" align="right">
-پس در یک اتصال معمولی می‌توانیم این خطوط را به صورت زیر در نظر بگیریم:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-Arduino UNO          SPI Device
-────────────────────────────────
-D10 / SS   ────────  CS / SS
-D11 / MOSI  ───────  MOSI
-D12 / MISO  ───────  MISO
-D13 / SCK   ───────  SCK
-GND         ───────  GND
-</pre>
 
 <p align="center">
-  <img src="./images/spi.jpg" alt="Arduino" width="600">
+  <img src="./images/Interrupt-Occurred.jpg" alt="Arduino" width="600">
 </p>
 
 ---
 
-<h2 dir="rtl" align="right">🧠 تفاوت <bdi><strong>SPI</strong></bdi> و <bdi><strong>I2C</strong></bdi></h2>
+<h2 dir="rtl" align="right">🤔 چرا به <bdi><strong>Interrupt</strong></bdi> نیاز داریم؟</h2>
 
 <p dir="rtl" align="right">
-هر دو پروتکل برای ارتباط با قطعات جانبی استفاده می‌شوند، اما ساختار آن‌ها متفاوت است.
+فرض کنید یک دکمه داریم و می‌خواهیم هر زمان فشرده شد، یک کار خاص انجام شود.
+</p>
+
+<p dir="rtl" align="right">
+در روش معمولی باید مرتباً وضعیت دکمه را بررسی کنیم:
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+if (digitalRead(buttonPin) == LOW) {
+    // دکمه فشرده شده
+}
+</pre>
+
+<p dir="rtl" align="right">
+این روش در پروژه‌های ساده کاملاً مناسب است؛ اما اگر برنامه همزمان مشغول انجام کارهای دیگری باشد، بررسی مداوم ورودی ممکن است باعث شود واکنش به رویداد با تأخیر انجام شود.
+</p>
+
+<p dir="rtl" align="right">
+در چنین شرایطی می‌توانیم از <bdi><strong>Interrupt</strong></bdi> استفاده کنیم.
+</p>
+
+---
+
+<h2 dir="rtl" align="right">🔍 تفاوت Polling و Interrupt</h2>
+
+<h3 dir="rtl" align="right">روش اول — <bdi><strong>Polling</strong></bdi></h3>
+
+<p dir="rtl" align="right">
+در روش <bdi><strong>Polling</strong></bdi> خود برنامه دائماً وضعیت ورودی را بررسی می‌کند.
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+loop()
+   ↓
+بررسی ورودی
+   ↓
+انجام کار
+   ↓
+بررسی ورودی
+   ↓
+انجام کار
+   ↓
+...
+</pre>
+
+<h3 dir="rtl" align="right">روش دوم — <bdi><strong>Interrupt</strong></bdi></h3>
+
+<p dir="rtl" align="right">
+در این روش لازم نیست برنامه دائماً ورودی را چک کند. سخت‌افزار در هنگام رخ دادن رویداد مشخص، اجرای تابع مربوط به وقفه را آغاز می‌کند.
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+loop()
+   ↓
+اجرای برنامه اصلی
+   ↓
+اجرای برنامه اصلی
+   ↓
+Interrupt
+   ↓
+ISR
+   ↓
+بازگشت به برنامه اصلی
+</pre>
+
+---
+
+<h2 dir="rtl" align="right">🧠 <bdi><strong>ISR</strong></bdi> چیست؟</h2>
+
+<p dir="rtl" align="right">
+<bdi><strong>ISR</strong></bdi> مخفف <bdi><strong>Interrupt Service Routine</strong></bdi> است.
+</p>
+
+<p dir="rtl" align="right">
+در واقع <bdi><strong>ISR</strong></bdi> همان تابعی است که هنگام رخ دادن وقفه اجرا می‌شود.
+</p>
+
+<p dir="rtl" align="right">
+در <bdi><strong>Arduino</strong></bdi> معمولاً تابع ISR را به شکل یک تابع ساده تعریف می‌کنیم:
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+void myInterrupt() {
+    // دستورات مربوط به وقفه
+}
+</pre>
+
+<p dir="rtl" align="right">
+بعداً این تابع را به یک وقفه مشخص متصل می‌کنیم.
+</p>
+
+---
+
+<h2 dir="rtl" align="right">🔌 پایه‌های Interrupt در <bdi><strong>Arduino UNO</strong></bdi></h2>
+
+<p dir="rtl" align="right">
+در <bdi><strong>Arduino UNO</strong></bdi> وقفه‌های خارجی سخت‌افزاری اصلی روی دو پایه در دسترس هستند:
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+D2 → Interrupt 0
+D3 → Interrupt 1
+</pre>
+
+<p dir="rtl" align="right">
+بنابراین در این جلسه برای مثال‌های خود از پایه‌های <bdi><strong>D2</strong></bdi> و <bdi><strong>D3</strong></bdi> استفاده می‌کنیم.
+</p>
+
+---
+
+<h2 dir="rtl" align="right">🛠️ تابع <bdi><strong>attachInterrupt()</strong></bdi></h2>
+
+<p dir="rtl" align="right">
+برای متصل کردن یک تابع به وقفه از <bdi><strong>attachInterrupt()</strong></bdi> استفاده می‌کنیم.
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+attachInterrupt(digitalPinToInterrupt(pin), ISR, mode);
+</pre>
+
+<p dir="rtl" align="right">
+این تابع سه بخش اصلی دارد:
 </p>
 
 <div style="overflow-x: auto; margin: 15px 0;">
@@ -224,367 +201,306 @@ GND         ───────  GND
          style="border-collapse: collapse; width: 100%; max-width: 800px; margin-right: auto; margin-left: 0;">
     <thead>
       <tr style="background-color: #2d2d2d; color: #fff;">
-        <th>ویژگی</th>
-        <th><bdi><strong>I2C</strong></bdi></th>
-        <th><bdi><strong>SPI</strong></bdi></th>
+        <th>پارامتر</th>
+        <th>توضیح</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>تعداد خطوط اصلی</td>
-        <td>2</td>
-        <td>4</td>
+        <td><bdi><strong>pin</strong></bdi></td>
+        <td>پایه‌ای که رویداد روی آن رخ می‌دهد.</td>
       </tr>
       <tr>
-        <td>داده از Master به Slave</td>
-        <td>SDA</td>
-        <td>MOSI</td>
+        <td><bdi><strong>ISR</strong></bdi></td>
+        <td>تابعی که هنگام وقوع وقفه اجرا می‌شود.</td>
       </tr>
       <tr>
-        <td>داده از Slave به Master</td>
-        <td>SDA</td>
-        <td>MISO</td>
-      </tr>
-      <tr>
-        <td>خط کلاک</td>
-        <td>SCL</td>
-        <td>SCK</td>
-      </tr>
-      <tr>
-        <td>انتخاب دستگاه</td>
-        <td>Address</td>
-        <td>SS / CS</td>
+        <td><bdi><strong>mode</strong></bdi></td>
+        <td>نوع تغییری که باعث ایجاد وقفه می‌شود.</td>
       </tr>
     </tbody>
   </table>
 </div>
 
+---
+
+<h2 dir="rtl" align="right">📈 حالت‌های Trigger</h2>
+
 <p dir="rtl" align="right">
-در <bdi><strong>I2C</strong></bdi> معمولاً با استفاده از آدرس دستگاه را مشخص می‌کنیم، اما در <bdi><strong>SPI</strong></bdi> معمولاً با خط <bdi><strong>SS/CS</strong></bdi> دستگاه مورد نظر را انتخاب می‌کنیم.
+مقدار <bdi><strong>mode</strong></bdi> مشخص می‌کند چه تغییری باعث اجرای وقفه شود.
+</p>
+
+
+<p align="center">
+  <img src="./images/Trigger.jpg" alt="Arduino" width="600">
+</p>
+
+
+
+---
+
+<h2 dir="rtl" align="right">💡 اولین مثال Interrupt</h2>
+
+<p dir="rtl" align="right">
+در این مثال با فشار دادن یک دکمه، یک متغیر تغییر می‌کند و وضعیت LED را کنترل می‌کنیم.
+</p>
+
+<h3 dir="rtl" align="right">اتصالات</h3>
+
+<p align="center">
+  <img src="./images/button_d2.jpg" alt="Arduino" width="600">
+</p>
+
+<p dir="rtl" align="right">
+برای ساده‌تر شدن مدار از مقاومت Pull-up داخلی استفاده می‌کنیم و دکمه را به <bdi><strong>GND</strong></bdi> متصل می‌کنیم.
 </p>
 
 ---
 
-<h2 dir="rtl" align="right">📚 کتابخانه <bdi><strong>SPI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-برای استفاده از <bdi><strong>SPI</strong></bdi> در <bdi><strong>Arduino</strong></bdi> از کتابخانه استاندارد <bdi><strong>SPI.h</strong></bdi> استفاده می‌کنیم.
-</p>
+<h2 dir="rtl" align="right">🚀 برنامه اول — کنترل LED با Interrupt</h2>
 
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-#include &lt;SPI.h&gt;
-</pre>
+const byte buttonPin = 2;
+const byte ledPin = LED_BUILTIN;
 
-<p dir="rtl" align="right">
-در حالت معمول نیازی به نصب جداگانه این کتابخانه نداریم و همراه محیط <bdi><strong>Arduino IDE</strong></bdi> در دسترس است.
-</p>
+volatile bool ledState = false;
 
----
-
-<h2 dir="rtl" align="right">⚙️ راه‌اندازی <bdi><strong>SPI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-برای شروع ارتباط <bdi><strong>SPI</strong></bdi> می‌توانیم از دستور زیر استفاده کنیم:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-SPI.begin();
-</pre>
-
-<p dir="rtl" align="right">
-این دستور رابط سخت‌افزاری <bdi><strong>SPI</strong></bdi> را فعال می‌کند.
-</p>
-
-<p dir="rtl" align="right">
-برای پایان کار نیز می‌توان از:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-SPI.end();
-</pre>
-
-<p dir="rtl" align="right">
-استفاده کرد.
-</p>
-
----
-
-<h2 dir="rtl" align="right">📦 ارسال و دریافت داده با <bdi><strong>SPI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-یکی از دستورات مهم در کتابخانه <bdi><strong>SPI</strong></bdi> تابع <bdi><strong>transfer()</strong></bdi> است.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-byte data = SPI.transfer(0x55);
-</pre>
-
-<p dir="rtl" align="right">
-در این مثال مقدار <bdi><strong>0x55</strong></bdi> ارسال می‌شود و همزمان یک مقدار از ورودی <bdi><strong>SPI</strong></bdi> دریافت می‌شود.
-</p>
-
-<p dir="rtl" align="right">
-بنابراین <bdi><strong>SPI</strong></bdi> می‌تواند ارسال و دریافت را در یک عملیات انجام دهد.
-</p>
-
----
-
-<h2 dir="rtl" align="right">🔄 مراحل کلی یک ارتباط <bdi><strong>SPI</strong></bdi></h2>
-
-<ol dir="rtl" style="padding-right: 25px; line-height: 1.9;">
-  <li><bdi><strong>Master</strong></bdi> خط <bdi><strong>SS/CS</strong></bdi> دستگاه مورد نظر را فعال می‌کند.</li>
-  <li><bdi><strong>Master</strong></bdi> کلاک <bdi><strong>SCK</strong></bdi> را تولید می‌کند.</li>
-  <li>داده از طریق <bdi><strong>MOSI</strong></bdi> ارسال می‌شود.</li>
-  <li>همزمان داده از طریق <bdi><strong>MISO</strong></bdi> دریافت می‌شود.</li>
-  <li>پس از پایان انتقال، <bdi><strong>SS/CS</strong></bdi> غیرفعال می‌شود.</li>
-</ol>
-
----
-
-<h2 dir="rtl" align="right">🧪 اولین برنامه <bdi><strong>SPI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-در این مثال فقط رابط <bdi><strong>SPI</strong></bdi> را راه‌اندازی می‌کنیم و یک داده را ارسال می‌کنیم.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-#include &lt;SPI.h&gt;
-
-#define SS_PIN 10
+void buttonInterrupt() {
+  ledState = !ledState;
+}
 
 void setup() {
-  pinMode(SS_PIN, OUTPUT);
-  digitalWrite(SS_PIN, HIGH);
 
-  SPI.begin();
+  pinMode(ledPin, OUTPUT);
+
+  pinMode(buttonPin, INPUT_PULLUP);
+
+  attachInterrupt(
+    digitalPinToInterrupt(buttonPin),
+    buttonInterrupt,
+    FALLING
+  );
 }
 
 void loop() {
-  digitalWrite(SS_PIN, LOW);
 
-  SPI.transfer(0x55);
+  digitalWrite(ledPin, ledState);
 
-  digitalWrite(SS_PIN, HIGH);
-
-  delay(1000);
 }
 </pre>
 
-<h3 dir="rtl" align="right">بررسی کد:</h3>
+<h3 dir="rtl" align="right">🔎 بررسی برنامه</h3>
 
 <ul dir="rtl" align="right">
-  <li><bdi><code>SPI.begin()</code></bdi> رابط <bdi><strong>SPI</strong></bdi> را فعال می‌کند.</li>
-  <li><bdi><code>digitalWrite(SS_PIN, LOW)</code></bdi> دستگاه مورد نظر را انتخاب می‌کند.</li>
-  <li><bdi><code>SPI.transfer(0x55)</code></bdi> داده را ارسال می‌کند.</li>
-  <li>در پایان با قرار دادن <bdi><strong>SS</strong></bdi> روی <bdi><strong>HIGH</strong></bdi> انتقال را پایان می‌دهیم.</li>
+  <li><bdi><code>INPUT_PULLUP</code></bdi> مقاومت Pull-up داخلی پایه را فعال می‌کند.</li>
+  <li>دکمه بین <bdi><strong>D2</strong></bdi> و <bdi><strong>GND</strong></bdi> قرار گرفته است.</li>
+  <li>با فشردن دکمه، وضعیت پایه از <bdi><strong>HIGH</strong></bdi> به <bdi><strong>LOW</strong></bdi> تغییر می‌کند.</li>
+  <li>به همین دلیل از <bdi><strong>FALLING</strong></bdi> استفاده کرده‌ایم.</li>
+  <li>تابع <bdi><code>buttonInterrupt()</code></bdi> هنگام وقوع وقفه اجرا می‌شود.</li>
+  <li>متغیر <bdi><code>ledState</code></bdi> وضعیت LED را تغییر می‌دهد.</li>
 </ul>
 
 ---
 
-<h2 dir="rtl" align="right">🔬 پروژه عملی اول — تست <bdi><strong>SPI Loopback</strong></bdi></h2>
+<h2 dir="rtl" align="right">⚠️ چرا از <bdi><strong>volatile</strong></bdi> استفاده کردیم؟</h2>
 
 <p dir="rtl" align="right">
-برای اینکه بدون نیاز به قطعه جانبی عملکرد ارسال و دریافت <bdi><strong>SPI</strong></bdi> را بررسی کنیم، می‌توانیم یک تست ساده انجام دهیم.
+وقتی یک متغیر در برنامه اصلی و همچنین در تابع وقفه استفاده می‌شود، بهتر است آن را با <bdi><strong>volatile</strong></bdi> تعریف کنیم.
 </p>
-
-<p dir="rtl" align="right">
-در این آزمایش پایه <bdi><strong>MOSI</strong></bdi> را به <bdi><strong>MISO</strong></bdi> وصل می‌کنیم تا داده‌ای که ارسال می‌شود دوباره وارد بخش دریافت شود.
-</p>
-
-<h3 dir="rtl" align="right">اتصال:</h3>
 
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-Arduino UNO
-
-D11 (MOSI) ───────── D12 (MISO)
-GND        ───────── GND
+volatile bool ledState = false;
 </pre>
 
 <p dir="rtl" align="right">
-در این آزمایش بهتر است فقط از یک سیم برای اتصال <bdi><strong>D11</strong></bdi> و <bdi><strong>D12</strong></bdi> استفاده کنیم.
+این کلمه به کامپایلر اعلام می‌کند که مقدار این متغیر ممکن است خارج از روند معمول اجرای برنامه تغییر کند؛ برای مثال توسط یک <bdi><strong>Interrupt</strong></bdi>.
 </p>
 
-<h3 dir="rtl" align="right">کد تست:</h3>
+---
+
+<h2 dir="rtl" align="right">🚨 نکات مهم در نوشتن ISR</h2>
+
+<p dir="rtl" align="right">
+تابع وقفه باید تا حد امکان کوتاه و سریع باشد.
+</p>
+
+<p dir="rtl" align="right">
+بهتر است داخل ISR کارهای سنگین انجام ندهیم.
+</p>
+
+<ul dir="rtl" align="right">
+  <li>از <bdi><code>delay()</code></bdi> داخل ISR استفاده نکنید.</li>
+  <li>کارهای طولانی را داخل ISR انجام ندهید.</li>
+  <li>پردازش‌های سنگین را به <bdi><code>loop()</code></bdi> منتقل کنید.</li>
+  <li>ISR را تا حد امکان ساده نگه دارید.</li>
+</ul>
+
+<p dir="rtl" align="right">
+یک روش مناسب این است که داخل ISR فقط یک متغیر یا Flag را تغییر دهیم و سپس در <bdi><code>loop()</code></bdi> کار اصلی را انجام دهیم.
+</p>
+
+---
+
+<h2 dir="rtl" align="right">✅ روش پیشنهادی برای استفاده از Interrupt</h2>
+
+<p dir="rtl" align="right">
+به جای اینکه داخل ISR تمام کار را انجام دهیم، می‌توانیم فقط یک علامت ایجاد کنیم.
+</p>
 
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-#include &lt;SPI.h&gt;
+volatile bool eventOccurred = false;
 
-void setup() {
-  Serial.begin(9600);
-  SPI.begin();
-
-  Serial.println("SPI Loopback Test");
+void interruptFunction() {
+  eventOccurred = true;
 }
 
 void loop() {
 
-  byte sentData = 0x55;
+  if (eventOccurred) {
 
-  byte receivedData = SPI.transfer(sentData);
+    eventOccurred = false;
 
-  Serial.print("Sent: 0x");
-  Serial.println(sentData, HEX);
+    // انجام کار اصلی
 
-  Serial.print("Received: 0x");
-  Serial.println(receivedData, HEX);
+  }
 
-  Serial.println();
+}
+</pre>
 
-  delay(1000);
+<p dir="rtl" align="right">
+این روش باعث می‌شود تابع وقفه ساده و سریع باقی بماند.
+</p>
+
+---
+
+<h2 dir="rtl" align="right">🔘 پروژه عملی — شمارش فشار دکمه</h2>
+
+<p dir="rtl" align="right">
+در این پروژه هر بار که دکمه فشرده شود، یک شمارنده افزایش پیدا می‌کند و مقدار آن در <bdi><strong>Serial Monitor</strong></bdi> نمایش داده می‌شود.
+</p>
+
+<h3 dir="rtl" align="right">اتصالات</h3>
+
+<p align="center">
+  <img src="./images/button_d2.jpg" alt="Arduino" width="600">
+</p>
+
+<h3 dir="rtl" align="right">کد پروژه:</h3>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+const byte buttonPin = 2;
+
+volatile unsigned long counter = 0;
+
+void buttonInterrupt() {
+  counter++;
+}
+
+void setup() {
+
+  Serial.begin(9600);
+
+  pinMode(buttonPin, INPUT_PULLUP);
+
+  attachInterrupt(
+    digitalPinToInterrupt(buttonPin),
+    buttonInterrupt,
+    FALLING
+  );
+}
+
+void loop() {
+
+  static unsigned long lastCounter = 0;
+
+  if (counter != lastCounter) {
+
+    lastCounter = counter;
+
+    Serial.print("Button pressed: ");
+    Serial.println(counter);
+  }
+
 }
 </pre>
 
 <h3 dir="rtl" align="right">خروجی مورد انتظار:</h3>
 
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-SPI Loopback Test
-
-Sent: 0x55
-Received: 0x55
-
-Sent: 0x55
-Received: 0x55
-</pre>
-
-<p dir="rtl" align="right">
-اگر مقدار ارسال‌شده و دریافت‌شده یکسان باشد، می‌توانیم نتیجه بگیریم که مسیر آزمایشی <bdi><strong>SPI</strong></bdi> درست عمل می‌کند.
-</p>
-
----
-
-<h2 dir="rtl" align="right">🎛️ تنظیمات ارتباط <bdi><strong>SPI</strong></bdi></h2>
-
-<p dir="rtl" align="right">
-در پروژه‌های واقعی ممکن است قطعات مختلف به سرعت و تنظیمات متفاوتی نیاز داشته باشند.
-</p>
-
-<p dir="rtl" align="right">
-برای تنظیم دقیق‌تر ارتباط می‌توانیم از <bdi><strong>SPISettings</strong></bdi> استفاده کنیم.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-SPI.beginTransaction(
-  SPISettings(1000000, MSBFIRST, SPI_MODE0)
-);
-</pre>
-
-<p dir="rtl" align="right">
-در این مثال:
-</p>
-
-<ul dir="rtl" align="right">
-  <li><bdi><strong>1000000</strong></bdi> یعنی سرعت <bdi><strong>1 MHz</strong></bdi>.</li>
-  <li><bdi><strong>MSBFIRST</strong></bdi> مشخص می‌کند بیت‌های با اهمیت بیشتر زودتر ارسال شوند.</li>
-  <li><bdi><strong>SPI_MODE0</strong></bdi> یکی از حالت‌های استاندارد زمانی <bdi><strong>SPI</strong></bdi> است.</li>
-</ul>
-
-<p dir="rtl" align="right">
-پس از پایان انتقال نیز می‌توانیم بنویسیم:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-SPI.endTransaction();
+Button pressed: 1
+Button pressed: 2
+Button pressed: 3
+Button pressed: 4
+...
 </pre>
 
 ---
 
-<h2 dir="rtl" align="right">💡 چند دستگاه روی <bdi><strong>SPI</strong></bdi></h2>
+<h2 dir="rtl" align="right">⚠️ مشکل Bounce دکمه</h2>
 
 <p dir="rtl" align="right">
-یکی از ویژگی‌های مهم <bdi><strong>SPI</strong></bdi> این است که می‌توان چند دستگاه را به خطوط مشترک <bdi><strong>MOSI</strong></bdi>، <bdi><strong>MISO</strong></bdi> و <bdi><strong>SCK</strong></bdi> متصل کرد.
+ممکن است تصور کنیم با هر بار فشار دادن دکمه دقیقاً یک تغییر ایجاد می‌شود، اما در دنیای واقعی کنتاکت مکانیکی دکمه هنگام فشرده شدن ممکن است چند بار به سرعت قطع و وصل شود.
 </p>
 
 <p dir="rtl" align="right">
-در این حالت برای انتخاب هر دستگاه از یک خط <bdi><strong>CS</strong></bdi> یا <bdi><strong>SS</strong></bdi> جداگانه استفاده می‌شود.
+به این پدیده <bdi><strong>Button Bounce</strong></bdi> گفته می‌شود.
 </p>
 
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-                    ┌── Device 1
-MOSI ───────────────┼── Device 2
-MISO ───────────────┼── Device 3
-SCK  ───────────────┘
-
-CS1 ───────────────── Device 1
-CS2 ───────────────── Device 2
-CS3 ───────────────── Device 3
+فشار دادن واقعی دکمه:
 </pre>
-
 
 <p align="center">
-  <img src="./images/spi-1.jpg" alt="Arduino" width="600">
+  <img src="./images/debouncing.jpg" alt="Arduino" width="600">
+</p>
+
+
+<p dir="rtl" align="right">
+در نتیجه ممکن است یک بار فشار دادن دکمه باعث چند بار اجرای Interrupt شود.
 </p>
 
 <p dir="rtl" align="right">
-به این ترتیب می‌توانیم چند قطعه را روی یک رابط <bdi><strong>SPI</strong></bdi> قرار دهیم.
+در پروژه‌های واقعی می‌توان برای این موضوع از روش‌های مختلفی مانند <bdi><strong>Debouncing</strong></bdi> نرم‌افزاری یا سخت‌افزاری استفاده کرد.
+</p>
+
+<p dir="rtl" align="right">
+در این جلسه هدف اصلی ما درک مفهوم <bdi><strong>Interrupt</strong></bdi> است و در پروژه‌های بعدی می‌توانیم روش‌های بهتر مدیریت ورودی‌های متعدد را بررسی کنیم.
 </p>
 
 ---
 
-<h2 dir="rtl" align="right">⚠️ نکته‌های مهم</h2>
-
-<ul dir="rtl" style="padding-right: 25px; line-height: 2;">
-  <li>اتصال <bdi><strong>GND</strong></bdi> بین برد و قطعه باید مشترک باشد.</li>
-  <li>قبل از اتصال قطعه، پایه‌های <bdi><strong>MOSI</strong></bdi>، <bdi><strong>MISO</strong></bdi>، <bdi><strong>SCK</strong></bdi> و <bdi><strong>CS</strong></bdi> آن را بررسی کنید.</li>
-  <li>همه ماژول‌ها از نظر ولتاژ تغذیه یکسان نیستند؛ ولتاژ مورد نیاز قطعه را بررسی کنید.</li>
-  <li>اگر چند دستگاه <bdi><strong>SPI</strong></bdi> متصل هستند، انتخاب دستگاه درست با خط <bdi><strong>CS/SS</strong></bdi> اهمیت دارد.</li>
-  <li>سرعت و حالت <bdi><strong>SPI</strong></bdi> باید با مشخصات قطعه سازگار باشد.</li>
-</ul>
-
----
-
-<h2 dir="rtl" align="right">🧩 پروژه عملی دوم</h2>
+<h2 dir="rtl" align="right">🧪 تمرین</h2>
 
 <p dir="rtl" align="right">
-در یک پروژه ساده، برنامه‌ای بنویسید که هر یک ثانیه یک داده جدید را از طریق <bdi><strong>SPI</strong></bdi> ارسال کند.
+برنامه‌ای بنویسید که با هر بار فشردن یک دکمه:
 </p>
+
+<ol dir="rtl" align="right">
+  <li>یک واحد به شمارنده اضافه کند.</li>
+  <li>اگر شمارنده زوج بود LED خاموش باشد.</li>
+  <li>اگر شمارنده فرد بود LED روشن باشد.</li>
+  <li>مقدار شمارنده در <bdi><strong>Serial Monitor</strong></bdi> نمایش داده شود.</li>
+</ol>
 
 <p dir="rtl" align="right">
-داده‌های زیر را به ترتیب ارسال کنید:
+سپس حالت Interrupt را از <bdi><strong>FALLING</strong></bdi> به <bdi><strong>CHANGE</strong></bdi> تغییر دهید و رفتار مدار را بررسی کنید.
 </p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-0x10
-0x20
-0x30
-0x40
-0x50
-</pre>
-
-<p dir="rtl" align="right">
-بعد از هر انتقال، مقدار ارسال‌شده را در <bdi><strong>Serial Monitor</strong></bdi> نمایش دهید.
-</p>
-
-<p dir="rtl" align="right">
-هدف پروژه این است که با روند زیر آشنا شوید:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-انتخاب Slave
-      ↓
-ارسال داده
-      ↓
-دریافت پاسخ
-      ↓
-پایان انتقال
-      ↓
-Serial Monitor نمایش نتیجه در 
-</pre>
 
 ---
 
 <h2 dir="rtl" align="right">📝 سوالات</h2>
 
 <ol dir="rtl" align="right">
-  <li><bdi><strong>SPI</strong></bdi> چیست و برای چه کاری استفاده می‌شود؟</li>
-  <li>چهار خط اصلی <bdi><strong>SPI</strong></bdi> چه نام دارند؟</li>
-  <li><bdi><strong>MOSI</strong></bdi> چه کاری انجام می‌دهد؟</li>
-  <li><bdi><strong>MISO</strong></bdi> چه کاری انجام می‌دهد؟</li>
-  <li>وظیفه <bdi><strong>SCK</strong></bdi> چیست؟</li>
-  <li><bdi><strong>SS</strong></bdi> یا <bdi><strong>CS</strong></bdi> چه کاربردی دارد؟</li>
-  <li>پایه‌های <bdi><strong>SPI</strong></bdi> در <bdi><strong>Arduino UNO</strong></bdi> کدام‌اند؟</li>
-  <li>تفاوت اصلی <bdi><strong>SPI</strong></bdi> و <bdi><strong>I2C</strong></bdi> چیست؟</li>
-  <li>دستور <bdi><code>SPI.begin()</code></bdi> چه کاری انجام می‌دهد؟</li>
-  <li>تابع <bdi><code>SPI.transfer()</code></bdi> برای چه کاری استفاده می‌شود؟</li>
+  <li><bdi><strong>Interrupt</strong></bdi> چیست؟</li>
+  <li>تفاوت <bdi><strong>Polling</strong></bdi> و <bdi><strong>Interrupt</strong></bdi> چیست؟</li>
+  <li><bdi><strong>ISR</strong></bdi> مخفف چیست و چه کاری انجام می‌دهد؟</li>
+  <li>پایه‌های Interrupt در <bdi><strong>Arduino UNO</strong></bdi> کدام‌اند؟</li>
+  <li>تابع <bdi><code>attachInterrupt()</code></bdi> چه کاری انجام می‌دهد؟</li>
+  <li>تفاوت <bdi><strong>RISING</strong></bdi> و <bdi><strong>FALLING</strong></bdi> چیست؟</li>
+  <li>حالت <bdi><strong>CHANGE</strong></bdi> چه زمانی فعال می‌شود؟</li>
+  <li>چرا بهتر است ISR کوتاه و سریع باشد؟</li>
+  <li>کلمه <bdi><strong>volatile</strong></bdi> چه کاربردی دارد؟</li>
+  <li><bdi><strong>Button Bounce</strong></bdi> چیست؟</li>
 </ol>
 
 ---
@@ -596,42 +512,37 @@ Serial Monitor نمایش نتیجه در
 </p>
 
 <ul dir="rtl" align="right">
-  <li>با مفهوم <bdi><strong>SPI</strong></bdi> آشنا شدیم.</li>
-  <li>ساختار <bdi><strong>Master</strong></bdi> و <bdi><strong>Slave</strong></bdi> را بررسی کردیم.</li>
-  <li>خطوط <bdi><strong>MOSI</strong></bdi>، <bdi><strong>MISO</strong></bdi>، <bdi><strong>SCK</strong></bdi> و <bdi><strong>SS</strong></bdi> را شناختیم.</li>
-  <li>پایه‌های <bdi><strong>SPI</strong></bdi> در <bdi><strong>Arduino UNO</strong></bdi> را یاد گرفتیم.</li>
-  <li>تفاوت <bdi><strong>SPI</strong></bdi> و <bdi><strong>I2C</strong></bdi> را بررسی کردیم.</li>
-  <li>با کتابخانه <bdi><strong>SPI.h</strong></bdi> کار کردیم.</li>
-  <li>با <bdi><strong>SPI.transfer()</strong></bdi> داده ارسال و دریافت کردیم.</li>
-  <li>یک تست ساده <bdi><strong>SPI Loopback</strong></bdi> انجام دادیم.</li>
-  <li>با مفهوم <bdi><strong>CS/SS</strong></bdi> برای انتخاب دستگاه آشنا شدیم.</li>
+  <li>با مفهوم <bdi><strong>Interrupt</strong></bdi> آشنا شدیم.</li>
+  <li>تفاوت <bdi><strong>Polling</strong></bdi> و <bdi><strong>Interrupt</strong></bdi> را بررسی کردیم.</li>
+  <li>با مفهوم <bdi><strong>ISR</strong></bdi> آشنا شدیم.</li>
+  <li>پایه‌های Interrupt در <bdi><strong>Arduino UNO</strong></bdi> را شناختیم.</li>
+  <li>با تابع <bdi><strong>attachInterrupt()</strong></bdi> کار کردیم.</li>
+  <li>حالت‌های <bdi><strong>LOW</strong></bdi>، <bdi><strong>RISING</strong></bdi>، <bdi><strong>FALLING</strong></bdi> و <bdi><strong>CHANGE</strong></bdi> را یاد گرفتیم.</li>
+  <li>یک دکمه را با استفاده از Interrupt کنترل کردیم.</li>
+  <li>با <bdi><strong>volatile</strong></bdi> و اهمیت آن در Interrupt آشنا شدیم.</li>
+  <li>مفهوم <bdi><strong>Button Bounce</strong></bdi> را بررسی کردیم.</li>
 </ul>
-
-<p dir="rtl" align="right">
-اکنون با یکی دیگر از مهم‌ترین روش‌های ارتباطی در دنیای <bdi><strong>Arduino</strong></bdi> آشنا شده‌ایم و می‌توانیم در پروژه‌های مختلف از <bdi><strong>SPI</strong></bdi> برای ارتباط با قطعات جانبی استفاده کنیم.
-</p>
 
 <hr>
 
 <h2 dir="rtl" align="right">⏭️ جلسه بعد</h2>
 
 <p dir="rtl" align="right">
-در جلسه نهم با مفهوم <bdi><strong>Interrupt</strong></bdi> یا <bdi><strong>وقفه</strong></bdi> آشنا می‌شویم.
+در جلسه دهم سراغ <bdi><strong>Keypad</strong></bdi> می‌رویم و یاد می‌گیریم چگونه یک صفحه‌کلید ماتریسی را به <bdi><strong>Arduino</strong></bdi> متصل و راه‌اندازی کنیم.
 </p>
 
 <p dir="rtl" align="right">
-یاد می‌گیریم چگونه کاری کنیم که <bdi><strong>Arduino</strong></bdi> بتواند در هنگام رخ دادن یک رویداد مهم، بدون اینکه دائماً آن رویداد را بررسی کند، بلافاصله به آن واکنش نشان دهد.
+در این جلسه با ساختار <bdi><strong>Row</strong></bdi> و <bdi><strong>Column</strong></bdi>، نحوه اتصال <bdi><strong>Keypad</strong></bdi> و روش خواندن کلیدهای فشرده‌شده آشنا می‌شویم.
 </p>
 
 <p dir="rtl" align="right">
-در این جلسه با مفاهیمی مانند <bdi><strong>Interrupt</strong></bdi>، <bdi><strong>ISR</strong></bdi> و <bdi><strong>attachInterrupt()</strong></bdi> آشنا خواهیم شد و با استفاده از یک پروژه عملی نحوه استفاده از وقفه‌ها را یاد می‌گیریم.
+همچنین در ادامه می‌توانیم از <bdi><strong>Keypad</strong></bdi> برای ساخت پروژه‌هایی مانند رمز عبور، ماشین‌حساب ساده و منوی کنترلی استفاده کنیم.
 </p>
 
 <p dir="rtl" align="right">
-⬅️ <a href="../09-Interrupt/">جلسه 09 — آشنایی با <bdi><strong>Interrupt</strong></bdi> و وقفه‌ها</a>
+⬅️ <a href="../10-Keypad/">جلسه 10 — کار با <bdi><strong>Keypad</strong></bdi></a>
 </p>
 
-<hr>
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
