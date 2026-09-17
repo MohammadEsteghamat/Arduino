@@ -292,7 +292,6 @@ void loop() {
 </p>
 
 <h3 dir="rtl" align="right">نکته‌های مهم:</h3>
-<h3 dir="rtl" align="right">نکته‌های مهم:</h3>
 
 <ul dir="rtl" style="padding-right: 25px; line-height: 2;">
   <li>
@@ -361,7 +360,7 @@ OLED
 
 <hr>
 
-<h2 dir="rtl" align="right">🔜 جلسه بعد</h2>
+<h2 dir="rtl" align="right">⏭️ جلسه بعد</h2>
 
 <p dir="rtl" align="right">
 در جلسه هشتم با پروتکل ارتباطی <bdi><strong>SPI</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه از این پروتکل برای ارتباط <bdi><strong>Arduino</strong></bdi> با قطعات مختلف استفاده کنیم.
@@ -375,5 +374,5 @@ OLED
 
 <p dir="rtl" align="center" style="font-size: 1.1em;">
 <strong>Arduino From Zero to Projects</strong><br>
-<em>Mohammad Esteghamat</em>
+Mohammad Esteghamat
 </p>
