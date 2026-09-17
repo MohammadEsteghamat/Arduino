@@ -152,7 +152,7 @@ VCC       ─────────── VCC
 </p>
 
 ```cpp
-include <Wire.h>
+#include <Wire.h>
 
 void setup() {
   Wire.begin();
