@@ -722,7 +722,6 @@ LED 2 → ON
 ⬅️ <a href="../04-Analog-IO/">جلسه 04 — Analog-IO </a>
 </p>
 
----
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
