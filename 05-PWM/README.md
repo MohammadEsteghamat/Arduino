@@ -1,7 +1,8 @@
-<div dir="rtl" align="right">
+<h2 dir="rtl" align="center">
 
 # جلسه 05 — PWM در Arduino
-
+<div dir="rtl" align="right">
+      
 ## 🎯 هدف جلسه
 
 در این جلسه با مفهوم <bdi>**PWM (Pulse Width Modulation)**</bdi> آشنا می‌شویم و یاد می‌گیریم چگونه با استفاده از آن، میزان روشنایی <bdi>LED</bdi> یا سرعت موتور <bdi>DC</bdi> را کنترل کنیم.
@@ -664,7 +665,7 @@ map(value, 0, 1023, 0, 100);
 
 ---
 
-# 🔜 جلسه بعد
+#⏭️جلسه بعد
 
 در جلسه ششم با **<bdi>Serial Monitor</bdi>** به‌صورت کامل‌تر کار می‌کنیم و یاد می‌گیریم چگونه اطلاعات را بین <bdi>Arduino</bdi> و کامپیوتر ارسال و دریافت کنیم.
 
