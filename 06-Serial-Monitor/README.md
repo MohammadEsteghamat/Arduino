@@ -1,4 +1,4 @@
-<h1 dir="rtl" align="right">جلسه 06 — <bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> در <bdi><strong>Arduino</strong></bdi></h1>
+<h1 dir="rtl" align="center">جلسه 06 — <bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> در <bdi><strong>Arduino</strong></bdi></h1>
 
 <h2 dir="rtl" align="right">🎯 هدف جلسه</h2>
 
@@ -49,8 +49,8 @@ RX  →  Receive (دریافت)
 </div>
 
 
-<blockquote>
-<strong>نکته مهم:</strong> وقتی از <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> استفاده می‌کنید، این دو پایه برای ارتباط با کامپیوتر رزرو می‌شوند. بنابراین معمولاً نباید سنسور یا ماژول دیگری را مستقیماً به پایه‌های <code dir="ltr">0</code> و <code dir="ltr">1</code> وصل کنید.
+<blockquote dir="rtl" align="right">
+  <strong>نکته مهم:</strong> وقتی از <bdi dir="ltr"><strong>Serial Monitor</strong></bdi> استفاده می‌کنید، این دو پایه برای ارتباط با کامپیوتر رزرو می‌شوند. بنابراین معمولاً نباید سنسور یا ماژول دیگری را مستقیماً به پایه‌های <code dir="ltr">0</code> و <code dir="ltr">1</code> وصل کنید.
 </blockquote>
 <hr>
 <h2 dir="rtl" align="right">2️⃣ <bdi dir="ltr"><strong>Serial Monitor</strong></bdi> چیست؟</h2>
@@ -111,9 +111,10 @@ RX  →  Receive (دریافت)
 ```
 
 
-<p><strong>قانون مهم:</strong></p>
-
-<p><bdi><strong>Baud Rate</strong></bdi> در کد و در <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> باید <strong>دقیقاً یکسان</strong> باشد، وگرنه داده‌ها به‌هم‌ریخته نمایش داده می‌شوند.</p>
+<p dir="rtl" align="right"><strong>قانون مهم:</strong></p>
+<p dir="rtl" align="right">
+  <bdi dir="ltr"><strong>Baud Rate</strong></bdi> در کد و در <bdi dir="ltr"><strong>Serial Monitor</strong></bdi> باید <strong>دقیقاً یکسان</strong> باشد، وگرنه داده‌ها به‌هم‌ریخته نمایش داده می‌شوند.
+</p>
 
 
 <table dir="rtl" align="right">
@@ -155,7 +156,7 @@ RX  →  Receive (دریافت)
 
 
 ```cpp
-<bdi><strong>Serial</strong></bdi>.begin(speed);
+Serial.begin(speed);
 ```
 
 
@@ -164,7 +165,7 @@ RX  →  Receive (دریافت)
 
 ```cpp
 void setup() {
-  <bdi><strong>Serial</strong></bdi>.begin(9600);
+ Serial.begin(9600);
 }
 ```
 
@@ -183,8 +184,8 @@ void setup() {
 
 
 ```cpp
-<bdi><strong>Serial</strong></bdi>.print("Hello");
-<bdi><strong>Serial</strong></bdi>.print(" World");
+>Serial.print("Hello");
+Serial.print(" World");
 ```
 
 
@@ -202,8 +203,8 @@ Hello World
 
 
 ```cpp
-<bdi><strong>Serial</strong></bdi>.println("Hello");
-<bdi><strong>Serial</strong></bdi>.println("World");
+Seria.println("Hello");
+>Serial.println("World");
 ```
 
 
@@ -253,12 +254,12 @@ World
 
 ```cpp
 void setup() {
-  <bdi><strong>Serial</strong></bdi>.begin(9600);
-  <bdi><strong>Serial</strong></bdi>.println("<bdi><strong>Arduino</strong></bdi> Ready!");
+  Serial.begin(9600);
+  Serial.println("Arduino Ready!");
 }
 
 void loop() {
-  <bdi><strong>Serial</strong></bdi>.println("Hello from <bdi><strong>Arduino</strong></bdi>");
+  Serial.println("Hello from Arduino");
   delay(1000);
 }
 ```
@@ -279,7 +280,7 @@ void loop() {
 ```text
 5V ─────────────┐
                 │
-           <bdi><strong>Potentiometer</strong></bdi>
+           Potentiometer
                 │
 A0 ─────────────┤
                 │
@@ -296,14 +297,14 @@ GND ────────────┘
 const int potPin = A0;
 
 void setup() {
-  <bdi><strong>Serial</strong></bdi>.begin(9600);
+ Serial.begin(9600);
 }
 
 void loop() {
   int potValue = analogRead(potPin);
 
-  <bdi><strong>Serial</strong></bdi>.print("<bdi><strong>Potentiometer</strong></bdi> Value: ");
-  <bdi><strong>Serial</strong></bdi>.println(potValue);
+  Serial.print("Potentiometer Value: ");
+  Serial.println(potValue);
 
   delay(200);
 }
@@ -328,8 +329,8 @@ int potValue = analogRead(potPin);
 
 
 ```cpp
-<bdi><strong>Serial</strong></bdi>.print("<bdi><strong>Potentiometer</strong></bdi> Value: ");
-<bdi><strong>Serial</strong></bdi>.println(potValue);
+Serial.print("Potentiometer Value: ");
+Serial.println(potValue);
 ```
 
 
@@ -337,7 +338,7 @@ int potValue = analogRead(potPin);
 
 
 ```text
-<bdi><strong>Potentiometer</strong></bdi>
+Potentiometer
       │
       ▼
 analogRead()
@@ -346,10 +347,10 @@ analogRead()
   0 → 1023
       │
       ▼
-<bdi><strong>Serial</strong></bdi>.println()
+Serial.println()
       │
       ▼
-<bdi><strong>Serial</strong></bdi> Monitor</strong></bdi>
+Serial Monitor
 ```
 <hr>
 <h2 dir="rtl" align="right">8️⃣ خواندن داده از <bdi dir="ltr"><strong>Serial Monitor</strong></bdi></h2>
@@ -369,7 +370,7 @@ analogRead()
 
 
 ```cpp
-if (<bdi><strong>Serial</strong></bdi>.available() > 0) {
+if (Serial.available() > 0) {
   // داده جدیدی آمده است
 }
 ```
@@ -381,7 +382,7 @@ if (<bdi><strong>Serial</strong></bdi>.available() > 0) {
 
 
 ```cpp
-char command = <bdi><strong>Serial</strong></bdi>.read();
+char command = Serial.read();
 ```
 
 
@@ -407,9 +408,9 @@ char command = <bdi><strong>Serial</strong></bdi>.read();
 
 
 ```text
-<bdi><strong>Arduino</strong></bdi> Pin 13
+Arduino Pin 13
       │
-     <bdi><strong>LED</strong></bdi>
+     LED
       │
      GND
 ```
@@ -425,21 +426,21 @@ const int ledPin = 13;
 
 void setup() {
   pinMode(ledPin, OUTPUT);
-  <bdi><strong>Serial</strong></bdi>.begin(9600);
-  <bdi><strong>Serial</strong></bdi>.println("Send '1' to turn ON, '0' to turn OFF");
+  Serial.begin(9600);
+  Serial.println("Send '1' to turn ON, '0' to turn OFF");
 }
 
 void loop() {
-  if (<bdi><strong>Serial</strong></bdi>.available() > 0) {
-    char command = <bdi><strong>Serial</strong></bdi>.read();
+  if (Serial.available() > 0) {
+    char command = Serial.read();
 
     if (command == '1') {
       digitalWrite(ledPin, HIGH);
-      <bdi><strong>Serial</strong></bdi>.println("<bdi><strong>LED</strong></bdi> ON");
+      Serial.println("LED ON");
     }
     else if (command == '0') {
       digitalWrite(ledPin, LOW);
-      <bdi><strong>Serial</strong></bdi>.println("<bdi><strong>LED</strong></bdi> OFF");
+      Serial.println("LED OFF");
     }
   }
 }
@@ -470,21 +471,21 @@ void loop() {
 
 
 ```cpp
-int value = <bdi><strong>Serial</strong></bdi>.parseInt();
+int value = Serial.parseInt();
 ```
 
 <h3 dir="rtl" align="right">💻 کد</h3>
 
 ```cpp
 void setup() {
-  <bdi><strong>Serial</strong></bdi>.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
-  if (<bdi><strong>Serial</strong></bdi>.available() > 0) {
-    int value = <bdi><strong>Serial</strong></bdi>.parseInt();
-    <bdi><strong>Serial</strong></bdi>.print("Received number: ");
-    <bdi><strong>Serial</strong></bdi>.println(value);
+  if (Serial.available() > 0) {
+    int value = Serial.parseInt();
+    Serial.print("Received number: ");
+    Serial.println(value);
   }
 }
 ```
@@ -504,13 +505,13 @@ void loop() {
 ```text
 5V ─────────────┐
                 │
-           <bdi><strong>Potentiometer</strong></bdi>
+           Potentiometer
                 │
 A0 ─────────────┤
                 │
 GND ────────────┘
 
-Pin 9 → Resistor → <bdi><strong>LED</strong></bdi> → GND
+Pin 9 → Resistor → LED → GND
 ```
 
 <h3 dir="rtl" align="right">💻 کد</h3>
@@ -521,7 +522,7 @@ const int ledPin = 9;
 
 void setup() {
   pinMode(ledPin, OUTPUT);
-  <bdi><strong>Serial</strong></bdi>.begin(9600);
+  Serial.begin(9600);
 }
 
 void loop() {
@@ -530,10 +531,10 @@ void loop() {
 
   analogWrite(ledPin, brightness);
 
-  <bdi><strong>Serial</strong></bdi>.print("Raw: ");
-  <bdi><strong>Serial</strong></bdi>.print(potValue);
-  <bdi><strong>Serial</strong></bdi>.print("  |  <bdi><strong>PWM</strong></bdi>: ");
-  <bdi><strong>Serial</strong></bdi>.println(brightness);
+  Serial.print("Raw: ");
+  Serial.print(potValue);
+  Serial.print("  |  PWM : ");
+  Serial.println(brightness);
 
   delay(100);
 }
@@ -548,7 +549,7 @@ void loop() {
 
 
 ```text
-<bdi><strong>Potentiometer</strong></bdi>
+Potentiometer
       │
       ▼
 analogRead()     →  0 تا 1023
@@ -556,9 +557,9 @@ analogRead()     →  0 تا 1023
       ▼
 map()            →  0 تا 255
       │
-      ├── analogWrite()      →  <bdi><strong>LED</strong></bdi>
+      ├── analogWrite()      →  LED
       │
-      └── <bdi><strong>Serial</strong></bdi>.println()   →  <bdi><strong>Serial</strong></bdi> Monitor</strong></bdi>
+      └── Serial.println()   →  Serial Monitor
 ```
 <hr>
 <h2 dir="rtl" align="right">1️⃣2️⃣ تفاوت توابع مهم <bdi dir="ltr"><strong>Serial</strong></bdi></h2>
@@ -676,7 +677,7 @@ map()            →  0 تا 255
 
 
 ```text
-<bdi><strong>Arduino</strong></bdi> is running...
+Arduino is running...
 ```
 <hr>
 <h3 dir="rtl" align="right">تمرین 2</h3>
@@ -707,7 +708,7 @@ map(value, 0, 1023, 0, 100);
 
 
 ```cpp
-<bdi><strong>Serial</strong></bdi>.parseInt()
+Serial.parseInt()
 ```
 
 
