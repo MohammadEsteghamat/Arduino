@@ -1,4 +1,4 @@
-<h1 dir="rtl">جلسه 01 — آشنایی با Arduino</h1>
+<h2 dir="rtl" align="center">جلسه 01 — آشنایی با Arduino</h1>
 
 <hr>
 
