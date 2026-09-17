@@ -51,18 +51,26 @@ RX  →  Receive (دریافت)
 
 ---
 
-# 2️⃣ <bdi>Serial Monitor</bdi> چیست؟
+<h2 dir="rtl" align="right">2️⃣ <bdi>Serial Monitor</bdi> چیست؟</h2>
+
+<div dir="rtl" align="right">
 
 <bdi>**Serial Monitor**</bdi> پنجره‌ای در نرم‌افزار <bdi>Arduino IDE</bdi> است که به شما امکان می‌دهد:
 
-- داده‌هایی که <bdi>Arduino</bdi> ارسال می‌کند را ببینید
-- از طریق کیبورد به <bdi>Arduino</bdi> دستور بفرستید
+<ul>
+  <li>داده‌هایی که <bdi>Arduino</bdi> ارسال می‌کند را ببینید.</li>
+  <li>از طریق کیبورد به <bdi>Arduino</bdi> دستور بفرستید.</li>
+</ul>
 
 برای باز کردن آن:
 
-1. کد را روی برد آپلود کنید
-2. از منوی بالا گزینه <bdi>Tools → Serial Monitor</bdi> را انتخاب کنید
-   یا کلید میانبر <code dir="ltr">Ctrl + Shift + M</code> را بزنید
+<ol>
+  <li>کد را روی برد آپلود کنید.</li>
+  <li>از منوی بالا گزینه <bdi>Tools → Serial Monitor</bdi> را انتخاب کنید.</li>
+  <li>یا کلید میانبر <code dir="ltr">Ctrl + Shift + M</code> را بزنید.</li>
+</ol>
+
+</div>
 
 <div dir="ltr" align="center">
 
@@ -70,45 +78,53 @@ RX  →  Receive (دریافت)
 
 </div>
 
+<div dir="rtl" align="right">
+
 در پایین پنجره می‌توانید:
 
-- متن ارسال کنید
-- <bdi>Baud Rate</bdi> را تنظیم کنید
-- نوع <bdi>Line Ending</bdi> را انتخاب کنید
+<ul>
+  <li>متن ارسال کنید.</li>
+  <li><bdi>Baud Rate</bdi> را تنظیم کنید.</li>
+  <li>نوع <bdi>Line Ending</bdi> را انتخاب کنید.</li>
+</ul>
+
+</div>
 
 ---
 
-# 3️⃣ <bdi>Baud Rate</bdi> چیست؟
+<h2 dir="rtl" align="right">3️⃣ <bdi>Baud Rate</bdi> چیست؟</h2>
 
-<bdi>**Baud Rate**</bdi> سرعت انتقال داده را مشخص می‌کند و واحد آن **بیت بر ثانیه (bps)** است.
+<div dir="rtl" align="right">
+
+<bdi>**Baud Rate**</bdi> سرعت انتقال داده را مشخص می‌کند و واحد آن <bdi>بیت بر ثانیه (bps)</bdi> است.
 
 رایج‌ترین مقدار در پروژه‌های <bdi>Arduino</bdi>:
+
+</div>
+
+<div dir="ltr" align="left">
 
 ```text
 9600
 ```
+</div> <div dir="rtl" align="right">
 
 مقادیر رایج دیگر:
 
-```text
+</div> <div dir="ltr" align="left">
 4800
 9600
 19200
 38400
 57600
 115200
-```
+</div> <div dir="rtl" align="right">
 
-**قانون مهم:**
-<bdi>Baud Rate</bdi> در کد و در <bdi>Serial Monitor</bdi> باید **دقیقاً یکسان** باشد، وگرنه داده‌ها به‌هم‌ریخته نمایش داده می‌شوند.
+<strong>قانون مهم:</strong>
 
-| مقدار در کد | مقدار در <bdi>Serial Monitor</bdi> | نتیجه |
-|---:|---:|---:|
-| <code dir="ltr">9600</code> | <code dir="ltr">9600</code> | صحیح |
-| <code dir="ltr">9600</code> | <code dir="ltr">115200</code> | متن بی‌معنی |
-| <code dir="ltr">115200</code> | <code dir="ltr">115200</code> | صحیح |
+<bdi>Baud Rate</bdi> در کد و در <bdi>Serial Monitor</bdi> باید <strong>دقیقاً یکسان</strong> باشد، وگرنه داده‌ها به‌هم‌ریخته نمایش داده می‌شوند.
 
----
+</div> <table dir="rtl" align="right"> <tr> <th>مقدار در کد</th> <th>مقدار در <bdi>Serial Monitor</bdi></th> <th>نتیجه</th> </tr> <tr> <td><code dir="ltr">9600</code></td> <td><code dir="ltr">9600</code></td> <td>صحیح</td> </tr> <tr> <td><code dir="ltr">9600</code></td> <td><code dir="ltr">115200</code></td> <td>متن بی‌معنی</td> </tr> <tr> <td><code dir="ltr">115200</code></td> <td><code dir="ltr">115200</code></td> <td>صحیح</td> </tr> </table>
 
 # 4️⃣ شروع ارتباط سریال — <code dir="ltr">Serial.begin()</code>
 
