@@ -783,7 +783,7 @@ analogWrite()
 </p>
 
 <p dir="rtl" align="right">
-⬅️ <a href="../07-I2C-OLED/">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی ماژول <bdi><strong>OLED</strong></bdi></a>
+⬅️ <a href="../07-I2C/">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی ماژول <bdi><strong>OLED</strong></bdi></a>
 </p>
 
 <p align="center">
