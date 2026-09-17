@@ -771,7 +771,7 @@ analogWrite()
   <li>پایه‌های <code dir="ltr">0</code> و <code dir="ltr">1</code> برای ارتباط سریال رزرو هستند.</li>
 </ul>
 <hr>
-<h2 dir="rtl" align="right">🔜 جلسه بعد</h2>
+<h2 dir="rtl" align="right">⏭️ جلسه بعد</h2>
 
 
 <p dir="rtl" align="right">در جلسه هفتم با پروتکل <bdi><strong>I2C</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه ماژول <bdi><strong>OLED</strong></bdi> را راه‌اندازی کنیم و روی آن متن و شکل نمایش دهیم.</p>
