@@ -820,7 +820,7 @@ A1
 
 ---
 
-<h2 dir="rtl" align="right">🔗 جلسه بعد</h2>
+<h2 dir="rtl" align="right">⏭️ جلسه بعد</h2>
 
 <div dir="rtl" align="right">
 
