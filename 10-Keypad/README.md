@@ -180,6 +180,36 @@ C3  ──────────────  D3
 
 ---
 
+<h2 dir="rtl" align="right">📚 نصب کتابخانه Keypad</h2>
+
+<p dir="rtl" align="right">
+برای ساده‌تر شدن کار با Keypad از کتابخانه <bdi><strong>Keypad</strong></bdi> استفاده می‌کنیم.
+</p>
+
+<h3 dir="rtl" align="right">مراحل نصب:</h3>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+Sketch
+   ↓
+Include Library
+   ↓
+Manage Libraries
+   ↓
+Search: Keypad
+   ↓
+Install
+</pre>
+
+<p dir="rtl" align="right">
+پس از نصب کتابخانه، می‌توانیم آن را در برنامه خود وارد کنیم:
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
+#include &lt;Keypad.h&gt;
+</pre>
+
+---
+
 <h2 dir="rtl" align="right">💻 برنامه Keypad چهاردرسه</h2>
 
 <p dir="rtl" align="right">
@@ -325,34 +355,6 @@ Column: 2
 
 ---
 
-<h2 dir="rtl" align="right">📌 نکته مهم برای جلسه 11</h2>
-
-<p dir="rtl" align="right">
-در جلسه ۱۰ تمرکز ما روی <bdi><strong>ورودی</strong></bdi> است؛ یعنی اطلاعات را از Keypad دریافت می‌کنیم و در Serial Monitor نمایش می‌دهیم.
-</p>
-
-<p dir="rtl" align="right">
-در جلسه ۱۱ یک <bdi><strong> کاراکتری LCD </strong></bdi> به مدار اضافه می‌کنیم تا اطلاعات دریافت‌شده از Keypad را مستقیماً روی LCD نمایش دهیم.
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:center;">
-          ┌───────────┐
-          │  Keypad   │
-          └─────┬─────┘
-                │
-                ↓
-             Arduino
-                │
-                ↓
-          ┌───────────┐
-          │    LCD    │
-          └───────────┘
-</pre>
-
-<p dir="rtl" align="right">
-به این ترتیب در جلسه بعد می‌توانیم از همین Keypad برای وارد کردن اطلاعات و نمایش آن‌ها روی LCD استفاده کنیم.
-</p>
-
 
 
 <h2 dir="rtl" align="right">🔌 پایه‌های Keypad4*4</h2>
@@ -411,35 +413,7 @@ C4  ──────────────  D2
 در این جلسه فقط از پایه‌های دیجیتال <bdi><strong>D2 تا D9</strong></bdi> استفاده می‌کنیم.
 </p>
 
----
 
-<h2 dir="rtl" align="right">📚 نصب کتابخانه Keypad</h2>
-
-<p dir="rtl" align="right">
-برای ساده‌تر شدن کار با Keypad از کتابخانه <bdi><strong>Keypad</strong></bdi> استفاده می‌کنیم.
-</p>
-
-<h3 dir="rtl" align="right">مراحل نصب:</h3>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-Sketch
-   ↓
-Include Library
-   ↓
-Manage Libraries
-   ↓
-Search: Keypad
-   ↓
-Install
-</pre>
-
-<p dir="rtl" align="right">
-پس از نصب کتابخانه، می‌توانیم آن را در برنامه خود وارد کنیم:
-</p>
-
-<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
-#include &lt;Keypad.h&gt;
-</pre>
 
 ---
 
@@ -807,10 +781,39 @@ Special Key
 
 <hr>
 
+<h2 dir="rtl" align="right">📌 نکته مهم برای جلسه 11</h2>
+
+<p dir="rtl" align="right">
+در جلسه ۱۰ تمرکز ما روی <bdi><strong>ورودی</strong></bdi> است؛ یعنی اطلاعات را از Keypad دریافت می‌کنیم و در Serial Monitor نمایش می‌دهیم.
+</p>
+
+<p dir="rtl" align="right">
+در جلسه ۱۱ یک <bdi><strong> کاراکتری LCD </strong></bdi> به مدار اضافه می‌کنیم تا اطلاعات دریافت‌شده از Keypad را مستقیماً روی LCD نمایش دهیم.
+</p>
+
+<pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:center;">
+          ┌───────────┐
+          │  Keypad   │
+          └─────┬─────┘
+                │
+                ↓
+             Arduino
+                │
+                ↓
+          ┌───────────┐
+          │    LCD    │
+          └───────────┘
+</pre>
+
+<p dir="rtl" align="right">
+به این ترتیب در جلسه بعد می‌توانیم از همین Keypad برای وارد کردن اطلاعات و نمایش آن‌ها روی LCD استفاده کنیم.
+</p>
+<hr>
+
 <h2 dir="rtl" align="right">⏭️ جلسه بعد</h2>
 
 <p dir="rtl" align="right">
-در جلسه یازدهم، یک قدم جلوتر می‌رویم و <bdi><strong>LCD کاراکتری</strong></bdi> را وارد پروژه می‌کنیم.
+در جلسه یازدهم، یک قدم جلوتر می‌رویم و <bdi><strong> کاراکتری LCD </strong></bdi> را وارد پروژه می‌کنیم.
 </p>
 
 <p dir="rtl" align="right">
@@ -829,7 +832,7 @@ Special Key
 ⬅️ <a href="../11-LCD/">جلسه 11 — راه‌اندازی <bdi><strong>LCD کاراکتری</strong></bdi> و اتصال آن به <bdi><strong>Keypad</strong></bdi></a>
 </p>
 
-<hr>
+
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
