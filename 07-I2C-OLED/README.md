@@ -1,4 +1,4 @@
-<h1 dir="rtl" align="center">جلسه ۰۷ — <bdi><strong>I2C</strong></bdi> و راه‌اندازی <bdi><strong>OLED</strong></bdi></h1>
+<h1 dir="rtl" align="center">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی <bdi><strong>OLED</strong></bdi></h1>
 
 <h2 dir="rtl" align="right">🎯 هدف جلسه</h2>
 
@@ -98,6 +98,10 @@
 A4 → SDA
 A5 → SCL
 </pre>
+
+<p align="center">
+  <img src="./images/i2c_pin.jpg" alt="Arduino" width="600">
+</p>
 
 <h2 dir="rtl" align="right">📡 <bdi><strong>SDA</strong></bdi> و <bdi><strong>SCL</strong></bdi></h2>
 
