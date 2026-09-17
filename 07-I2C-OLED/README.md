@@ -367,12 +367,13 @@ OLED
 </p>
 
 <p dir="rtl" align="right">
-⬅️ <strong>جلسه ۰۸ — پروتکل <bdi>SPI</bdi></strong>
+⬅️ <a href="../08-SPI/">جلسه 08 — پروتکل <bdi><strong>SPI</strong></bdi></a>
 </p>
 
-<br>
+<p align="center">
+<strong>Arduino From Zero to Projects</strong>
+</p>
 
-<p dir="rtl" align="center" style="font-size: 1.1em;">
-<strong>Arduino From Zero to Projects</strong><br>
-Mohammad Esteghamat
+<p align="center">
+<strong>Mohammad Esteghamat</strong>
 </p>
