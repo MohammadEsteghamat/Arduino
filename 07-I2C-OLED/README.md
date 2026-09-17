@@ -286,6 +286,11 @@ void loop() {
 }
 
 ```
+
+<p align="center">
+  <img src="./images/oled.jpg" alt="Arduino" width="600">
+</p>
+
 <h3 dir="rtl" align="right">نکته‌های مهم:</h3>
 <h3 dir="rtl" align="right">نکته‌های مهم:</h3>
 
