@@ -1,3 +1,5 @@
+<div dir="rtl" style="text-align: right; font-family: Tahoma, Arial, sans-serif; line-height: 1.8;">
+
 # جلسه ۰۷ — I2C و راه‌اندازی OLED
 
 ## 🎯 هدف جلسه
@@ -15,6 +17,7 @@
 
 در پایان این جلسه می‌توانیم یک OLED را از طریق **I2C** به Arduino متصل کرده و اطلاعات ساده را روی آن نمایش دهیم.
 
+</div>
 ---
 
 ## 🔗 I2C چیست و چگونه کار می‌کند؟
