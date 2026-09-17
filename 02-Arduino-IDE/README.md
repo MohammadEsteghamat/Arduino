@@ -1,4 +1,4 @@
-# 📘 جلسه 02 — <span dir="ltr">Arduino IDE</span>
+# 📘 جلسه 02 — <<h2 dir="rtl" align="center">Arduino IDE</span>
 
 <div dir="rtl" align="right">
 
