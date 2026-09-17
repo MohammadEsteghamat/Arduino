@@ -1,7 +1,4 @@
-<h2 dir="rtl" align="center">
-      
-# جلسه 05 — PWM در Arduino
-
+<h1 dir="rtl" align="center">📘 جلسه ۰۵ — PWM در Arduino</h1>
 <div dir="rtl" align="right">
       
 ## 🎯 هدف جلسه
@@ -666,7 +663,7 @@ map(value, 0, 1023, 0, 100);
 
 ---
 
-#⏭️جلسه بعد
+# ⏭️جلسه بعد
 
 در جلسه ششم با **<bdi>Serial Monitor</bdi>** به‌صورت کامل‌تر کار می‌کنیم و یاد می‌گیریم چگونه اطلاعات را بین <bdi>Arduino</bdi> و کامپیوتر ارسال و دریافت کنیم.
 
@@ -674,7 +671,7 @@ map(value, 0, 1023, 0, 100);
 ⬅️ <a href="../06-Serial-Monitor/">جلسه 06 — Serial-Monitor </a>
 </p>
 
-
+---
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
