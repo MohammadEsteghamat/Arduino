@@ -1,5 +1,4 @@
-# 📘 جلسه 02 — <<h2 dir="rtl" align="center">Arduino IDE</span>
-
+<h1 dir="rtl" align="center">📘 جلسه 02 — Arduino IDE</h1>
 <div dir="rtl" align="right">
 
 ## 🎯 هدف جلسه
