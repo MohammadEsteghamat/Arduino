@@ -1,4 +1,4 @@
-<h1 dir="rtl" align="center">📘 جلسه ۰۵ — PWM در Arduino</h1>
+<h1 dir="rtl" align="center">📘 جلسه 05 — PWM در Arduino</h1>
 <div dir="rtl" align="right">
       
 ## 🎯 هدف جلسه
