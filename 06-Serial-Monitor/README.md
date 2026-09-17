@@ -96,7 +96,11 @@ RX  →  Receive (دریافت)
 
 <div dir="rtl" align="right">
 
+<div dir="rtl" align="right">
+
 <bdi>**Baud Rate**</bdi> سرعت انتقال داده را مشخص می‌کند و واحد آن <bdi>بیت بر ثانیه (bps)</bdi> است.
+
+</div>
 
 رایج‌ترین مقدار در پروژه‌های <bdi>Arduino</bdi>:
 
