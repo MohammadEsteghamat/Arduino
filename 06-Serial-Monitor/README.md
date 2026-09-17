@@ -723,14 +723,11 @@ analogWrite()
 <hr>
 <h2 dir="rtl" align="right">❓ سوالات</h2>
 
-### سوال ۱
-**Baud Rate** چیست و چرا مهم است؟چیست و چرا مهم است؟
+<h3 dir="rtl" align="right">سوال ۱</h3>
+<p dir="rtl" align="right"><strong dir="ltr">Baud Rate</strong> چیست و چرا مهم است؟</p>
 
-
-<h3 dir="rtl" align="right">سوال 2</h3>
-
-
-<p dir="rtl" align="right">تفاوت <code dir="ltr"><bdi><strong>Serial</strong></bdi>.print()</code> و <code dir="ltr"><bdi><strong>Serial</strong></bdi>.println()</code> چیست؟</p>
+<h3 dir="rtl" align="right">سوال ۲</h3>
+<p dir="rtl" align="right">تفاوت <code dir="ltr">Serial.print()</code> و <code dir="ltr">Serial.println()</code> چیست؟</p>
 
 
 <h3 dir="rtl" align="right">سوال 3</h3>
