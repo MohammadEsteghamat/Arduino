@@ -394,11 +394,11 @@ char command = Serial.read();
 <h3 dir="rtl" align="right">قطعات مورد نیاز</h3>
 
 <ul>
-  <li><bdi><bdi><strong>Arduino</strong></bdi> UNO</strong></bdi></li>
-  <li><bdi><strong>LED</strong></bdi></li>
+  <li><strong dir="ltr">Arduino UNO</strong></li>
+  <li><strong dir="ltr">LED</strong></li>
   <li>مقاومت <code dir="ltr">220Ω</code> یا <code dir="ltr">330Ω</code></li>
-  <li>سیم <bdi><strong>Jumper</strong></bdi></li>
-  <li><bdi><strong>Breadboard</strong></bdi></li>
+  <li>سیم <strong dir="ltr">Jumper</strong></li>
+  <li><strong dir="ltr">Breadboard</strong></li>
 </ul>
 
 <h3>اتصال</h3>
