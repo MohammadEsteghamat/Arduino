@@ -558,6 +558,11 @@ map()            →  0 تا 255
       │
       └── Serial.println()   →  Serial Monitor
 ```
+
+<div align="center">
+  <img src="images/Potentiometer-led.gif" alt="چراغ LED چشمک‌زن" width="450">
+</div>
+
 <hr>
 <h2 dir="rtl" align="right">1️⃣2️⃣ تفاوت توابع مهم <bdi dir="ltr"><strong>Serial</strong></bdi></h2>
 
