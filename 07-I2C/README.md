@@ -40,40 +40,44 @@
   <li>سرعت نسبتاً خوبی دارد (معمولاً ۱۰۰ کیلوهرتز یا ۴۰۰ کیلوهرتز).</li>
   <li>هر دستگاه یک <strong>آدرس یکتا</strong> دارد تا <bdi><strong>Arduino</strong></bdi> بداند با کدام قطعه صحبت می‌کند.</li>
 </ul>
-
 <h3 dir="rtl" align="right">نحوه کار <bdi><strong>I2C</strong></bdi> به زبان ساده:</h3>
 
 <p dir="rtl" align="right">
 در <bdi><strong>I2C</strong></bdi> دو خط اصلی وجود دارد:
 </p>
 
-<table dir="rtl" align="right" border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; margin: 10px 0;">
-  <thead>
-    <tr>
-      <th>خط</th>
-      <th>نام کامل</th>
-      <th>وظیفه</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><bdi><strong>SDA</strong></bdi></td>
-      <td><bdi>Serial Data</bdi></td>
-      <td>انتقال داده‌ها (دوطرفه)</td>
-    </tr>
-    <tr>
-      <td><bdi><strong>SCL</strong></bdi></td>
-      <td><bdi>Serial Clock</bdi></td>
-      <td>سیگنال ساعت (زمان‌بندی)</td>
-    </tr>
-  </tbody>
-</table>
+<div style="overflow-x: auto; margin: 15px 0;">
+  <table dir="rtl" border="1" cellpadding="10" cellspacing="0" 
+         style="border-collapse: collapse; width: 100%; max-width: 500px; margin-right: auto; margin-left: 0;">
+    <thead>
+      <tr style="background-color: #2d2d2d; color: #fff;">
+        <th style="padding: 10px;">خط</th>
+        <th style="padding: 10px;">نام کامل</th>
+        <th style="padding: 10px;">وظیفه</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="padding: 10px; text-align: center;"><bdi><strong>SDA</strong></bdi></td>
+        <td style="padding: 10px;"><bdi>Serial Data</bdi></td>
+        <td style="padding: 10px;">انتقال داده‌ها (دوطرفه)</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; text-align: center;"><bdi><strong>SCL</strong></bdi></td>
+        <td style="padding: 10px;"><bdi>Serial Clock</bdi></td>
+        <td style="padding: 10px;">سیگنال ساعت (زمان‌بندی)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br>
 
 <p dir="rtl" align="right">
 <strong>مراحل کلی ارتباط:</strong>
 </p>
 
-<ol dir="rtl" align="right">
+<ol dir="rtl" style="padding-right: 25px; line-height: 1.9;">
   <li><bdi><strong>Arduino</strong></bdi> (<bdi><strong>Master</strong></bdi>) خط <bdi><strong>SCL</strong></bdi> را کنترل می‌کند و ساعت را تولید می‌کند.</li>
   <li><bdi><strong>Arduino</strong></bdi> روی خط <bdi><strong>SDA</strong></bdi> آدرس دستگاه مورد نظر را می‌فرستد.</li>
   <li>دستگاهی که آن آدرس را دارد پاسخ می‌دهد (<bdi><strong>ACK</strong></bdi>).</li>
@@ -115,7 +119,7 @@ Arduino UNO          I2C Device
 A4 / SDA  ─────────── SDA
 A5 / SCL  ─────────── SCL
 GND       ─────────── GND
-VCC       ─────────── VCC (معمولاً 3.3V یا 5V)
+VCC       ─────────── VCC 
 </pre>
 
 <h2 dir="rtl" align="right">🏷️ آدرس <bdi><strong>I2C</strong></bdi></h2>
@@ -207,7 +211,7 @@ I2C device found at 0x3C
 <pre dir="ltr" style="background:#f4f4f4; padding:12px; border-radius:6px; text-align:left;">
 OLED          Arduino UNO
 ─────────────────────────
-VCC   ───────  5V (یا 3.3V)
+VCC   ───────  5V 
 GND   ───────  GND
 SDA   ───────  A4
 SCL   ───────  A5
@@ -279,11 +283,18 @@ void loop() {
 
 ```
 <h3 dir="rtl" align="right">نکته‌های مهم:</h3>
+<h3 dir="rtl" align="right">نکته‌های مهم:</h3>
 
-<ul dir="rtl" align="right">
-  <li><bdi><code>display.clearDisplay();</code></bdi> → صفحه را پاک می‌کند.</li>
-  <li><bdi><code>display.display();</code></bdi> → محتوایی که آماده کرده‌ایم را روی <bdi><strong>OLED</strong></bdi> نشان می‌دهد.</li>
-  <li>بدون <bdi><code>display.display()</code></bdi> هیچ چیزی روی صفحه ظاهر نمی‌شود.</li>
+<ul dir="rtl" style="padding-right: 25px; line-height: 2;">
+  <li>
+    <bdi><code>;()display.clearDisplay</code></bdi> → صفحه را پاک می‌کند.
+  </li>
+  <li>
+    <bdi><code>;()display.display</code></bdi> → محتوایی که آماده کرده‌ایم را روی <bdi><strong>OLED</strong></bdi> نشان می‌دهد.
+  </li>
+  <li>
+    بدون <bdi><code>()display.display</code></bdi> هیچ چیزی روی صفحه ظاهر نمی‌شود.
+  </li>
 </ul>
 
 <h2 dir="rtl" align="right">🧪 پروژه عملی</h2>
