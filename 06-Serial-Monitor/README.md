@@ -386,10 +386,7 @@ char command = Serial.read();
 ```
 
 
-<blockquote>
-<strong>توجه:</strong> <code dir="ltr"><bdi><strong>Serial</strong></bdi>.read()</code> فقط <strong>یک کاراکتر</strong> را می‌خواند، نه کل متن.
-</blockquote>
-<hr>
+> **توجه:** <code dir="ltr">Serial.read()</code> فقط **یک کاراکتر** را می‌خواند، نه کل متن.
 <h2 dir="rtl" align="right">9️⃣ کنترل <bdi dir="ltr"><strong>LED</strong></bdi> از طریق <bdi dir="ltr"><strong>Serial Monitor</strong></bdi></h2>
 <p dir="rtl" align="right">
   در این پروژه با تایپ کردن حروف در <bdi dir="ltr"><strong>Serial Monitor</strong></bdi>، <bdi dir="ltr"><strong>LED</strong></bdi> را روشن و خاموش می‌کنیم.
@@ -664,10 +661,7 @@ map()            →  0 تا 255
 <br clear="all">
 
 
-<blockquote>
-<strong>توجه:</strong> بعد از آپلود کد، معمولاً برد ریست می‌شود. بنابراین <bdi><bdi><strong>Serial</strong></bdi> Monitor</strong></bdi> را بعد از آپلود باز کنید.
-</blockquote>
-<hr>
+> **توجه:** بعد از آپلود کد، معمولاً برد ریست می‌شود. بنابراین <code dir="ltr">Serial Monitor</code> را بعد از آپلود باز کنید.
 <h2 dir="rtl" align="right">🧪 تمرین‌های جلسه</h2>
 
 <h3 dir="rtl" align="right">تمرین 1</h3>
@@ -729,10 +723,8 @@ analogWrite()
 <hr>
 <h2 dir="rtl" align="right">❓ سوالات</h2>
 
-<h3 dir="rtl" align="right">سوال 1</h3>
-
-
-<bdi><strong>Baud Rate</strong></bdi> چیست و چرا مهم است؟
+### سوال ۱
+**Baud Rate** چیست و چرا مهم است؟چیست و چرا مهم است؟
 
 
 <h3 dir="rtl" align="right">سوال 2</h3>
