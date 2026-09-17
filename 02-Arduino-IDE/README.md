@@ -630,7 +630,7 @@ Arduino Start
 ⬅️ <a href="../03-Digital-IO/">جلسه 03 — Digital-IO</a>
 </p>
 
-<hr>
+
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
