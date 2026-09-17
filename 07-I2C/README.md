@@ -1,4 +1,5 @@
-<h1 align="center">جلسه 07 — I2C و راه‌اندازی OLED</h1>
+
+<h1 align="center" dir="rtl">جلسه ۰۷ — I2C و راه‌اندازی OLED</h1>
 
 <div dir="rtl" align="right">
 
@@ -7,7 +8,6 @@
 در این جلسه با پروتکل ارتباطی **I2C** آشنا می‌شویم و یک نمایشگر **OLED** را به Arduino UNO متصل و راه‌اندازی می‌کنیم.
 
 در این جلسه یاد می‌گیریم:
-
 
 1. **I2C چیست؟**
 2. **پایه‌های `SDA` و `SCL` چه کاری انجام می‌دهند؟**
@@ -18,7 +18,6 @@
 
 در پایان این جلسه می‌توانیم یک OLED را از طریق **I2C** به Arduino متصل کرده و اطلاعات ساده را روی آن نمایش دهیم.
 
-
 </div>
 
 ---
@@ -27,12 +26,9 @@
 
 <div dir="rtl" align="right">
 
+**I2C** یک پروتکل ارتباطی برای ارتباط بین **Arduino** و قطعات مختلف است.
 
-
-<bdi>**I2C**</bdi> یک پروتکل ارتباطی برای ارتباط بین <bdi>**Arduino**</bdi> و قطعات مختلف است.
-
-در <bdi>**I2C**</bdi> معمولاً از دو خط اصلی استفاده می‌شود:
-
+در **I2C** معمولاً از دو خط اصلی استفاده می‌شود:
 
 </div>
 
@@ -61,11 +57,9 @@ A5 → SCL
 <div dir="rtl" align="right">
 
 ### SDA
-
 خط انتقال داده است.
 
 ### SCL
-
 خط کلاک است و زمان‌بندی ارتباط را مشخص می‌کند.
 
 اتصال کلی:
@@ -74,7 +68,6 @@ A5 → SCL
 
 ```text
 Arduino UNO          I2C Device
-
 A4 / SDA  ─────────── SDA
 A5 / SCL  ─────────── SCL
 GND       ─────────── GND
@@ -82,9 +75,7 @@ VCC       ─────────── VCC
 ```
 
 <p align="center">
-  <img src="./images/01-i2c-arduino.png"
-       alt="Arduino UNO I2C SDA SCL"
-       width="800">
+  <img src="./images/01-i2c-arduino.png" alt="Arduino UNO I2C SDA SCL" width="800">
 </p>
 
 ---
@@ -114,36 +105,28 @@ VCC       ─────────── VCC
 
 <h2 dir="rtl" align="right">🔎 پیدا کردن آدرس با I2C Scanner</h2>
 
-<div dir="rtl" align="left">
-
 ```cpp
 #include <Wire.h>
 
 void setup() {
   Wire.begin();
   Serial.begin(9600);
-
   Serial.println("I2C Scanner");
 }
 
 void loop() {
-
   byte error;
   int devices = 0;
 
   for (byte address = 1; address < 127; address++) {
-
     Wire.beginTransmission(address);
     error = Wire.endTransmission();
 
     if (error == 0) {
       Serial.print("I2C device found at 0x");
-      
       if (address < 16)
         Serial.print("0");
-
       Serial.println(address, HEX);
-
       devices++;
     }
   }
@@ -168,9 +151,7 @@ I2C device found at 0x3C
 ```
 
 <p align="center">
-  <img src="./images/02-i2c-scanner.png"
-       alt="I2C Scanner Serial Monitor"
-       width="800">
+  <img src="./images/02-i2c-scanner.png" alt="I2C Scanner Serial Monitor" width="800">
 </p>
 
 ---
@@ -179,17 +160,16 @@ I2C device found at 0x3C
 
 <div dir="rtl" align="right">
 
-<bdi>**OLED**</bdi> یک نمایشگر کوچک است که می‌توانیم متن، عدد و شکل‌های ساده را روی آن نمایش دهیم.
+**OLED** یک نمایشگر کوچک است که می‌توانیم متن، عدد و شکل‌های ساده را روی آن نمایش دهیم.
 
-برای بسیاری از OLEDهای رایج، ارتباط با <bdi>**Arduino**</bdi> از طریق <bdi>**I2C**</bdi> انجام می‌شود.
+برای بسیاری از OLEDهای رایج، ارتباط با **Arduino** از طریق **I2C** انجام می‌شود.
 
-اتصال OLED به <bdi>**Arduino UNO**</bdi>:
+اتصال OLED به **Arduino UNO**:
 
 </div>
 
 ```text
 OLED          Arduino UNO
-
 VCC   ───────  5V
 GND   ───────  GND
 SDA   ───────  A4
@@ -197,9 +177,7 @@ SCL   ───────  A5
 ```
 
 <p align="center">
-  <img src="./images/03-oled-arduino-i2c.png"
-       alt="OLED connected to Arduino UNO using I2C"
-       width="800">
+  <img src="./images/03-oled-arduino-i2c.png" alt="OLED connected to Arduino UNO using I2C" width="800">
 </p>
 
 ---
@@ -223,7 +201,6 @@ Library Manager
 Adafruit SSD1306
       ↓
 Install
-
 Adafruit GFX
       ↓
 Install
@@ -249,30 +226,18 @@ Install
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
-Adafruit_SSD1306 display(
-  SCREEN_WIDTH,
-  SCREEN_HEIGHT,
-  &Wire,
-  -1
-);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 void setup() {
-
-  if (!display.begin(
-        SSD1306_SWITCHCAPVCC,
-        0x3C
-      )) {
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     while (true);
   }
 
   display.clearDisplay();
-
   display.setTextSize(2);
   display.setTextColor(SSD1306_WHITE);
-
   display.setCursor(0, 20);
   display.println("Hello!");
-
   display.display();
 }
 
@@ -338,14 +303,12 @@ OLED
 
 <div dir="rtl" align="right">
 
-<ol>
-  <li><bdi>I2C</bdi> چیست؟</li>
-  <li>دو خط اصلی <bdi>I2C</bdi> چه نام دارند؟</li>
-  <li>پایه‌های <bdi>SDA</bdi> و <bdi>SCL</bdi> در <bdi>Arduino UNO</bdi> کدام‌اند؟</li>
-  <li>آدرس <bdi>I2C</bdi> چه کاربردی دارد؟</li>
-  <li>چگونه آدرس یک دستگاه <bdi>I2C</bdi> را پیدا می‌کنیم؟</li>
-  <li><bdi>OLED</bdi> چگونه از طریق <bdi>I2C</bdi> به <bdi>Arduino</bdi> متصل می‌شود؟</li>
-</ol>
+1. **I2C** چیست؟
+2. دو خط اصلی **I2C** چه نام دارند؟
+3. پایه‌های **SDA** و **SCL** در **Arduino UNO** کدام‌اند؟
+4. آدرس **I2C** چه کاربردی دارد؟
+5. چگونه آدرس یک دستگاه **I2C** را پیدا می‌کنیم؟
+6. **OLED** چگونه از طریق **I2C** به **Arduino** متصل می‌شود؟
 
 </div>
 
@@ -357,18 +320,16 @@ OLED
 
 در این جلسه:
 
-<ul>
-  <li>با مفهوم <bdi>**I2C**</bdi> آشنا شدیم.</li>
-  <li><bdi>SDA</bdi> و <bdi>SCL</bdi> را شناختیم.</li>
-  <li>پایه‌های <bdi>I2C</bdi> در <bdi>Arduino UNO</bdi> را پیدا کردیم.</li>
-  <li>با مفهوم <bdi>**I2C Address**</bdi> آشنا شدیم.</li>
-  <li>با <bdi>**I2C Scanner**</bdi> آدرس دستگاه را پیدا کردیم.</li>
-  <li>یک <bdi>OLED</bdi> را به <bdi>Arduino</bdi> متصل کردیم.</li>
-  <li>کتابخانه <bdi>OLED</bdi> را نصب کردیم.</li>
-  <li>اولین متن را روی <bdi>OLED</bdi> نمایش دادیم.</li>
-</ul>
+- با مفهوم **I2C** آشنا شدیم.
+- **SDA** و **SCL** را شناختیم.
+- پایه‌های **I2C** در **Arduino UNO** را پیدا کردیم.
+- با مفهوم **I2C Address** آشنا شدیم.
+- با **I2C Scanner** آدرس دستگاه را پیدا کردیم.
+- یک **OLED** را به **Arduino** متصل کردیم.
+- کتابخانه **OLED** را نصب کردیم.
+- اولین متن را روی **OLED** نمایش دادیم.
 
-در جلسه بعد سراغ پروتکل ارتباطی <bdi>**SPI**</bdi> می‌رویم.
+در جلسه بعد سراغ پروتکل ارتباطی **SPI** می‌رویم.
 
 </div>
 
@@ -376,20 +337,17 @@ OLED
 
 <div dir="rtl" align="right">
 
-<h2>🔜 جلسه بعد</h2>
+## 🔜 جلسه بعد
 
-در جلسه هشتم با پروتکل ارتباطی <bdi>**SPI**</bdi> آشنا می‌شویم و یاد می‌گیریم چگونه از این پروتکل برای ارتباط <bdi>Arduino</bdi> با قطعات مختلف استفاده کنیم.
+در جلسه هشتم با پروتکل ارتباطی **SPI** آشنا می‌شویم و یاد می‌گیریم چگونه از این پروتکل برای ارتباط **Arduino** با قطعات مختلف استفاده کنیم.
 
 <p dir="rtl">
-⬅️ <a href="../08-SPI/">جلسه 08 — پروتکل SPI</a>
+⬅️ <a href="../08-SPI/">جلسه ۰۸ — پروتکل SPI</a>
 </p>
 
 </div>
 
 <p align="center">
-<strong>Arduino From Zero to Projects</strong>
-</p>
-
-<p align="center">
-<strong>Mohammad Esteghamat</strong>
+  <strong>Arduino From Zero to Projects</strong><br>
+  <strong>Mohammad Esteghamat</strong>
 </p>
