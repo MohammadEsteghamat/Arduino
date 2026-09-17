@@ -554,7 +554,6 @@ Arduino می‌تواند اطلاعات را از سنسورها دریافت �
 ⬅️ <a href="../02-Arduino-IDE/">جلسه 02 — نصب و راه‌اندازی Arduino IDE</a>
 </p>
 
-<hr>
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
