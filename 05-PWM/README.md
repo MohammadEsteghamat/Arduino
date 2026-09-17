@@ -671,7 +671,6 @@ map(value, 0, 1023, 0, 100);
 ⬅️ <a href="../06-Serial-Monitor/">جلسه 06 — Serial-Monitor </a>
 </p>
 
----
 
 <p align="center">
 <strong>Arduino From Zero to Projects</strong>
