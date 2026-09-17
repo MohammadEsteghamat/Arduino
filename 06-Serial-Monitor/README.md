@@ -778,18 +778,18 @@ analogWrite()
 <hr>
 <h2 dir="rtl" align="right">⏭️ جلسه بعد</h2>
 
-
-<p dir="rtl" align="right">در جلسه هفتم با پروتکل <bdi><strong>I2C</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه ماژول <bdi><strong>OLED</strong></bdi> را راه‌اندازی کنیم و روی آن متن و شکل نمایش دهیم.</p>
-
-<p dir="rtl">
-<p dir="rtl" align="right">⬅️ <a href="../07-<bdi><strong>I2C</strong></bdi>-<bdi><strong>OLED</strong></bdi>/">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی ماژول <bdi><strong>OLED</strong></bdi></a></p>
+<p dir="rtl" align="right">
+در جلسه هفتم با پروتکل <bdi><strong>I2C</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه ماژول <bdi><strong>OLED</strong></bdi> را راه‌اندازی کنیم و روی آن متن و شکل نمایش دهیم.
 </p>
 
-
-<p dir="ltr" align="center">
-<bdi><strong>Arduino</strong></bdi> From Zero to Projects</strong>
+<p dir="rtl" align="right">
+⬅️ <a href="../07-I2C-OLED/">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی ماژول <bdi><strong>OLED</strong></bdi></a>
 </p>
 
-<p dir="ltr" align="center">
+<p align="center">
+<strong>Arduino From Zero to Projects</strong>
+</p>
+
+<p align="center">
 <strong>Mohammad Esteghamat</strong>
 </p>
