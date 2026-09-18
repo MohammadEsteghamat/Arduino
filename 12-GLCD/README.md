@@ -1115,7 +1115,7 @@ u8g2.drawStr();
 
 
 <p dir="rtl" align="right">
-⬅️ <a href="../11-LCD-Keypad/">جلسه 11 — راه‌اندازی LCD کاراکتری و اتصال Keypad 4×4</a>
+⬅️ <a href="../11-LCD/">جلسه 11 — راه‌اندازی LCD کاراکتری و اتصال Keypad 4×4</a>
 </p>
 
 <p dir="rtl" align="right">
