@@ -1147,7 +1147,7 @@ column = globalColumn % 8;
 </p>
 
 <p dir="rtl" align="right">
-➡️ <a href="../16-Remote/">جلسه 16 — راه‌اندازی <bdi><strong>Remote</strong></bdi></a>
+➡️ <a href="../16-Remote-RF/">جلسه 16 — راه‌اندازی <bdi><strong>Remote-RF</strong></bdi></a>
 </p>
 
 
