@@ -77,7 +77,7 @@ GLCD یک نمایشگر گرافیکی است که صفحه آن از تعدا�
 <div dir="rtl" align="left">
 
 | ویژگی | LCD کاراکتری 16×2 | GLCD 128×64 |
-|:--- | ---: | ---: |
+|:---: |:---: | :---: |
 | واحد نمایش | کاراکتر | پیکسل |
 | وضوح | 16×2 کاراکتر | 128×64 پیکسل |
 | رسم خط | محدود | امکان‌پذیر |
@@ -124,8 +124,8 @@ GLCD یک نمایشگر گرافیکی است که صفحه آن از تعدا�
 </p>
 
 ```text
-X : 0 تا 127
-Y : 0 تا 63
+X : 0 - 127
+Y : 0 - 63
 ```
 
 <p dir="rtl" align="right">
@@ -168,7 +168,7 @@ Y : 0 تا 63
 <div dir="rtl" align="left">
 
 | ویژگی | مقدار |
-| :--- | ---: |
+| :---: |:---: |
 | نوع | GLCD گرافیکی |
 | وضوح | 128×64 پیکسل |
 | کنترلر | KS0108 یا سازگار |
@@ -200,7 +200,7 @@ Y : 0 تا 63
 <div dir="rtl" align="left">
 
 | پایه | نام | کاربرد | اتصال به Arduino UNO |
-| ---: | --- | --- | --- |
+|:---:|:---:|:---:|:---:|
 | 1 | VSS / GND | زمین | GND |
 | 2 | VDD | تغذیه منطقی | 5V |
 | 3 | VO | تنظیم کنتراست | وسط پتانسیومتر  |
@@ -273,7 +273,7 @@ Y : 0 تا 63
 <div dir="rtl" align="left">
 
 | GLCD | Arduino UNO |
-| --- | --- |
+| :---: | :---: |
 | VSS | GND |
 | VDD | 5V |
 | VO | وسط پتانسیومتر |
@@ -749,10 +749,7 @@ void loop() {
 بهتر است هنگام رسم گرافیک همیشه محدوده نمایشگر را در ذهن داشته باشیم.
 </p>
 
-```text
-عرض  = 128 Pixel
-ارتفاع = 64 Pixel
-```
+
 
 <p dir="rtl" align="right">
 پس اگر بخواهیم یک مستطیل با عرض 100 و ارتفاع 40 رسم کنیم، باید محل شروع آن به گونه‌ای انتخاب شود که از محدوده صفحه خارج نشود.
@@ -903,11 +900,11 @@ void loop() {
 </p>
 
 <ul dir="rtl" align="left">
-  <li><bdi><strong>drawStr()</strong></bdi></li>
-  <li><bdi><strong>drawFrame()</strong></bdi></li>
-  <li><bdi><strong>drawCircle()</strong></bdi></li>
-  <li><bdi><strong>clearBuffer()</strong></bdi></li>
-  <li><bdi><strong>sendBuffer()</strong></bdi></li>
+  <li><bdi><strong>()drawStr</strong></bdi></li>
+  <li><bdi><strong>()drawFrame</strong></bdi></li>
+  <li><bdi><strong>()drawCircle</strong></bdi></li>
+  <li><bdi><strong>()clearBuffer</strong></bdi></li>
+  <li><bdi><strong>()sendBuffer</strong></bdi></li>
 </ul>
 
 <hr>
@@ -1015,10 +1012,10 @@ sendBuffer()
 
 <h2 dir="rtl" align="right">📌 بخش بیست و پنجم: مهم‌ترین دستورات این جلسه</h2>
 
-<div dir="rtl" align="left">
+<div dir="" align="left">
 
 | دستور | کاربرد |
-| --- | --- |
+| :---: |:---: |
 | `u8g2.begin()` | راه‌اندازی GLCD |
 | `u8g2.clearBuffer()` | پاک کردن بافر |
 | `u8g2.setFont()` | انتخاب فونت |
