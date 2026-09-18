@@ -1,15 +1,15 @@
-<h1 dir="rtl" align="center">📘 جلسه 12: آشنایی با GLCD 128×64 و نمایش گرافیکی</h1>
+<h1 dir="rtl" align="center">📘 جلسه 13: راه‌اندازی نمایشگر 7-Segment با TM1637</h1>
 
 <p dir="rtl" align="right">
-در جلسه قبل با <bdi><strong>LCD کاراکتری 16×2</strong></bdi> و <bdi><strong>Keypad 4×4</strong></bdi> آشنا شدیم و یاد گرفتیم اطلاعات واردشده توسط کاربر را روی LCD نمایش دهیم.
+در جلسه قبل با <bdi><strong>GLCD 128×64</strong></bdi> آشنا شدیم و یاد گرفتیم چگونه با استفاده از پیکسل‌ها، متن و شکل‌های گرافیکی مختلف را روی نمایشگر رسم کنیم.
 </p>
 
 <p dir="rtl" align="right">
-در این جلسه یک مرحله جلوتر می‌رویم و با <bdi><strong>GLCD</strong></bdi> یا نمایشگر گرافیکی آشنا می‌شویم. در این نمایشگر دیگر فقط با متن و کاراکترهای از پیش‌تعریف‌شده سروکار نداریم؛ بلکه می‌توانیم با <bdi><strong>Pixel</strong></bdi>ها کار کنیم و روی صفحه خط، مستطیل، دایره و شکل‌های مختلف رسم کنیم.
+در این جلسه سراغ یک نوع نمایشگر ساده‌تر برای نمایش <bdi><strong>اعداد</strong></bdi> می‌رویم. ماژول <bdi><strong>TM1637</strong></bdi> یک نمایشگر 7-Segment چهاررقمی را با استفاده از یک درایور کنترل می‌کند و برای ارتباط با Arduino فقط به دو خط سیگنال <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> نیاز دارد.
 </p>
 
 <p dir="rtl" align="right">
-در این جلسه از نمایشگر <bdi><strong>GLCD 128×64</strong></bdi> با کنترلر <bdi><strong>KS0108</strong></bdi> و کتابخانه <bdi><strong>U8g2</strong></bdi> استفاده می‌کنیم.
+هدف این جلسه فقط <bdi><strong>آشنایی و راه‌اندازی اولیه TM1637</strong></bdi> است؛ بنابراین هنوز وارد پروژه‌هایی مانند ساعت، تایمر، شمارنده یا اتصال سنسور به نمایشگر نمی‌شویم.
 </p>
 
 <hr>
@@ -21,578 +21,336 @@
 </p>
 
 <ul dir="rtl" align="right">
-  <li><bdi><strong>GLCD</strong></bdi> را بشناسیم.</li>
-  <li>تفاوت <bdi><strong>LCD کاراکتری</strong></bdi> و <bdi><strong>GLCD</strong></bdi> را توضیح دهیم.</li>
-  <li>مفهوم <bdi><strong>Pixel</strong></bdi> را درک کنیم.</li>
-  <li>مختصات <bdi><strong>X</strong></bdi> و <bdi><strong>Y</strong></bdi> را در نمایشگر استفاده کنیم.</li>
-  <li>GLCD 128×64 با کنترلر <bdi><strong>KS0108</strong></bdi> را به Arduino UNO متصل کنیم.</li>
-  <li>کتابخانه <bdi><strong>U8g2</strong></bdi> را نصب و استفاده کنیم.</li>
-  <li>متن را روی GLCD نمایش دهیم.</li>
-  <li>پیکسل، خط، مستطیل و دایره رسم کنیم.</li>
-  <li>چند شکل را هم‌زمان روی صفحه نمایش دهیم.</li>
-  <li>یک پروژه گرافیکی ساده با Arduino بسازیم.</li>
+  <li>نمایشگر <bdi><strong>7-Segment</strong></bdi> را بشناسیم.</li>
+  <li>ماژول <bdi><strong>TM1637</strong></bdi> را معرفی کنیم.</li>
+  <li>پایه‌های <bdi><strong>VCC</strong></bdi>، <bdi><strong>GND</strong></bdi>، <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> را بشناسیم.</li>
+  <li>TM1637 را به <bdi><strong>Arduino UNO</strong></bdi> متصل کنیم.</li>
+  <li>کتابخانه <bdi><strong>TM1637Display</strong></bdi> را نصب کنیم.</li>
+  <li>یک عدد را روی نمایشگر چهاررقمی نمایش دهیم.</li>
+  <li>روشنایی نمایشگر را تنظیم کنیم.</li>
+  <li>نمایشگر را با دستور <bdi><strong>clear()</strong></bdi> پاک کنیم.</li>
 </ul>
 
 <hr>
 
-<h2 dir="rtl" align="right">🖥️ بخش اول: GLCD چیست؟</h2>
+<h2 dir="rtl" align="right">🔢 بخش اول: نمایشگر 7-Segment چیست؟</h2>
 
 <p dir="rtl" align="right">
-GLCD مخفف عبارت زیر است:
-</p>
-
-<p dir="center" align="center">
-<bdi><strong>Graphic Liquid Crystal Display</strong></bdi>
+نمایشگر <bdi><strong>7-Segment</strong></bdi> از چند بخش LED تشکیل شده است که هر بخش را یک <bdi><strong>Segment</strong></bdi> می‌نامیم.
 </p>
 
 <p dir="rtl" align="right">
-GLCD یک نمایشگر گرافیکی است که صفحه آن از تعداد زیادی <bdi><strong>Pixel</strong></bdi> تشکیل شده است. در این نوع نمایشگر می‌توانیم علاوه بر متن، شکل‌ها و عناصر گرافیکی مختلف را نیز نمایش دهیم.
-</p>
-
-<p dir="rtl" align="right">
-نمایشگر مورد استفاده در این جلسه دارای وضوح زیر است:
-</p>
-
-<p dir="center" align="center">
-<bdi><strong>128 × 64 Pixel</strong></bdi>
-</p>
-
-<p dir="rtl" align="right">
-یعنی صفحه دارای:
-</p>
-
-<ul dir="rtl" align="right">
-  <li>128 ستون پیکسلی در راستای X</li>
-  <li>64 ردیف پیکسلی در راستای Y</li>
-</ul>
-
-<hr>
-
-<h2 dir="rtl" align="right">🔍 بخش دوم: تفاوت LCD کاراکتری و GLCD</h2>
-
-<p dir="rtl" align="right">
-در LCD کاراکتری مانند <bdi><strong>16×2</strong></bdi>، صفحه بر اساس خانه‌های کاراکتری مدیریت می‌شود. اما در GLCD، کنترل صفحه بر اساس پیکسل‌ها انجام می‌شود.
-</p>
-
-<div dir="rtl" align="left">
-
-| ویژگی | LCD کاراکتری 16×2 | GLCD 128×64 |
-|:---: |:---: | :---: |
-| واحد نمایش | کاراکتر | پیکسل |
-| وضوح | 16×2 کاراکتر | 128×64 پیکسل |
-| رسم خط | محدود | امکان‌پذیر |
-| رسم شکل | محدود | امکان‌پذیر |
-| رسم دایره | به‌صورت مستقیم ندارد | دارد |
-| کاربرد | متن و اطلاعات ساده | متن، منو، نمودار و گرافیک |
-
-</div>
-
-<p dir="rtl" align="right">
-بنابراین مهم‌ترین تغییر در این جلسه این است که از <bdi><strong>کاراکتر</strong></bdi> به <bdi><strong>پیکسل</strong></bdi> منتقل می‌شویم.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">⬛ بخش سوم: Pixel چیست؟</h2>
-
-<p dir="rtl" align="right">
-کوچک‌ترین واحد قابل کنترل در یک نمایشگر گرافیکی را <bdi><strong>Pixel</strong></bdi> می‌نامیم.
-</p>
-
-<p dir="rtl" align="right">
-در یک GLCD با وضوح 128×64، تعداد کل پیکسل‌ها برابر است با:
-</p>
-
-<p dir="center" align="center">
-<bdi><strong>128 × 64 = 8192 Pixel</strong></bdi>
-</p>
-
-<p dir="rtl" align="right">
-هر پیکسل می‌تواند روشن یا خاموش باشد و با کنترل مناسب این پیکسل‌ها می‌توان شکل‌های مختلف را روی صفحه ایجاد کرد.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">📍 بخش چهارم: مختصات X و Y</h2>
-
-<p dir="rtl" align="right">
-برای کار با گرافیک باید بدانیم هر نقطه از صفحه در چه مختصاتی قرار دارد.
-</p>
-
-<p dir="rtl" align="right">
-در این GLCD محدوده مختصات به‌صورت زیر در نظر گرفته می‌شود:
-</p>
-
-```text
-X : 0 - 127
-Y : 0 - 63
-```
-
-<p dir="rtl" align="right">
-نقطه شروع معمولاً گوشه بالا-چپ نمایشگر است:
-</p>
-
-```text
-(0,0)
-  ┌──────────────────────────────────────────────┐
-  │                                              │
-  │                                              │
-  │                 GLCD 128×64                  │
-  │                                              │
-  │                                              │
-  └──────────────────────────────────────────────┘
-                                                  (127,63)
-```
-
-<p dir="rtl" align="right">
-بنابراین:
-</p>
-
-<ul dir="rtl" align="right">
-  <li><bdi><strong>X</strong></bdi> از چپ به راست افزایش پیدا می‌کند.</li>
-  <li><bdi><strong>Y</strong></bdi> از بالا به پایین افزایش پیدا می‌کند.</li>
-</ul>
-
-<hr>
-
-<h2 dir="rtl" align="right">📺 بخش پنجم: معرفی GLCD مورد استفاده</h2>
-
-<p dir="rtl" align="right">
-نمایشگر مورد استفاده در این جلسه مدل <bdi><strong>LCM12864C-1</strong></bdi> است و از کنترلر <bdi><strong>KS0108</strong></bdi> یا سازگار با آن استفاده می‌کند.
-</p>
-
-<p dir="rtl" align="right">
-مشخصات اصلی این نمایشگر عبارت‌اند از:
-</p>
-
-<div dir="rtl" align="left">
-
-| ویژگی | مقدار |
-| :---: |:---: |
-| نوع | GLCD گرافیکی |
-| وضوح | 128×64 پیکسل |
-| کنترلر | KS0108 یا سازگار |
-| ولتاژ کاری | 5V DC |
-| رابط | موازی 8 بیتی |
-| تعداد پایه | 20 پایه |
-| نوع Backlight | LED آبی |
-| جریان Backlight | حدود 150mA |
-| مدل | LCM12864C-1 |
-
-</div>
-
-<p dir="rtl" align="right">
-دو پایه <bdi><strong>CS1</strong></bdi> و <bdi><strong>CS2</strong></bdi> برای انتخاب دو بخش کنترلر نمایشگر استفاده می‌شوند.
+این بخش‌ها معمولاً با حروف زیر نام‌گذاری می‌شوند:
 </p>
 
 <p align="center">
-  <img src="./images/GLCD-KS0108-Pin.png" alt="GLCD KS0108 Pinout" width="600">
+  <img src="./images/7-segment.png" alt="Arduino" width="600">
+</p>
+
+<p dir="rtl" align="right">
+با روشن و خاموش کردن این Segmentها می‌توان اعداد مختلف را ایجاد کرد. برای مثال برای نمایش عدد <bdi><strong>8</strong></bdi> تقریباً تمام Segmentهای اصلی روشن می‌شوند.
+</p>
+
+<p dir="rtl" align="right">
+ماژول‌های چهاررقمی TM1637 معمولاً چهار عدد 7-Segment را در کنار یکدیگر قرار می‌دهند تا بتوانیم یک مقدار چهاررقمی را نمایش دهیم.
 </p>
 
 <hr>
 
-<h2 dir="rtl" align="right">🔌 بخش ششم: پایه‌های GLCD</h2>
+<h2 dir="rtl" align="right">🧩 بخش دوم: TM1637 چیست؟</h2>
 
 <p dir="rtl" align="right">
-نمایشگر 20 پایه دارد. در این پروژه از ارتباط موازی 8 بیتی استفاده می‌کنیم.
+<bdi><strong>TM1637</strong></bdi> یک تراشه درایور برای کنترل نمایشگرهای LED و به‌طور رایج ماژول‌های چهاررقمی 7-Segment است.
+</p>
+
+<p dir="rtl" align="right">
+مزیت مهم این ماژول برای شروع کار با Arduino این است که برخلاف اتصال مستقیم چندین Segment، در سمت Arduino فقط دو خط ارتباطی <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> در اختیار برنامه قرار می‌گیرد.
+</p>
+
+<p dir="rtl" align="right">
+کتابخانه <bdi><strong>TM1637Display</strong></bdi> برای Arduino یک کلاس با همین نام در اختیار برنامه قرار می‌دهد و توابعی برای نمایش عدد، تنظیم روشنایی، پاک کردن نمایشگر و کنترل مستقیم Segmentها دارد.
+</p>
+
+<hr>
+
+<h2 dir="rtl" align="right">🔌 بخش سوم: پایه‌های ماژول TM1637</h2>
+
+<p dir="rtl" align="right">
+ماژول‌های رایج TM1637 چهار پایه اصلی دارند:
 </p>
 
 <div dir="rtl" align="left">
 
-| پایه | نام | کاربرد | اتصال به Arduino UNO |
-|:---:|:---:|:---:|:---:|
-| 1 | VSS / GND | زمین | GND |
-| 2 | VDD | تغذیه منطقی | 5V |
-| 3 | VO | تنظیم کنتراست | وسط پتانسیومتر  |
-| 4 | D/I یا RS | انتخاب دستور یا داده | D11 |
-| 5 | R/W | خواندن / نوشتن | GND |
-| 6 | E | Enable | D10 |
-| 7 | D0 | خط داده | D2 |
-| 8 | D1 | خط داده | D3 |
-| 9 | D2 | خط داده | D4 |
-| 10 | D3 | خط داده | D5 |
-| 11 | D4 | خط داده | D6 |
-| 12 | D5 | خط داده | D7 |
-| 13 | D6 | خط داده | D8 |
-| 14 | D7 | خط داده | D9 |
-| 15 | CS1 | انتخاب بخش اول | D12 |
-| 16 | CS2 | انتخاب بخش دوم | D13 |
-| 17 | RST | ریست | A0 |
-| 18 | VEE | ولتاژ کنتراست | سر پتانسیومتر |
-| 19 | LED+ | Backlight مثبت | 5V |
-| 20 | LED− | Backlight منفی | GND |
+| پایه | نام | کاربرد |
+| ---: | --- | --- |
+| 1 | VCC | تغذیه ماژول |
+| 2 | GND | زمین |
+| 3 | DIO | خط داده |
+| 4 | CLK | خط کلاک |
 
 </div>
 
 <p dir="rtl" align="right">
-⚠️ <b>توجه:</b> نام پایه 4 در برخی ماژول‌ها ممکن است به صورت <bdi><strong>RS</strong></bdi>، <bdi><strong>DI</strong></bdi> یا نام‌های مشابه چاپ شده باشد. در کتابخانه U8g2 این پایه با مفهوم <bdi><strong>DC</strong></bdi> یا انتخاب داده/دستور در نظر گرفته می‌شود.
+دو پایه <bdi><strong>DIO</strong></bdi> و <bdi><strong>CLK</strong></bdi> خطوط سیگنال ارتباطی هستند. کتابخانه از طریق همین دو خط اطلاعات مربوط به Segmentها و اعداد را برای ماژول ارسال می‌کند.
 </p>
 
 <hr>
 
-<h2 dir="rtl" align="right">🎚️ بخش هفتم: تنظیم کنتراست با پتانسیومتر</h2>
+<h2 dir="rtl" align="right">🔗 بخش چهارم: اتصال TM1637 به Arduino UNO</h2>
 
 <p dir="rtl" align="right">
-پایه‌های <bdi><strong>VO</strong></bdi> و <bdi><strong>VEE</strong></bdi> در این نوع GLCD برای تنظیم ولتاژ کنتراست به کار می‌روند.
-</p>
-
-<p dir="rtl" align="right">
-یک پتانسیومتر 10KΩ یا 20KΩ برای تنظیم کنتراست در نظر می‌گیریم.
-</p>
-
-```text
-                 +5V
-                  │
-             ┌─────────┐
-             │   POT   │
-             │   10K   │
-             └─────────┘
-                  │
-                  ├──────── VO  (Pin 3)
-                  │
-                  └──────── VEE (Pin 18)
-                  
-```
-
-<p dir="rtl" align="right">
-در عمل، بسته به ساختار دقیق ماژول، تنظیم کنتراست ممکن است نیاز به چرخاندن پتانسیومتر و مشاهده تصویر روی صفحه داشته باشد.
-</p>
-
-<p dir="rtl" align="right">
-💡 <b>نکته:</b> اگر Backlight روشن است اما هیچ متن یا گرافیکی دیده نمی‌شود، یکی از اولین مواردی که باید بررسی شود مقدار کنتراست و اتصال پایه‌های کنترل است.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">🔗 بخش هشتم: اتصال GLCD به Arduino UNO</h2>
-
-<p dir="rtl" align="right">
-برای اینکه سیم‌کشی مرتب باشد، در این جلسه از اتصال زیر استفاده می‌کنیم:
+برای این جلسه از اتصال ساده زیر استفاده می‌کنیم:
 </p>
 
 <div dir="rtl" align="left">
 
-| GLCD | Arduino UNO |
-| :---: | :---: |
-| VSS | GND |
-| VDD | 5V |
-| VO | وسط پتانسیومتر |
-| D/I یا RS | D11 |
-| R/W | GND |
-| E | D10 |
-| D0 | D2 |
-| D1 | D3 |
-| D2 | D4 |
-| D3 | D5 |
-| D4 | D6 |
-| D5 | D7 |
-| D6 | D8 |
-| D7 | D9 |
-| CS1 | D12 |
-| CS2 | D13 |
-| RST | A0 |
-| VEE | سر پتانسیومتر |
-| LED+ | 5V |
-| LED− | GND |
+| TM1637 | Arduino UNO |
+| --- | --- |
+| VCC | 5V |
+| GND | GND |
+| DIO | D3 |
+| CLK | D2 |
 
 </div>
 
-
+<p dir="rtl" align="right">
+در این پروژه از <bdi><strong>D2</strong></bdi> برای CLK و از <bdi><strong>D3</strong></bdi> برای DIO استفاده می‌کنیم. این دو پایه صرفاً یک انتخاب برای سیم‌کشی هستند و در کتابخانه می‌توان شماره پایه‌های دیجیتال دیگری را نیز در سازنده مشخص کرد.
+</p>
 
 <p dir="rtl" align="right">
-در این اتصال، پایه‌های <bdi><strong>D0 تا D7</strong></bdi> هشت خط داده هستند و پایه‌های کنترل برای ارسال اطلاعات به کنترلر GLCD استفاده می‌شوند.
+شماتیک ساده اتصال:
+</p>
+
+<p align="center">
+  <img src="./images/TM1637-arduino.png" alt="Arduino" width="600">
+</p>
+
+<p dir="rtl" align="right">
+⚠️ <b>نکته:</b> نام و ترتیب فیزیکی پایه‌ها را از نوشته روی خود ماژول بررسی کنید، زیرا بردهای مختلف ممکن است چیدمان کانکتور متفاوتی داشته باشند. نام پایه‌ها باید مبنای اتصال قرار بگیرد.
 </p>
 
 <hr>
 
-<h2 dir="rtl" align="right">🧩 بخش نهم: چرا از U8g2 استفاده می‌کنیم؟</h2>
+<h2 dir="rtl" align="right">📚 بخش پنجم: نصب کتابخانه TM1637</h2>
 
 <p dir="rtl" align="right">
-برای کنترل نمایشگرهای گرافیکی می‌توانیم از کتابخانه‌های مختلف استفاده کنیم. در این جلسه از کتابخانه <bdi><strong>U8g2</strong></bdi> استفاده می‌کنیم.
+برای کنترل این ماژول از کتابخانه <bdi><strong>TM1637Display</strong></bdi> استفاده می‌کنیم.
 </p>
 
 <p dir="rtl" align="right">
-یکی از مزیت‌های U8g2 این است که مجموعه‌ای از درایورها و روش‌های مختلف رسم متن و گرافیک را در اختیار برنامه‌نویس قرار می‌دهد و برای کنترلر <bdi><strong>KS0108</strong></bdi> نیز سازنده آماده دارد.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">📚 بخش دهم: نصب کتابخانه U8g2</h2>
-
-<p dir="rtl" align="right">
-در Arduino IDE وارد مسیر زیر شوید:
+در Arduino IDE مسیر زیر را باز کنید:
 </p>
 
 ```text
-Tools → Manage Libraries
+Sketch
+   ↓
+Include Library
+   ↓
+Manage Libraries...
 ```
 
 <p dir="rtl" align="right">
-سپس عبارت زیر را جستجو کنید:
+سپس در قسمت جستجو عبارت زیر را وارد کنید:
 </p>
 
 ```text
-U8g2
+TM1637
 ```
 
 <p dir="rtl" align="right">
-و کتابخانه:
+کتابخانه‌ای که در این جلسه استفاده می‌کنیم:
 </p>
 
 ```text
-U8g2 by oliver
+TM1637Display
 ```
 
 <p dir="rtl" align="right">
-را نصب کنید.
-</p>
-
-<p dir="rtl" align="right">
-بعد از نصب می‌توانیم در برنامه بنویسیم:
+پس از نصب، می‌توانیم آن را با دستور زیر به برنامه اضافه کنیم:
 </p>
 
 ```cpp
-#include <U8g2lib.h>
-```
-
-<hr>
-
-<h2 dir="rtl" align="right">⚙️ بخش یازدهم: تعریف GLCD در U8g2</h2>
-
-<p dir="rtl" align="right">
-برای GLCD با کنترلر KS0108 از سازنده زیر استفاده می‌کنیم:
-</p>
-
-```cpp
-U8G2_KS0108_128X64_F(...)
+#include <TM1637Display.h>
 ```
 
 <p dir="rtl" align="right">
-این سازنده پایه‌های داده، Enable، پایه انتخاب دستور/داده و پایه‌های Chip Select را دریافت می‌کند. ساختار رسمی سازنده در مستندات U8g2 به صورت زیر تعریف شده است:
-</p>
-
-```text
-U8G2_KS0108_128X64_F(
-  rotation,
-  d0, d1, d2, d3, d4, d5, d6, d7,
-  enable,
-  dc,
-  cs0,
-  cs1,
-  cs2,
-  reset
-)
-```
-
-<p dir="rtl" align="right">
-در نمایشگر 128×64 مورد استفاده ما یک CS اضافی لازم نیست و آن را با <bdi><strong>U8X8_PIN_NONE</strong></bdi> مشخص می‌کنیم.
+این کتابخانه در مخزن رسمی پروژه، کلاس <bdi><strong>TM1637Display</strong></bdi> و توابعی مانند <bdi><strong>showNumberDec()</strong></bdi>، <bdi><strong>setBrightness()</strong></bdi>، <bdi><strong>clear()</strong></bdi> و <bdi><strong>setSegments()</strong></bdi> را ارائه می‌کند.
 </p>
 
 <hr>
 
-<h2 dir="rtl" align="right">💻 بخش دوازدهم: اولین برنامه GLCD</h2>
+<h2 dir="rtl" align="right">💻 بخش ششم: ساخت شیء TM1637Display</h2>
 
 <p dir="rtl" align="right">
-قبل از رسم شکل‌های مختلف، ابتدا باید مطمئن شویم ارتباط GLCD با Arduino صحیح است.
+بعد از اضافه کردن کتابخانه، باید به برنامه بگوییم پایه‌های <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> به کدام پایه‌های Arduino متصل شده‌اند.
 </p>
 
 ```cpp
-#include <U8g2lib.h>
+#define CLK 2
+#define DIO 3
 
-// ---------- GLCD ----------
-// KS0108 - 128x64
-U8G2_KS0108_128X64_F u8g2(
-  U8G2_R0,
+TM1637Display display(CLK, DIO);
+```
 
-  // D0 ... D7
-  2, 3, 4, 5, 6, 7, 8, 9,
+<p dir="rtl" align="right">
+در اینجا:
+</p>
 
-  // Enable
-  10,
+<ul dir="rtl" align="right">
+  <li><bdi><strong>CLK</strong></bdi> برابر با پایه <bdi><strong>D2</strong></bdi> است.</li>
+  <li><bdi><strong>DIO</strong></bdi> برابر با پایه <bdi><strong>D3</strong></bdi> است.</li>
+  <li>شیء <bdi><strong>display</strong></bdi> برای کنترل ماژول ایجاد می‌شود.</li>
+</ul>
 
-  // D/I یا RS
-  11,
+<hr>
 
-  // CS1
-  12,
+<h2 dir="rtl" align="right">🧪 بخش هفتم: اولین برنامه تست TM1637</h2>
 
-  // CS2
-  13,
+<p dir="rtl" align="right">
+حالا اولین برنامه را می‌نویسیم تا عدد <bdi><strong>1234</strong></bdi> روی نمایشگر نشان داده شود.
+</p>
 
-  // CS3 استفاده نمی‌شود
-  U8X8_PIN_NONE,
+```cpp
+#include <TM1637Display.h>
 
-  // Reset
-  A0
-);
+#define CLK 2
+#define DIO 3
+
+TM1637Display display(CLK, DIO);
 
 void setup() {
 
-  u8g2.begin();
+  display.setBrightness(7);
+
+  display.showNumberDec(1234, false);
 
 }
 
 void loop() {
 
-  u8g2.clearBuffer();
-
-  u8g2.setFont(u8g2_font_ncenB08_tr);
-
-  u8g2.drawStr(0, 12, "Hello World!");
-  u8g2.drawStr(0, 28, "Mohammad");
-  u8g2.drawStr(0, 44, "Esteghamat");
-
-  u8g2.sendBuffer();
-
-  delay(1000);
 }
 ```
 
+<p dir="rtl" align="right">
+پس از آپلود برنامه، باید عدد زیر روی نمایشگر دیده شود:
+</p>
 <p align="center">
-  <img src="./images/GLCD-First-Test.png" alt="GLCD First Test" width="600">
+  <img src="./images/TM1637-arduino-test.png" alt="Arduino" width="600">
+</p>
+
+<p dir="rtl" align="right">
+در این برنامه بعد از راه‌اندازی، عدد فقط یک بار تنظیم می‌شود و چون در <bdi><strong>loop()</strong></bdi> کاری انجام نمی‌دهیم، نمایشگر همان مقدار را حفظ می‌کند.
 </p>
 
 <hr>
 
-<h2 dir="rtl" align="right">🔎 بخش سیزدهم: بررسی برنامه</h2>
+<h2 dir="rtl" align="right">🔎 بخش هشتم: بررسی برنامه</h2>
 
 <h3 dir="rtl" align="right">1️⃣ اضافه کردن کتابخانه</h3>
 
 ```cpp
-#include <U8g2lib.h>
+#include <TM1637Display.h>
 ```
 
 <p dir="rtl" align="right">
-کتابخانه U8g2 را به برنامه اضافه می‌کند.
+کتابخانه مورد نیاز برای کنترل TM1637 را وارد می‌کند.
 </p>
 
-<h3 dir="rtl" align="right">2️⃣ ساخت شیء GLCD</h3>
+<h3 dir="rtl" align="right">2️⃣ تعریف پایه‌ها</h3>
 
 ```cpp
-U8G2_KS0108_128X64_F u8g2(...);
+#define CLK 2
+#define DIO 3
 ```
 
 <p dir="rtl" align="right">
-در این قسمت نوع نمایشگر و پایه‌های مورد استفاده مشخص می‌شوند.
+در این قسمت مشخص می‌کنیم که سیم CLK به D2 و سیم DIO به D3 متصل شده است.
 </p>
 
-<h3 dir="rtl" align="right">3️⃣ راه‌اندازی نمایشگر</h3>
+<h3 dir="rtl" align="right">3️⃣ ایجاد شیء نمایشگر</h3>
 
 ```cpp
-u8g2.begin();
+TM1637Display display(CLK, DIO);
 ```
 
 <p dir="rtl" align="right">
-با این دستور نمایشگر مقداردهی اولیه می‌شود.
+با این دستور یک شیء به نام <bdi><strong>display</strong></bdi> ایجاد می‌کنیم تا دستورات نمایشگر را از طریق آن ارسال کنیم.
 </p>
 
-<h3 dir="rtl" align="right">4️⃣ پاک کردن بافر</h3>
+<h3 dir="rtl" align="right">4️⃣ تنظیم روشنایی</h3>
 
 ```cpp
-u8g2.clearBuffer();
+display.setBrightness(7);
 ```
 
 <p dir="rtl" align="right">
-قبل از رسم فریم جدید، بافر داخلی پاک می‌شود تا محتوای قبلی حذف شود.
+در این کتابخانه مقدار روشنایی از <bdi><strong>0</strong></bdi> تا <bdi><strong>7</strong></bdi> قابل تنظیم است؛ در این مثال از بیشترین سطح استفاده می‌کنیم.
 </p>
 
-<h3 dir="rtl" align="right">5️⃣ انتخاب فونت</h3>
+<h3 dir="rtl" align="right">5️⃣ نمایش عدد</h3>
 
 ```cpp
-u8g2.setFont(u8g2_font_ncenB08_tr);
+display.showNumberDec(1234, false);
 ```
 
 <p dir="rtl" align="right">
-فونتی را که قرار است برای نمایش متن استفاده شود مشخص می‌کند.
-</p>
-
-<h3 dir="rtl" align="right">6️⃣ نمایش متن</h3>
-
-```cpp
-u8g2.drawStr(0, 12, "Hello World!");
-```
-
-<p dir="rtl" align="right">
-متن را در مختصات مشخص‌شده رسم می‌کند. دو عدد اول مختصات X و Y هستند.
-</p>
-
-<h3 dir="rtl" align="right">7️⃣ ارسال تصویر به GLCD</h3>
-
-```cpp
-u8g2.sendBuffer();
-```
-
-<p dir="rtl" align="right">
-محتویات بافر را روی نمایشگر ارسال می‌کند تا تصویر نهایی دیده شود.
+تابع <bdi><strong>showNumberDec()</strong></bdi> برای نمایش یک عدد دهدهی استفاده می‌شود. پارامتر دوم مشخص می‌کند که صفرهای ابتدایی نمایش داده شوند یا فضای خالی باقی بماند.
 </p>
 
 <hr>
 
-<h2 dir="rtl" align="right">✏️ بخش چهاردهم: رسم یک Pixel</h2>
+<h2 dir="rtl" align="right">🔢 بخش نهم: نمایش اعداد مختلف</h2>
 
 <p dir="rtl" align="right">
-برای روشن کردن یک پیکسل از دستور زیر استفاده می‌کنیم:
+برای مثال می‌توانیم عددهای مختلف را با همین تابع نمایش دهیم:
 </p>
 
 ```cpp
-u8g2.drawPixel(x, y);
+display.showNumberDec(25, false);
 ```
 
 <p dir="rtl" align="right">
-مثلاً برای روشن کردن پیکسل مختصات 20 و 10:
+نمایش حاصل تقریباً به شکل زیر خواهد بود:
 </p>
 
-```cpp
-u8g2.drawPixel(20, 10);
+```text
+┌─────────────────┐
+│       25        │
+└─────────────────┘
 ```
 
 <p dir="rtl" align="right">
-یک برنامه ساده:
+در حالت <bdi><strong>false</strong></bdi>، صفرهای غیرضروری در سمت چپ نمایش داده نمی‌شوند.
+</p>
+
+<p dir="rtl" align="right">
+اگر بخواهیم عدد را با چهار رقم و صفرهای ابتدایی نمایش دهیم، می‌توانیم از <bdi><strong>true</strong></bdi> استفاده کنیم:
 </p>
 
 ```cpp
-#include <U8g2lib.h>
+display.showNumberDec(25, true);
+```
 
-U8G2_KS0108_128X64_F u8g2(
-  U8G2_R0,
-  2, 3, 4, 5, 6, 7, 8, 9,
-  10,
-  11,
-  12,
-  13,
-  U8X8_PIN_NONE,
-  A0
-);
+<p dir="rtl" align="right">
+در این حالت نمایش به شکل زیر خواهد بود:
+</p>
 
-void setup() {
-  u8g2.begin();
-}
-
-void loop() {
-
-  u8g2.clearBuffer();
-
-  u8g2.drawPixel(20, 10);
-  u8g2.drawPixel(21, 10);
-  u8g2.drawPixel(22, 10);
-  u8g2.drawPixel(23, 10);
-
-  u8g2.sendBuffer();
-
-  delay(1000);
-}
+```text
+┌─────────────────┐
+│      0025       │
+└─────────────────┘
 ```
 
 <hr>
 
-<h2 dir="rtl" align="right">📏 بخش پانزدهم: رسم خط</h2>
+<h2 dir="rtl" align="right">💡 بخش دهم: پاک کردن نمایشگر</h2>
 
 <p dir="rtl" align="right">
-برای رسم یک خط از دستور زیر استفاده می‌کنیم:
+برای خاموش کردن Segmentهای نمایشگر از تابع زیر استفاده می‌کنیم:
 </p>
 
 ```cpp
-u8g2.drawLine(x1, y1, x2, y2);
+display.clear();
 ```
 
 <p dir="rtl" align="right">
@@ -600,524 +358,253 @@ u8g2.drawLine(x1, y1, x2, y2);
 </p>
 
 ```cpp
-u8g2.drawLine(0, 0, 127, 63);
-```
+#include <TM1637Display.h>
 
-<p dir="rtl" align="right">
-این خط از گوشه بالا-چپ به سمت گوشه پایین-راست کشیده می‌شود.
-</p>
+#define CLK 2
+#define DIO 3
 
-<p dir="rtl" align="right">
-می‌توانیم چند خط بکشیم تا یک شکل بسازیم:
-</p>
-
-```cpp
-u8g2.drawLine(0, 0, 127, 0);
-u8g2.drawLine(127, 0, 127, 63);
-u8g2.drawLine(127, 63, 0, 63);
-u8g2.drawLine(0, 63, 0, 0);
-```
-
-<hr>
-
-<h2 dir="rtl" align="right">⬜ بخش شانزدهم: رسم مستطیل</h2>
-
-<p dir="rtl" align="right">
-برای رسم کادر مستطیلی از:
-</p>
-
-```cpp
-u8g2.drawFrame(x, y, width, height);
-```
-
-<p dir="rtl" align="right">
-استفاده می‌کنیم.
-</p>
-
-<p dir="rtl" align="right">
-مثلاً:
-</p>
-
-```cpp
-u8g2.drawFrame(10, 10, 80, 30);
-```
-
-<p dir="rtl" align="right">
-اگر بخواهیم مستطیل کاملاً پر شود از:
-</p>
-
-```cpp
-u8g2.drawBox(10, 10, 80, 30);
-```
-
-<p dir="rtl" align="right">
-استفاده می‌کنیم.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">⭕ بخش هفدهم: رسم دایره</h2>
-
-<p dir="rtl" align="right">
-یکی از قابلیت‌های مهم GLCD رسم دایره است.
-</p>
-
-<p dir="rtl" align="right">
-برای رسم دایره از:
-</p>
-
-```cpp
-u8g2.drawCircle(x, y, radius);
-```
-
-<p dir="rtl" align="right">
-استفاده می‌کنیم.
-</p>
-
-<p dir="rtl" align="right">
-مثلاً:
-</p>
-
-```cpp
-u8g2.drawCircle(64, 32, 20);
-```
-
-<p dir="rtl" align="right">
-که یک دایره با مرکز تقریباً در وسط صفحه و شعاع 20 رسم می‌کند.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">🧱 بخش هجدهم: ترکیب چند شکل</h2>
-
-<p dir="rtl" align="right">
-یکی از مهم‌ترین نکات کار با GLCD این است که می‌توان چند عنصر گرافیکی را در یک فریم قرار داد.
-</p>
-
-```cpp
-#include <U8g2lib.h>
-
-U8G2_KS0108_128X64_F u8g2(
-  U8G2_R0,
-  2, 3, 4, 5, 6, 7, 8, 9,
-  10,
-  11,
-  12,
-  13,
-  U8X8_PIN_NONE,
-  A0
-);
+TM1637Display display(CLK, DIO);
 
 void setup() {
-  u8g2.begin();
+
+  display.setBrightness(7);
+
+  display.showNumberDec(1234, false);
+
+  delay(2000);
+
+  display.clear();
+
 }
 
 void loop() {
 
-  u8g2.clearBuffer();
-
-  // کادر دور صفحه
-  u8g2.drawFrame(0, 0, 128, 64);
-
-  // خط افقی
-  u8g2.drawLine(0, 18, 127, 18);
-
-  // متن
-  u8g2.setFont(u8g2_font_6x10_tr);
-  u8g2.drawStr(25, 13, "Arduino");
-
-  // مستطیل
-  u8g2.drawFrame(10, 28, 35, 20);
-
-  // دایره
-  u8g2.drawCircle(80, 38, 12);
-
-  // مستطیل پرشده کوچک
-  u8g2.drawBox(100, 30, 15, 15);
-
-  u8g2.sendBuffer();
-
-  delay(1000);
 }
 ```
 
-<hr>
-
-<h2 dir="rtl" align="right">🧮 بخش نوزدهم: کار با مختصات</h2>
-
 <p dir="rtl" align="right">
-بهتر است هنگام رسم گرافیک همیشه محدوده نمایشگر را در ذهن داشته باشیم.
+در این برنامه ابتدا عدد <bdi><strong>1234</strong></bdi> نمایش داده می‌شود، سپس بعد از دو ثانیه نمایشگر پاک می‌شود.
 </p>
 
+<hr>
 
+<h2 dir="rtl" align="right">🎚️ بخش یازدهم: کنترل روشنایی</h2>
 
 <p dir="rtl" align="right">
-پس اگر بخواهیم یک مستطیل با عرض 100 و ارتفاع 40 رسم کنیم، باید محل شروع آن به گونه‌ای انتخاب شود که از محدوده صفحه خارج نشود.
+روشنایی نمایشگر را می‌توان با تابع زیر کنترل کرد:
 </p>
 
 ```cpp
-u8g2.drawFrame(14, 12, 100, 40);
+display.setBrightness(level);
 ```
 
 <p dir="rtl" align="right">
-با این روش می‌توانیم یک ناحیه مرکزی مناسب برای نمایش اطلاعات ایجاد کنیم.
+مقدار <bdi><strong>level</strong></bdi> می‌تواند از 0 تا 7 باشد.
 </p>
 
-<hr>
+<div dir="rtl" align="left">
 
-<h2 dir="rtl" align="right">📝 بخش بیستم: نمایش متن و گرافیک در کنار هم</h2>
-
-<p dir="rtl" align="right">
-GLCD زمانی کاربردی‌تر می‌شود که متن و گرافیک را با هم ترکیب کنیم.
-</p>
-
-```cpp
-#include <U8g2lib.h>
-
-U8G2_KS0108_128X64_F u8g2(
-  U8G2_R0,
-  2, 3, 4, 5, 6, 7, 8, 9,
-  10,
-  11,
-  12,
-  13,
-  U8X8_PIN_NONE,
-  A0
-);
-
-void setup() {
-  u8g2.begin();
-}
-
-void loop() {
-
-  u8g2.clearBuffer();
-
-  u8g2.setFont(u8g2_font_6x10_tr);
-
-  u8g2.drawStr(4, 10, "TEMPERATURE");
-  u8g2.drawFrame(2, 15, 124, 46);
-  u8g2.drawCircle(20, 38, 10);
-  u8g2.drawStr(38, 42, "25 C");
-
-  u8g2.sendBuffer();
-
-  delay(1000);
-}
-```
-
-<p dir="rtl" align="right">
-این نوع طراحی، پایه ساخت رابط‌های کاربری ساده برای دستگاه‌های اندازه‌گیری و پروژه‌های الکترونیکی است.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">🔄 بخش بیست و یکم: نمایش چند صفحه مختلف</h2>
-
-<p dir="rtl" align="right">
-می‌توانیم در برنامه اطلاعات متفاوتی را در زمان‌های مختلف نشان دهیم.
-</p>
-
-```cpp
-#include <U8g2lib.h>
-
-U8G2_KS0108_128X64_F u8g2(
-  U8G2_R0,
-  2, 3, 4, 5, 6, 7, 8, 9,
-  10,
-  11,
-  12,
-  13,
-  U8X8_PIN_NONE,
-  A0
-);
-
-void setup() {
-  u8g2.begin();
-}
-
-void loop() {
-
-  // صفحه اول
-  u8g2.clearBuffer();
-  u8g2.setFont(u8g2_font_6x10_tr);
-  u8g2.drawStr(25, 25, "PAGE 1");
-  u8g2.drawFrame(5, 5, 118, 50);
-  u8g2.sendBuffer();
-
-  delay(1000);
-
-  // صفحه دوم
-  u8g2.clearBuffer();
-  u8g2.drawStr(25, 25, "PAGE 2");
-  u8g2.drawCircle(64, 35, 18);
-  u8g2.sendBuffer();
-
-  delay(1000);
-}
-```
-
-<hr>
-
-<h2 dir="rtl" align="right">⚠️ بخش بیست و دوم: نکات مهم در راه‌اندازی GLCD</h2>
-
-<ul dir="rtl" align="right">
-  <li>قبل از هر چیز <bdi><strong>GND</strong></bdi> و <bdi><strong>5V</strong></bdi> را بررسی کنید.</li>
-  <li>پایه <bdi><strong>R/W</strong></bdi> این اتصال به <bdi><strong>GND</strong></bdi> وصل می‌شود.</li>
-  <li>اتصال <bdi><strong>D0 تا D7</strong></bdi> باید دقیقاً مطابق تعریف برنامه باشد.</li>
-  <li>جای پایه‌های <bdi><strong>CS1</strong></bdi> و <bdi><strong>CS2</strong></bdi> را بررسی کنید.</li>
-  <li>پایه <bdi><strong>RST</strong></bdi> در برنامه به A0 اختصاص داده شده است.</li>
-  <li>در صورت روشن بودن Backlight و نداشتن تصویر، کنتراست را با پتانسیومتر تنظیم کنید.</li>
-  <li>از اتصال اشتباه مستقیم پایه‌های تغذیه و سیگنال جلوگیری کنید.</li>
-</ul>
-
-<p dir="rtl" align="right">
-💡 <b>نکته:</b> نمایشگر مورد استفاده رابط موازی 8 بیتی دارد؛ بنابراین نسبت به یک نمایشگر سریال یا SPI تعداد پایه‌های بیشتری از Arduino را اشغال می‌کند.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">🧪 بخش بیست و سوم: پروژه کوچک جلسه</h2>
-
-<p dir="rtl" align="right">
-یک برنامه طراحی کنید که صفحه GLCD را به چهار بخش تقسیم کند:
-</p>
-
-```text
-┌────────────────────────────────────┐
-│         ARDUINO PROJECT            │
-├────────────────────────────────────┤
-│ TEMP: 25 C                         │
-│                                    │
-│        ○                           │
-│                                    │
-│ STATUS: OK                         │
-└────────────────────────────────────┘
-```
-
-<p dir="rtl" align="right">
-برای این پروژه حداقل از موارد زیر استفاده کنید:
-</p>
-
-<ul dir="rtl" align="left">
-  <li><bdi><strong>()drawStr</strong></bdi></li>
-  <li><bdi><strong>()drawFrame</strong></bdi></li>
-  <li><bdi><strong>()drawCircle</strong></bdi></li>
-  <li><bdi><strong>()clearBuffer</strong></bdi></li>
-  <li><bdi><strong>()sendBuffer</strong></bdi></li>
-</ul>
-
-<hr>
-
-<h2 dir="rtl" align="right">📝 تمرین اول</h2>
-
-<p dir="rtl" align="right">
-برنامه‌ای بنویسید که یک کادر کامل دور صفحه رسم کند.
-</p>
-
-<p dir="rtl" align="right">
-سپس داخل آن متن زیر را نمایش دهید:
-</p>
-
-```text
-Arduino Course
-Session 12
-```
-
-<hr>
-
-<h2 dir="rtl" align="right">📝 تمرین دوم</h2>
-
-<p dir="rtl" align="right">
-سه دایره با اندازه‌های متفاوت روی GLCD رسم کنید.
-</p>
-
-<p dir="rtl" align="right">
-مثلاً در مختصات زیر:
-</p>
-
-```text
-(25,32)
-(64,32)
-(103,32)
-```
-
-<hr>
-
-<h2 dir="rtl" align="right">📝 تمرین سوم</h2>
-
-<p dir="rtl" align="right">
-یک منوی ساده روی GLCD طراحی کنید:
-</p>
-
-```text
-┌──────────────────────────────┐
-│       MAIN MENU              │
-├──────────────────────────────┤
-│ 1. SENSOR                    │
-│ 2. MOTOR                     │
-│ 3. SETTINGS                  │
-└──────────────────────────────┘
-```
-
-<p dir="rtl" align="right">
-فعلاً نیازی به Keypad نداریم و فقط ظاهر منو را روی GLCD ایجاد می‌کنیم.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">⭐ تمرین چهارم: رسم نمودار ساده</h2>
-
-<p dir="rtl" align="right">
-با استفاده از <bdi><strong>drawLine()</strong></bdi> یک نمودار ساده شبیه شکل زیر ایجاد کنید:
-</p>
-
-```text
-│      ╱╲
-│  ╱╲ ╱  ╲
-│ ╱  ╲    ╲╱
-│╱
-└────────────────────
-```
-
-<p dir="rtl" align="right">
-هدف این تمرین آشنایی بیشتر با مفهوم مختصات و اتصال چند نقطه به یکدیگر است.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">🧠 بخش بیست و چهارم: نکته مهم درباره Buffer</h2>
-
-<p dir="rtl" align="right">
-در مثال‌های U8g2 معمولاً ابتدا محتوای تصویر در بافر آماده می‌شود و در پایان با دستور <bdi><strong>sendBuffer()</strong></bdi> به نمایشگر ارسال می‌شود.
-</p>
-
-<p dir="rtl" align="right">
-بنابراین ترتیب کلی بسیاری از برنامه‌های ما به این شکل خواهد بود:
-</p>
-
-```text
-clearBuffer()
-      ↓
-رسم متن و شکل‌ها
-      ↓
-sendBuffer()
-```
-
-<p dir="rtl" align="right">
-این ساختار کمک می‌کند یک فریم کامل بسازیم و سپس آن را روی صفحه نمایش دهیم.
-</p>
-
-<hr>
-
-<h2 dir="rtl" align="right">📌 بخش بیست و پنجم: مهم‌ترین دستورات این جلسه</h2>
-
-<div dir="" align="left">
-
-| دستور | کاربرد |
-| :---: |:---: |
-| `u8g2.begin()` | راه‌اندازی GLCD |
-| `u8g2.clearBuffer()` | پاک کردن بافر |
-| `u8g2.setFont()` | انتخاب فونت |
-| `u8g2.drawStr()` | نمایش متن |
-| `u8g2.drawPixel()` | رسم یک پیکسل |
-| `u8g2.drawLine()` | رسم خط |
-| `u8g2.drawFrame()` | رسم کادر مستطیلی |
-| `u8g2.drawBox()` | رسم مستطیل پر |
-| `u8g2.drawCircle()` | رسم دایره |
-| `u8g2.sendBuffer()` | ارسال بافر به نمایشگر |
+| مقدار | توضیح |
+| ---: | --- |
+| 0 | کمترین روشنایی |
+| 1 | روشنایی کم |
+| 2 | روشنایی کم |
+| 3 | روشنایی متوسط |
+| 4 | روشنایی متوسط |
+| 5 | روشنایی زیاد |
+| 6 | روشنایی زیاد |
+| 7 | بیشترین روشنایی |
 
 </div>
 
-<hr>
-
-<h2 dir="rtl" align="right">📚 جمع‌بندی جلسه</h2>
-
 <p dir="rtl" align="right">
-در این جلسه از <bdi><strong>LCD کاراکتری</strong></bdi> وارد دنیای <bdi><strong>نمایش گرافیکی</strong></bdi> شدیم.
-</p>
-
-<p dir="rtl" align="right">
-ابتدا با مفهوم <bdi><strong>GLCD</strong></bdi> و <bdi><strong>Pixel</strong></bdi> آشنا شدیم و تفاوت آن را با LCD کاراکتری بررسی کردیم.
-</p>
-
-<p dir="rtl" align="right">
-سپس نمایشگر <bdi><strong>128×64 KS0108</strong></bdi> را به <bdi><strong>Arduino UNO</strong></bdi> متصل کردیم و کتابخانه <bdi><strong>U8g2</strong></bdi> را نصب کردیم.
-</p>
-
-<p dir="rtl" align="right">
-در ادامه یاد گرفتیم:
+مثلاً:
 </p>
 
 ```cpp
-u8g2.drawPixel();
-u8g2.drawLine();
-u8g2.drawFrame();
-u8g2.drawBox();
-u8g2.drawCircle();
-u8g2.drawStr();
+display.setBrightness(3);
 ```
 
 <p dir="rtl" align="right">
-را برای ساخت عناصر گرافیکی مختلف استفاده کنیم.
+یا برای روشنایی بیشتر:
 </p>
+
+```cpp
+display.setBrightness(7);
+```
 
 <p dir="rtl" align="right">
-در نهایت دیدیم که می‌توان متن، کادر، خط، دایره و سایر عناصر را با هم ترکیب کرد و یک رابط گرافیکی ساده ساخت.
+طبق مستندات کتابخانه، تنظیم روشنایی زمانی اعمال می‌شود که فرمانی برای به‌روزرسانی داده‌های نمایشگر ارسال شود.
 </p>
-
 
 <hr>
 
-<h2 dir="rtl" align="right">⏭️ پیش‌نمایش جلسه ۱۳</h2>
+<h2 dir="rtl" align="right">🧠 بخش دوازدهم: چرا TM1637 کاربردی است؟</h2>
 
 <p dir="rtl" align="right">
-در جلسه ۱۳ سراغ یک نمایشگر متفاوت می‌رویم:
-</p>
-
-<p dir="center" align="center">
-<bdi><strong>TM1637 4-Digit 7-Segment Display</strong></bdi>
+اگر بخواهیم یک نمایشگر 7-Segment را بدون درایور کنترل کنیم، باید تعداد زیادی خط و منطق کنترلی برای Segmentها و رقم‌ها در نظر بگیریم.
 </p>
 
 <p dir="rtl" align="right">
-در این جلسه با نمایشگرهای <bdi><strong>7-Segment</strong></bdi> و ماژول TM1637 آشنا می‌شویم و یاد می‌گیریم با فقط دو خط سیگنال، عددها و اطلاعات کوتاه را روی یک نمایشگر چهاررقمی نمایش دهیم.
+اما در ماژول TM1637 بخش عمده این کنترل توسط درایور انجام می‌شود و Arduino از طریق خطوط <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> با ماژول ارتباط برقرار می‌کند.
 </p>
 
+```text
+Arduino UNO
+     │
+     │  CLK + DIO
+     ▼
+┌─────────────┐
+│   TM1637    │
+│   Driver    │
+└──────┬──────┘
+       │
+       ▼
+┌─────────────────┐
+│   7-Segment     │
+│     4-Digit     │
+└─────────────────┘
+```
+
+<hr>
+
+<h2 dir="rtl" align="right">⚠️ بخش سیزدهم: نکات عیب‌یابی</h2>
+
 <p dir="rtl" align="right">
-موضوعات اصلی جلسه بعد شامل موارد زیر خواهد بود:
+اگر بعد از آپلود کد چیزی روی نمایشگر مشاهده نکردید، این موارد را بررسی کنید:
 </p>
 
 <ul dir="rtl" align="right">
-  <li>TM1637 چیست؟</li>
-  <li>7-Segment چگونه کار می‌کند؟</li>
-  <li>پایه‌های <bdi><strong>VCC</strong></bdi>، <bdi><strong>GND</strong></bdi>، <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi></li>
-  <li>اتصال TM1637 به Arduino UNO</li>
-  <li>نصب کتابخانه مربوط به TM1637</li>
-  <li>نمایش عدد</li>
-  <li>کنترل روشنایی</li>
-  <li>نمایش ساعت و دقیقه</li>
-  <li>استفاده از نقطه و جداکننده در نمایشگر</li>
-  <li>ساخت یک پروژه ساده با شمارنده</li>
+  <li>اتصال <bdi><strong>VCC</strong></bdi> و <bdi><strong>GND</strong></bdi> را بررسی کنید.</li>
+  <li>جابجا نبودن <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> را بررسی کنید.</li>
+  <li>شماره پایه‌های تعریف‌شده در برنامه با سیم‌کشی واقعی یکسان باشد.</li>
+  <li>مطمئن شوید کتابخانه <bdi><strong>TM1637Display</strong></bdi> نصب شده است.</li>
+  <li>مطمئن شوید نام فایل هدر دقیقاً <code>TM1637Display.h</code> نوشته شده باشد.</li>
 </ul>
 
-<p align="center">
-  <img src="./images/TM1637-Preview.png" alt="TM1637 4 Digit Display" width="500">
+<hr>
+
+<h2 dir="rtl" align="right">📝 تمرین عملی</h2>
+
+<p dir="rtl" align="right">
+برنامه‌ای بنویسید که پس از روشن شدن Arduino، عدد زیر را روی نمایشگر TM1637 نشان دهد:
+</p>
+
+```text
+2026
+```
+
+<p dir="rtl" align="right">
+سپس روشنایی را روی مقدار <bdi><strong>4</strong></bdi> قرار دهید.
 </p>
 
 <p dir="rtl" align="right">
-در جلسه بعد، در کنار نمایشگر گرافیکی، با یک روش ساده‌تر برای نمایش <bdi><strong>اعداد و مقادیر دیجیتال</strong></bdi> آشنا خواهیم شد.
+برای شروع می‌توانید از این قسمت استفاده کنید:
+</p>
+
+```cpp
+#include <TM1637Display.h>
+
+#define CLK 2
+#define DIO 3
+
+TM1637Display display(CLK, DIO);
+```
+
+<hr>
+
+<h2 dir="rtl" align="right">📌 جمع‌بندی جلسه</h2>
+
+<p dir="rtl" align="right">
+در این جلسه با <bdi><strong>TM1637</strong></bdi> و ماژول نمایشگر چهاررقمی <bdi><strong>7-Segment</strong></bdi> آشنا شدیم.
+</p>
+
+<p dir="rtl" align="right">
+در این جلسه یاد گرفتیم که برای اتصال ماژول به Arduino به چهار اتصال اصلی نیاز داریم:
+</p>
+
+```text
+VCC
+GND
+CLK
+DIO
+```
+
+<p dir="rtl" align="right">
+همچنین کتابخانه <bdi><strong>TM1637Display</strong></bdi> را نصب کردیم و با دستورات اصلی زیر آشنا شدیم:
+</p>
+
+```cpp
+TM1637Display display(CLK, DIO);
+
+display.setBrightness(7);
+
+display.showNumberDec(1234, false);
+
+display.clear();
+```
+
+<p dir="rtl" align="right">
+در این مرحله تمرکز ما فقط روی <bdi><strong>راه‌اندازی و نمایش عدد</strong></bdi> بود و وارد پروژه‌های زمان‌محور یا ورودی سنسورها نشدیم.
 </p>
 
 <hr>
 
+<h2 dir="rtl" align="right">⏭️ پیش‌نمایش جلسه ۱۴</h2>
 
 <p dir="rtl" align="right">
-⬅️ <a href="../11-LCD/">جلسه 11 — راه‌اندازی LCD کاراکتری و اتصال Keypad 4×4</a>
+در جلسه ۱۴ سراغ یک نوع نمایشگر LED متفاوت می‌رویم:
+</p>
+
+<p dir="center" align="center">
+<bdi><strong>LED Matrix 8×8</strong></bdi>
+</p>
+
+<p align="center">
+  <img src="./images/LED-Matrix-8-8.jpg" alt="Arduino" width="600">
 </p>
 
 <p dir="rtl" align="right">
-➡️ <a href="../13-TM1637/">جلسه 13 — راه‌اندازی نمایشگر 7-Segment با TM1637</a>
+در جلسه بعد با ساختار ماتریسی LEDها، ردیف و ستون، روش کنترل یک ماتریس 8×8 و نمایش الگوها و شکل‌های ساده آشنا خواهیم شد.
 </p>
+
+<p dir="rtl" align="right">
+موضوعات اصلی جلسه ۱۴ شامل موارد زیر خواهد بود:
+</p>
+
+<ul dir="rtl" align="right">
+  <li>LED Matrix چیست؟</li>
+  <li>ساختار 8×8 و مفهوم Row و Column</li>
+  <li>اتصال ماتریس LED به Arduino</li>
+  <li>کنترل LEDهای ماتریسی</li>
+  <li>نمایش الگوهای ساده</li>
+  <li>نمایش حروف و شکل‌های ابتدایی</li>
+</ul>
+
+<hr>
+
+<h2 dir="rtl" align="right">🔗 منابع و مراجع</h2>
+
+<p dir="rtl" align="right">
+اطلاعات مربوط به کتابخانه و شیء <bdi><strong>TM1637Display</strong></bdi>، پایه‌های ارتباطی <bdi><strong>CLK</strong></bdi> و <bdi><strong>DIO</strong></bdi> و توابع اصلی آن از مستندات پروژه TM1637 در GitHub بررسی شده است.
+</p>
+
+<ul dir="rtl" align="right">
+  <li><a href="https://github.com/avishorp/TM1637">TM1637 Arduino Library — avishorp</a></li>
+  <li><a href="https://github.com/avishorp/TM1637/blob/master/TM1637Display.h">TM1637Display.h — Reference</a></li>
+  <li><a href="https://github.com/avishorp/TM1637/blob/master/examples/TM1637Test/TM1637Test.ino">TM1637 Library Example</a></li>
+</ul>
+
+<hr>
+
+<p dir="rtl" align="right">
+⬅️ <a href="../12-GLCD/">جلسه 12 — آشنایی با GLCD 128×64 و نمایش گرافیکی</a>
+</p>
+
+<p dir="rtl" align="right">
+➡️ <a href="../14-LED-Matrix-8x8/">جلسه 14 — راه‌اندازی LED Matrix 8×8</a>
+</p>
+
 
 
 <p align="center">
