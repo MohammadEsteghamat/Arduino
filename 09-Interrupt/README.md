@@ -539,6 +539,10 @@ Button pressed: 4
 همچنین در ادامه می‌توانیم از <bdi><strong>Keypad</strong></bdi> برای ساخت پروژه‌هایی مانند رمز عبور، ماشین‌حساب ساده و منوی کنترلی استفاده کنیم.
 </p>
 
+<hr>
+<p dir="rtl" align="right">
+⬅️ <a href="../08-SPI/">جلسه 08 — پروتکل <bdi><strong>SPI</strong></bdi></a>
+</p>
 <p dir="rtl" align="right">
 ⬅️ <a href="../10-Keypad/">جلسه 10 — کار با <bdi><strong>Keypad</strong></bdi></a>
 </p>
