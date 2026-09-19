@@ -1,4 +1,5 @@
-# Arduino From Zero to Projects
+<h2 dir="rtl" align="center">
+  # Arduino From Zero to Projects
 
 آموزش کامل **Arduino از پایه تا ساخت پروژه‌های عملی**
 
