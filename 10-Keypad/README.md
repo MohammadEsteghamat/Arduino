@@ -826,6 +826,10 @@ Special Key
 
 <p dir="rtl" align="right">
 در ادامه می‌توانیم با ترکیب <bdi><strong>Keypad + LCD</strong></bdi> پروژه‌های کاربردی مانند ورود رمز عبور، منوی انتخاب و سیستم ورود اطلاعات بسازیم.
+<hr>
+</p>
+<p dir="rtl" align="right">
+⬅️ <a href="../09-Interrupt/">جلسه 09 — آشنایی با <bdi><strong>Interrupt</strong></bdi> و وقفه‌ها</a>
 </p>
 
 <p dir="rtl" align="right">
