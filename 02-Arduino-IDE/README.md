@@ -625,9 +625,9 @@ Arduino Start
 <p dir="rtl">
 در جلسه سوم، با <strong>ورودی و خروجی دیجیتال (Digital Input / Output)</strong> در Arduino آشنا می‌شویم و یاد می‌گیریم چگونه با استفاده از پایه‌های دیجیتال، قطعاتی مانند <strong>LED</strong> و <strong>Push Button</strong> را کنترل و مدیریت کنیم.
 </p>
-
+<hr>
 <p dir="rtl">
-⬅️ <a href="../01-Introduction/">جلسه 01 — Introduction   </a>
+⬅️ <a href="../01-Introduction/">جلسه 01 — جلسه 01 — آشنایی با Arduino   </a>
 </p>
 <p dir="rtl">
 ⬅️ <a href="../03-Digital-IO/">جلسه 03 — Digital-IO</a>
