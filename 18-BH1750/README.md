@@ -56,6 +56,10 @@
 یکی از مزیت‌های مهم <bdi><strong>BH1750</strong></bdi> این است که خروجی آن مستقیماً برای اندازه‌گیری شدت روشنایی بر حسب <bdi><strong>Lux</strong></bdi> مناسب است.
 </p>
 
+<p align="center">
+  <img src="./images/BH1750.png" alt="Arduino" width="600">
+</p>
+
 <hr>
 
 <h2 dir="rtl" align="right">📌 <bdi><strong>Lux</strong></bdi> چیست؟</h2>
@@ -299,6 +303,9 @@ void loop() {
   delay(1000);
 }
 ```
+<p align="center">
+  <img src="./images/test.png" alt="Arduino" width="1100">
+</p>
 
 <p dir="rtl" align="right">
 این نمونه از کتابخانه <bdi><strong>BH1750</strong></bdi> استفاده می‌کند، باس <bdi><strong>I2C</strong></bdi> را با <bdi><strong>Wire.begin()</strong></bdi> راه‌اندازی کرده و سپس مقدار نور را با <bdi><strong>readLightLevel()</strong></bdi> می‌خواند.
