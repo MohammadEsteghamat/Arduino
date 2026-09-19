@@ -627,6 +627,9 @@ Arduino Start
 </p>
 
 <p dir="rtl">
+⬅️ <a href="../01-Introduction/">جلسه 01 — Introduction   </a>
+</p>
+<p dir="rtl">
 ⬅️ <a href="../03-Digital-IO/">جلسه 03 — Digital-IO</a>
 </p>
 
