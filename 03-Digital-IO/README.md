@@ -717,6 +717,10 @@ LED 2 → ON
 
 
 
+<hr>
+<p dir="rtl">
+⬅️ <a href="../02-Arduino-IDE/">جلسه 02 — نصب و راه‌اندازی Arduino IDE</a>
+</p>
 
 <p dir="rtl">
 ⬅️ <a href="../04-Analog-IO/">جلسه 04 — Analog-IO </a>
