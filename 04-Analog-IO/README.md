@@ -824,7 +824,11 @@ A1
 
 <div dir="rtl" align="right">
 
+<hr>
 
+<p dir="rtl">
+⬅️ <a href="../03-Digital-IO/">جلسه 03 — Digital-IO</a>
+</p>
 
 <p dir="rtl">
 ⬅️ <a href="../05-PWM/">جلسه 05 — PWM </a>
