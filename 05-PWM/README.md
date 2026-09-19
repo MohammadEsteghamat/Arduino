@@ -666,6 +666,10 @@ map(value, 0, 1023, 0, 100);
 # ⏭️جلسه بعد
 
 در جلسه ششم با **<bdi>Serial Monitor</bdi>** به‌صورت کامل‌تر کار می‌کنیم و یاد می‌گیریم چگونه اطلاعات را بین <bdi>Arduino</bdi> و کامپیوتر ارسال و دریافت کنیم.
+<hr>
+<p dir="rtl">
+⬅️ <a href="../04-Analog-IO/">جلسه 04 — Analog-IO </a>
+</p>
 
 <p dir="rtl">
 ⬅️ <a href="../06-Serial-Monitor/">جلسه 06 — Serial-Monitor </a>
