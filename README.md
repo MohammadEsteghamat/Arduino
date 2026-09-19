@@ -1,5 +1,5 @@
 <h2 dir="rtl" align="center">
-  # Arduino From Zero to Projects
+   Arduino From Zero to Projects
 
 آموزش کامل **Arduino از پایه تا ساخت پروژه‌های عملی**
 
