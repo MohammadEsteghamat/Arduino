@@ -57,7 +57,7 @@
 </p>
 
 <p align="center">
-  <img src="./images/BH1750.png" alt="Arduino" width="600">
+  <img src="./images/BH-1750.png" alt="Arduino" width="600">
 </p>
 
 <hr>
