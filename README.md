@@ -28,21 +28,28 @@
 * ساخت پروژه‌های عملی
 
 ---
-
 # 📚 جلسات دوره
 
 | جلسه | موضوع                  | لینک                                     |
 | :--: | ---------------------- | ---------------------------------------- |
-|  01  | Arduino آشنایی با     | [مشاهده](./01-Introduction/)             |
-|  02  |  Arduino IDE نصب       | [مشاهده](./02-Arduino-IDE/)              |
+|  01  | Arduino آشنایی با      | [مشاهده](./01-Introduction/)             |
+|  02  | Arduino IDE نصب        | [مشاهده](./02-Arduino-IDE/)              |
 |  03  | Digital Input / Output | [مشاهده](./03-Digital-IO/)               |
 |  04  | Analog Input / Output  | [مشاهده](./04-Analog-IO/)                |
 |  05  | PWM                    | [مشاهده](./05-PWM/)                      |
 |  06  | Serial Monitor         | [مشاهده](./06-Serial-Monitor/)           |
-|  07  | Variables & Data Types | [مشاهده](./07-Variables-and-Data-Types/) |
-|  08  | Conditions             | [مشاهده](./08-Conditions/)               |
-|  09  | Loops                  | [مشاهده](./09-Loops/)                    |
-|  10  | Functions              | [مشاهده](./10-Functions/)                |
+|  07  | I2C + OLED             | [مشاهده](./07-I2C-OLED/)                 |
+|  08  | SPI                    | [مشاهده](./08-SPI/)                      |
+|  09  | Interrupt              | [مشاهده](./09-Interrupt/)                |
+|  10  | Keypad                 | [مشاهده](./10-Keypad/)                   |
+|  11  | LCD                    | [مشاهده](./11-LCD/)                      |
+|  12  | GLCD                   | [مشاهده](./12-GLCD/)                     |
+|  13  | TM1637                 | [مشاهده](./13-TM1637/)                   |
+|  14  | LED Matrix 8×8         | [مشاهده](./14-LED-Matrix-8x8/)           |
+|  15  | LED Matrix 8×32        | [مشاهده](./15-LED-Matrix-8x32/)          |
+|  16  | Remote RF              | [مشاهده](./16-Remote-RF/)                |
+|  17  | Ultrasonic             | [مشاهده](./17-Ultrasonic/)               |
+|  18  | BH1750                 | [مشاهده](./18-BH1750/)                   |
 
 ---
 
