@@ -365,6 +365,10 @@ OLED
 <p dir="rtl" align="right">
 در جلسه هشتم با پروتکل ارتباطی <bdi><strong>SPI</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه از این پروتکل برای ارتباط <bdi><strong>Arduino</strong></bdi> با قطعات مختلف استفاده کنیم.
 </p>
+<hr>
+<p dir="rtl">
+⬅️ <a href="../06-Serial-Monitor/">جلسه 06 — Serial-Monitor </a>
+</p>
 
 <p dir="rtl" align="right">
 ⬅️ <a href="../08-SPI/">جلسه 08 — پروتکل <bdi><strong>SPI</strong></bdi></a>
