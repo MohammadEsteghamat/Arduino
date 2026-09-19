@@ -627,6 +627,11 @@ Serial Monitor نمایش نتیجه در
 در این جلسه با مفاهیمی مانند <bdi><strong>Interrupt</strong></bdi>، <bdi><strong>ISR</strong></bdi> و <bdi><strong>attachInterrupt()</strong></bdi> آشنا خواهیم شد و با استفاده از یک پروژه عملی نحوه استفاده از وقفه‌ها را یاد می‌گیریم.
 </p>
 
+<hr>
+<p dir="rtl" align="right">
+⬅️ <a href="../07-I2C-OLED/">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی ماژول <bdi><strong>OLED</strong></bdi></a>
+</p>
+
 <p dir="rtl" align="right">
 ⬅️ <a href="../09-Interrupt/">جلسه 09 — آشنایی با <bdi><strong>Interrupt</strong></bdi> و وقفه‌ها</a>
 </p>
