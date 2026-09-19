@@ -781,6 +781,10 @@ analogWrite()
 <p dir="rtl" align="right">
 در جلسه هفتم با پروتکل <bdi><strong>I2C</strong></bdi> آشنا می‌شویم و یاد می‌گیریم چگونه ماژول <bdi><strong>OLED</strong></bdi> را راه‌اندازی کنیم و روی آن متن و شکل نمایش دهیم.
 </p>
+<hr>
+<p dir="rtl">
+⬅️ <a href="../05-PWM/">جلسه 05 — PWM </a>
+</p>
 
 <p dir="rtl" align="right">
 ⬅️ <a href="../07-I2C-OLED/">جلسه 07 — <bdi><strong>I2C</strong></bdi> و راه‌اندازی ماژول <bdi><strong>OLED</strong></bdi></a>
