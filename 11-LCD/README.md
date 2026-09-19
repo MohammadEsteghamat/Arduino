@@ -1106,6 +1106,9 @@ keypad.getKey();
 
 
 <hr>
+<p dir="rtl" align="right">
+⬅️ <a href="../10-Keypad/">جلسه 10 — کار با <bdi><strong>Keypad</strong></bdi></a>
+</p>
 
 <p dir="rtl" align="right">
 ⬅️ <a href="../12-GLCD/">جلسه 12 — آشنایی با <bdi><strong>GLCD</strong></bdi> و نمایش گرافیکی</a>
