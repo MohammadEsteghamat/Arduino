@@ -1107,25 +1107,12 @@ lightMeter.readLightLevel();
 
 <hr>
 
-<h2 dir="rtl" align="right">⏭️ پیش‌نمایش جلسه بعد</h2>
-
-<p dir="rtl" align="right">
-در جلسه ۱۹ سراغ یک موضوع جدید می‌رویم و مفاهیم یادگرفته‌شده در جلسات قبل را وارد یک پروژه جدید می‌کنیم.
-</p>
-
-<p dir="rtl" align="center">
-🔥 آماده‌ایم برای پروژه بعدی <bdi><strong>Arduino From Zero to Projects</strong></bdi>
-</p>
-
-<hr>
 
 <p dir="rtl" align="right">
 ⬅️ <a href="../17-Ultrasonic/">جلسه 17 — کار با <bdi><strong>Ultrasonic</strong></bdi> و <bdi><strong>HC-SR04</strong></bdi></a>
 </p>
 
-<p dir="rtl" align="right">
-➡️ <a href="../19-Project/">جلسه 19 — پروژه بعدی</a>
-</p>
+
 
 
 
